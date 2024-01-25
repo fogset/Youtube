@@ -25,10 +25,11 @@ const Header_Container = styled.div`
     font-size: large;
 `;
 const Sidebar_Container = styled.div`
-    background-color: rebeccapurple;
+    background-color: #100e0e;
     height: 100%;
     width: 10%;
     font-size: large;
+    color: white;
 `;
 const Video_Container = styled.div`
     background-color: green;
