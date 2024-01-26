@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faBars,
@@ -15,12 +14,14 @@ import {
     Input,
     Button,
 } from "./Header.styled";
-
+import { Link } from "react-router-dom";
 function Header() {
     return (
         <Container>
             <FaBars_Container>
-                <FontAwesomeIcon icon={faBars} size="2x" />
+                <Link to="/">
+                    <FontAwesomeIcon icon={faBars} size="2x" />
+                </Link>
             </FaBars_Container>
             <Wrapper>
                 <Search>

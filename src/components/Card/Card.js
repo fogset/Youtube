@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
     width: 300px;
@@ -41,17 +42,19 @@ const Info = styled.div`
 `;
 function Card() {
     return (
-        <Container>
-            <Image src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg" />
-            <Details>
-                <ChannelImage src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg" />
-                <Texts>
-                    <Title>Test Video</Title>
-                    <ChannelName>sdfsdf</ChannelName>
-                    <Info>660,908 views . 1 day ago</Info>
-                </Texts>
-            </Details>
-        </Container>
+        <Link to="/video/test" style={{ textDecoration: "none" }}>
+            <Container>
+                <Image src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg" />
+                <Details>
+                    <ChannelImage src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg" />
+                    <Texts>
+                        <Title>Test Video</Title>
+                        <ChannelName>sdfsdf</ChannelName>
+                        <Info>660,908 views . 1 day ago</Info>
+                    </Texts>
+                </Details>
+            </Container>
+        </Link>
     );
 }
 
