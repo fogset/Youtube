@@ -1,16 +1,36 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Contact from "./Contact";
-import About from "./About";
+import styled from "styled-components";
+import Card from "../components/Card/Card";
+
+const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+`;
 function Home() {
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path="/" element={<Home />}></Route>
-                <Route path="/about" element={<About />}></Route>
-                <Route path="/contact" element={<Contact />}></Route>
-            </Routes>
-        </BrowserRouter>
+        <Container>
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+        </Container>
     );
 }
 

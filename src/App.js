@@ -5,6 +5,7 @@ import VideoScreen from "./pages/VideoScreen";
 import styled, { ThemeProvider } from "styled-components";
 // import DevDesk from "image/youtube.jpg";
 import { darkTheme, lightTheme } from "./utils/Theme";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 
 function App() {
@@ -12,21 +13,32 @@ function App() {
     return (
         <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
             <Container>
-                <Header_Container>
-                    <Header />
-                </Header_Container>
-                <Main>
-                    <Sidebar_Container>
-                        <Sidebar
-                            darkMode={darkMode}
-                            setDarkMode={setDarkMode}
-                        />
-                    </Sidebar_Container>
-
-                    <Video_Container>
-                        <VideoScreen />
-                    </Video_Container>
-                </Main>
+                <BrowserRouter>
+                    <Header_Container>
+                        <Header />
+                    </Header_Container>
+                    <Main>
+                        <Sidebar_Container>
+                            <Sidebar
+                                darkMode={darkMode}
+                                setDarkMode={setDarkMode}
+                            />
+                        </Sidebar_Container>
+                        <Wrapper>
+                            <Routes>
+                                <Route path="/">
+                                    <Route index element={<Home />} />
+                                    <Route path="video">
+                                        <Route
+                                            path=":id"
+                                            element={<VideoScreen />}
+                                        />
+                                    </Route>
+                                </Route>
+                            </Routes>
+                        </Wrapper>
+                    </Main>
+                </BrowserRouter>
             </Container>
         </ThemeProvider>
     );
@@ -63,4 +75,7 @@ const Sidebar_Container = styled.div`
 const Video_Container = styled.div`
     background-color: ${({ theme }) => theme.bg};
     width: 100%;
+`;
+const Wrapper = styled.div`
+    padding: 22px 96px;
 `;
