@@ -1,12 +1,62 @@
 import React, { Fragment } from "react";
-import Video from "../../components/video/Video";
-import CategoriesBar from "../../components/CategoriesBar/CategoriesBar";
 
 function VideoScreen() {
     return (
         <Fragment>
-            <CategoriesBar />
-            videos fsadfsdfssdfdsf sdsfsf
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
+            <h1>test</h1>
         </Fragment>
     );
 }
