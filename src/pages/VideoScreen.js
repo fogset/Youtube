@@ -7,8 +7,11 @@ import {
     faFloppyDisk,
 } from "@fortawesome/free-regular-svg-icons";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
-import About from "./About";
+import Comment from "./../components/Comments/Comment";
+import Comments from "../components/Comments/Comments";
+
 const Container = styled.div`
+    height: 500px;
     width: 70%;
 `;
 const Content = styled.div`
@@ -135,7 +138,6 @@ function VideoScreen() {
                 </ChannelInfo>
                 <Subscribe>SUBSCRIBE</Subscribe>
             </Channel>
-
             <Description>
                 sum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
                 ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et
@@ -143,6 +145,7 @@ function VideoScreen() {
                 felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla
                 consequat massa quis enim. Donec pede justo,
             </Description>
+            <Comments />
         </Container>
     );
 }
