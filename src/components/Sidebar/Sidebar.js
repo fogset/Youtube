@@ -108,6 +108,10 @@ const Item = styled.div`
     margin-top: 5px;
     margin-bottom: 5px;
     margin-left: 10px;
+    &:hover {
+        background-color: black;
+        color: white;
+    }
 `;
 const Item_text = styled.div`
     margin-left: 10px;
