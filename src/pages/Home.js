@@ -10,6 +10,7 @@ const Container = styled.div`
     overflow-y: auto;
     height: 100%;
     width: 100%;
+    margin-bottom: 100px;
 `;
 function Home() {
     return (

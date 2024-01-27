@@ -83,4 +83,9 @@ const Video_Container = styled.div`
 `;
 const Wrapper = styled.div`
     /* padding: 22px 96px; */
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    background-color: antiquewhite;
 `;
