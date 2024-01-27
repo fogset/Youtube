@@ -7,6 +7,7 @@ import styled, { ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./utils/Theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import About from "./pages/About";
 
 function App() {
     const [darkMode, setDarkMode] = useState(false);
@@ -35,6 +36,10 @@ function App() {
                                         />
                                     </Route>
                                 </Route>
+                                <Route
+                                    path="/about"
+                                    element={<About />}
+                                ></Route>
                             </Routes>
                         </Wrapper>
                     </Main>
@@ -77,5 +82,5 @@ const Video_Container = styled.div`
     width: 100%;
 `;
 const Wrapper = styled.div`
-    padding: 22px 96px;
+    /* padding: 22px 96px; */
 `;
