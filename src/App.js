@@ -2,50 +2,40 @@ import React, { Fragment, useState } from "react";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import VideoScreen from "./pages/VideoScreen";
-import styled, { ThemeProvider } from "styled-components";
+import styled from "styled-components";
 // import DevDesk from "image/youtube.jpg";
-import { darkTheme, lightTheme } from "./utils/Theme";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 
 function App() {
-    const [darkMode, setDarkMode] = useState(false);
     return (
-        <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-            <Container>
-                <BrowserRouter>
-                    <Header_Container>
-                        <Header />
-                    </Header_Container>
-                    <Main>
-                        <Sidebar_Container>
-                            <Sidebar
-                                darkMode={darkMode}
-                                setDarkMode={setDarkMode}
-                            />
-                        </Sidebar_Container>
-                        <Wrapper>
-                            <Routes>
-                                <Route path="/">
-                                    <Route index element={<Home />} />
-                                    <Route path="video">
-                                        <Route
-                                            path=":id"
-                                            element={<VideoScreen />}
-                                        />
-                                    </Route>
+        <Container>
+            <BrowserRouter>
+                <Header_Container>
+                    <Header />
+                </Header_Container>
+                <Main>
+                    <Sidebar_Container>
+                        <Sidebar />
+                    </Sidebar_Container>
+                    <Wrapper>
+                        <Routes>
+                            <Route path="/">
+                                <Route index element={<Home />} />
+                                <Route path="video">
+                                    <Route
+                                        path=":id"
+                                        element={<VideoScreen />}
+                                    />
                                 </Route>
-                                <Route
-                                    path="/about"
-                                    element={<About />}
-                                ></Route>
-                            </Routes>
-                        </Wrapper>
-                    </Main>
-                </BrowserRouter>
-            </Container>
-        </ThemeProvider>
+                            </Route>
+                            <Route path="/about" element={<About />}></Route>
+                        </Routes>
+                    </Wrapper>
+                </Main>
+            </BrowserRouter>
+        </Container>
     );
 }
 

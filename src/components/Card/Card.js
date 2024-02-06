@@ -1,24 +1,27 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
-function Card({ type }) {
+function Card({ id, type, title, username, view, day, image }) {
+    const params = useParams();
+    const value = `/video/${id}`;
+    console.log(params);
     return (
-        <Link to="/video/test" style={{ textDecoration: "none" }}>
+        <Link to={value} style={{ textDecoration: "none" }}>
             <Container type={type}>
-                <Image
-                    type={type}
-                    src="https://buffer.com/cdn-cgi/image/w=1000,fit=contain,q=90,f=auto/library/content/images/size/w1200/2023/10/free-images.jpg"
-                />
+                <Image type={type} src={image} />
+
                 <Details type={type}>
                     <ChannelImage
                         type={type}
                         src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg"
                     />
                     <Texts>
-                        <Title>Test Video</Title>
-                        <ChannelName>sdfsdf</ChannelName>
-                        <Info>660,908 views . 1 day ago</Info>
+                        <Title>{title}</Title>
+                        <ChannelName>{username}</ChannelName>
+                        <Info>
+                            {view} views . {day} day ago
+                        </Info>
                     </Texts>
                 </Details>
             </Container>

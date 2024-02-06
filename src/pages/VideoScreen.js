@@ -10,20 +10,20 @@ import { faShare } from "@fortawesome/free-solid-svg-icons";
 import Comment from "./../components/Comments/Comment";
 import Comments from "../components/Comments/Comments";
 import Card from "../components/Card/Card";
+import VideoPlayer from "./VideoPlayer";
+import { Link, useParams } from "react-router-dom";
+import data from "./data.json";
 function VideoScreen() {
+    const params = useParams();
+    console.log("id");
+    console.log(params.id);
+    const id = params.id - 1;
+    console.log(data[id].video);
     return (
         <Container>
             <VideoContainer>
                 <VideoWrapper>
-                    <iframe
-                        width="100%"
-                        height="100%"
-                        src="https://www.youtube.com/embed/k3Vfj-e1Ma4"
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
+                    <VideoPlayer video={data[id].video} />
                 </VideoWrapper>
                 <Title>Test Video</Title>
                 <Details>
@@ -80,6 +80,16 @@ function VideoScreen() {
     );
 }
 
+// <iframe
+//     width="100%"
+//     height="100%"
+//     src="https://www.youtube.com/embed/k3Vfj-e1Ma4"
+//     title="YouTube video player"
+//     frameborder="0"
+//     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+//     allowFullScreen
+// ></iframe>;
+
 export default VideoScreen;
 const Container = styled.div`
     display: flex;
@@ -111,6 +121,7 @@ const Details = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1%;
+    margin-top: 3%;
 `;
 const Info = styled.span`
     color: ${({ theme }) => theme.textSoft};
