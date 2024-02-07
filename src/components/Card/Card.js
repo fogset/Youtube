@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 
-function Card({ id, type, title, username, view, day, image }) {
+function Card({ id, type, title, username, view, day, image, userIndex }) {
     const params = useParams();
     const value = `/video/${id}`;
     console.log(params);
@@ -10,12 +10,12 @@ function Card({ id, type, title, username, view, day, image }) {
         <Link to={value} style={{ textDecoration: "none" }}>
             <Container type={type}>
                 <Image type={type} src={image} />
-
                 <Details type={type}>
                     <ChannelImage
                         type={type}
                         src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg"
                     />
+                    <h1>---{userIndex}</h1>
                     <Texts>
                         <Title>{title}</Title>
                         <ChannelName>{username}</ChannelName>

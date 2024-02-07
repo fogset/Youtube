@@ -1,7 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import Card from "../components/Card/Card";
 import data from "./data.json";
+import React, { Fragment, useState, useEffect } from "react";
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
@@ -13,10 +13,13 @@ const Container = styled.div`
     margin-bottom: 100px;
 `;
 function Home({ users }) {
+    const [userIndex, setUserIndex] = useState(null);
     return (
         <Container>
-            {users.map((user) => (
+            {users.map((user, index) => (
                 <Card
+                    userIndex={index}
+                    onClick={() => setUserIndex(index)}
                     id={user.id}
                     title={user.title}
                     username={user.username}
@@ -26,6 +29,7 @@ function Home({ users }) {
                     video={user.video}
                 />
             ))}
+            <p>Clicked element's key is {userIndex}</p>
         </Container>
     );
 }
