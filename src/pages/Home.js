@@ -12,10 +12,10 @@ const Container = styled.div`
     width: 100%;
     margin-bottom: 100px;
 `;
-function Home() {
+function Home({ users }) {
     return (
         <Container>
-            {data.map((user) => (
+            {users.map((user) => (
                 <Card
                     id={user.id}
                     title={user.title}

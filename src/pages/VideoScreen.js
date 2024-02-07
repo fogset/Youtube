@@ -18,7 +18,7 @@ function VideoScreen() {
     console.log("id");
     console.log(params.id);
     const id = params.id - 1;
-    console.log(data[id].video);
+
     return (
         <Container>
             <VideoContainer>

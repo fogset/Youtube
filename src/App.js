@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import VideoScreen from "./pages/VideoScreen";
@@ -7,8 +7,31 @@ import styled from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
-
+import {
+    collection,
+    query,
+    where,
+    getDocs,
+    doc,
+    getDoc,
+} from "firebase/firestore";
+import { db } from "./firestore";
+import Test from "./Test";
 function App() {
+    const [users, setUsers] = useState(null);
+    const getUsers = async () => {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        const users = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        setUsers(users);
+    };
+    useEffect(() => {
+        getUsers();
+        // console.log("users");
+        // console.log(users);
+    }, []);
     return (
         <Container>
             <BrowserRouter>
@@ -22,7 +45,7 @@ function App() {
                     <Wrapper>
                         <Routes>
                             <Route path="/">
-                                <Route index element={<Home />} />
+                                <Route index element={<Home users={users} />} />
                                 <Route path="video">
                                     <Route
                                         path=":id"

@@ -1,16 +1,40 @@
-import React from "react";
 import styled from "styled-components";
 import data from "./data.json";
+import {
+    collection,
+    query,
+    where,
+    getDocs,
+    doc,
+    getDoc,
+} from "firebase/firestore";
+import { db } from "../firestore";
+import React, { Fragment, useState, useEffect } from "react";
 
 function About() {
+    const [users, setUsers] = useState(null);
+    const getUsers = async () => {
+        const querySnapshot = await getDocs(collection(db, "users"));
+        const users = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        setUsers(users);
+    };
+    useEffect(() => {
+        getUsers();
+        // console.log("users");
+        // console.log(users);
+    }, []);
+    function handleClick() {
+        //getUsers();
+        console.log("users");
+        console.log(users[0].video);
+    }
     return (
         <Container>
-            {data.map((user) => (
-                <div key={user.id}>
-                    <h2>{user.title}</h2>
-                    <p>{user.body}</p>
-                </div>
-            ))}
+            <div>{users !== null && users[0].video}</div>
+            <button onClick={handleClick}>Click me</button>
         </Container>
     );
 }
