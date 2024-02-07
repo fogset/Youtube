@@ -23,13 +23,13 @@ function About() {
     };
     useEffect(() => {
         getUsers();
-        // console.log("users");
-        // console.log(users);
+        console.log("users");
+        console.log(users);
     }, []);
     function handleClick() {
         //getUsers();
         console.log("users");
-        console.log(users[0].video);
+        console.log(users);
     }
     return (
         <Container>

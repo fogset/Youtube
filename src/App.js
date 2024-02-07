@@ -44,15 +44,22 @@ function App() {
                     </Sidebar_Container>
                     <Wrapper>
                         <Routes>
-                            <Route path="/">
-                                <Route index element={<Home users={users} />} />
-                                <Route path="video">
+                            {users !== null && (
+                                <Route path="/">
                                     <Route
-                                        path=":id"
-                                        element={<VideoScreen />}
+                                        index
+                                        element={<Home users={users} />}
                                     />
+                                    <Route path="video">
+                                        <Route
+                                            path=":id"
+                                            element={
+                                                <VideoScreen users={users} />
+                                            }
+                                        />
+                                    </Route>
                                 </Route>
-                            </Route>
+                            )}
                             <Route path="/about" element={<About />}></Route>
                         </Routes>
                     </Wrapper>
