@@ -1,15 +1,42 @@
 import React, { useState, useEffect } from "react";
+import {
+    collection,
+    query,
+    where,
+    getDocs,
+    doc,
+    addDoc,
+} from "firebase/firestore";
 import styled from "styled-components";
+
+import { db } from "../../firestore";
 function Upload() {
     const [day, setDay] = useState("");
     const [id, setId] = useState("");
     const [image, setImage] = useState("");
     const [title, setTitle] = useState("");
     const [username, setUsername] = useState("");
-    const [videoUrl, setVideoUrl] = useState("");
+    const [video, setVideo] = useState("");
     const [view, setView] = useState("");
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        const newUser = {
+            day,
+            id,
+            image,
+            title,
+            username,
+            video,
+            view,
+        };
+        try {
+            const docRef = await addDoc(collection(db, "users"), {
+                ...newUser,
+            });
+            alert("added");
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const usernameEntered = (e) => {
@@ -63,8 +90,8 @@ function Upload() {
             <StyledLabel>VideoUrl:</StyledLabel>
             <StyledInput
                 type="text"
-                value={videoUrl}
-                onChange={(e) => setVideoUrl(e.target.value)}
+                value={video}
+                onChange={(e) => setVideo(e.target.value)}
             />
             <StyledLabel>View:</StyledLabel>
             <StyledInput
