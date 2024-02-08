@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Upload from "./components/Upload/Upload";
 import {
     collection,
     query,
@@ -60,6 +61,7 @@ function App() {
                                 </Route>
                             )}
                             <Route path="/about" element={<About />}></Route>
+                            <Route path="/upload" element={<Upload />}></Route>
                         </Routes>
                     </Wrapper>
                 </Main>
