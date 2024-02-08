@@ -16,6 +16,7 @@ function Home({ users }) {
                     day={user.day}
                     image={user.image}
                     video={user.video}
+                    user={user}
                 />
             ))}
         </Container>

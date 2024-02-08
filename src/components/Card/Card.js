@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { recoilUserIndex } from "../../state";
 
-function Card({ id, type, title, username, view, day, image, index, video }) {
+function Card({ id, type, title, username, view, day, image, video, user }) {
     const [userIndex, setUserIndex] = useRecoilState(recoilUserIndex);
     const params = useParams();
     const value = `/video/${id}`;
@@ -14,7 +14,7 @@ function Card({ id, type, title, username, view, day, image, index, video }) {
         <Link
             to={value}
             style={{ textDecoration: "none" }}
-            onClick={() => setUserIndex(video)}
+            onClick={() => setUserIndex(user)}
         >
             <Container type={type}>
                 <Image type={type} src={image} />
