@@ -13,22 +13,21 @@ import Card from "../components/Card/Card";
 import VideoPlayer from "./VideoPlayer";
 import { Link, useParams } from "react-router-dom";
 import data from "./data.json";
+import { useRecoilState } from "recoil";
+import { recoilUserIndex } from "../state";
+
 function VideoScreen({ users }) {
-    const params = useParams();
-    console.log("id");
-    console.log(params.id);
-    const id = params.id - 1;
+    const [userIndex, setUserIndex] = useRecoilState(recoilUserIndex);
 
     return (
         <Container>
             <VideoContainer>
                 <VideoWrapper>
-                    <VideoPlayer video={users[id].video} />
+                    <VideoPlayer video={userIndex} />
                 </VideoWrapper>
                 <Title>Test Video</Title>
                 <Details>
                     <Info>7,948154 views . Jun 22, 2022</Info>
-                    <h1>{users[id].id}</h1>
                     <Buttons>
                         <Button>
                             <FontAwesomeIcon icon={faThumbsUp} />

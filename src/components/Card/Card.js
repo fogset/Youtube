@@ -1,13 +1,21 @@
-import React from "react";
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { recoilUserIndex } from "../../state";
 
-function Card({ id, type, title, username, view, day, image, userIndex }) {
+function Card({ id, type, title, username, view, day, image, index, video }) {
+    const [userIndex, setUserIndex] = useRecoilState(recoilUserIndex);
     const params = useParams();
     const value = `/video/${id}`;
     console.log(params);
+
     return (
-        <Link to={value} style={{ textDecoration: "none" }}>
+        <Link
+            to={value}
+            style={{ textDecoration: "none" }}
+            onClick={() => setUserIndex(video)}
+        >
             <Container type={type}>
                 <Image type={type} src={image} />
                 <Details type={type}>
@@ -15,7 +23,8 @@ function Card({ id, type, title, username, view, day, image, userIndex }) {
                         type={type}
                         src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg"
                     />
-                    <h1>---{userIndex}</h1>
+                    <h2>id={id}</h2>
+
                     <Texts>
                         <Title>{title}</Title>
                         <ChannelName>{username}</ChannelName>

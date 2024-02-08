@@ -3,7 +3,6 @@ import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import VideoScreen from "./pages/VideoScreen";
 import styled from "styled-components";
-// import DevDesk from "image/youtube.jpg";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -16,7 +15,7 @@ import {
     getDoc,
 } from "firebase/firestore";
 import { db } from "./firestore";
-import Test from "./Test";
+
 function App() {
     const [users, setUsers] = useState(null);
     const getUsers = async () => {

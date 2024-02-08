@@ -1,40 +1,23 @@
 import styled from "styled-components";
-import data from "./data.json";
-import {
-    collection,
-    query,
-    where,
-    getDocs,
-    doc,
-    getDoc,
-} from "firebase/firestore";
-import { db } from "../firestore";
-import React, { Fragment, useState, useEffect } from "react";
+
+import React, { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { recoilUserIndex } from "../state";
 
 function About() {
-    const [users, setUsers] = useState(null);
-    const getUsers = async () => {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        const users = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-        setUsers(users);
-    };
-    useEffect(() => {
-        getUsers();
-        console.log("users");
-        console.log(users);
-    }, []);
-    function handleClick() {
-        //getUsers();
-        console.log("users");
-        console.log(users);
-    }
+    const [key, setKey] = useState(null);
+    const cities = ["London", "Paris", "Rome"];
+    const [userIndex, setUserIndex] = useRecoilState(recoilUserIndex);
+    setUserIndex(12341234);
+
     return (
         <Container>
-            <div>{users !== null && users[0].video}</div>
-            <button onClick={handleClick}>Click me</button>
+            {cities.map((city, index) => (
+                <span key={index} onClick={() => setKey(index)}>
+                    {city}
+                </span>
+            ))}
+            <p>Clicked element's key is {userIndex}</p>
         </Container>
     );
 }
