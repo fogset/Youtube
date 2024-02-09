@@ -29,9 +29,11 @@ function App() {
     };
     useEffect(() => {
         getUsers();
-        // console.log("users");
-        // console.log(users);
     }, []);
+    useEffect(() => {
+        console.log("users");
+        console.log(users);
+    }, [users]);
     return (
         <Container>
             <BrowserRouter>
