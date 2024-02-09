@@ -4,10 +4,10 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { recoilUserIndex } from "../../state";
 
-function Card({ id, type, title, username, view, day, image, video, user }) {
+function Card({ type, user }) {
     const [userIndex, setUserIndex] = useRecoilState(recoilUserIndex);
     const params = useParams();
-    const value = `/video/${id}`;
+    const value = `/video/${user.id}`;
     console.log(params);
 
     return (

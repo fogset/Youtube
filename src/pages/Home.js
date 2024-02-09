@@ -7,17 +7,7 @@ function Home({ users }) {
     return (
         <Container>
             {users.map((user, index) => (
-                <Card
-                    key={index}
-                    id={user.id}
-                    title={user.title}
-                    username={user.username}
-                    view={user.view}
-                    day={user.day}
-                    image={user.image}
-                    video={user.video}
-                    user={user}
-                />
+                <Card key={index} user={user} />
             ))}
         </Container>
     );
