@@ -8,7 +8,7 @@ import {
     addDoc,
 } from "firebase/firestore";
 import styled from "styled-components";
-
+import commentData from "../Comments/comments.json";
 import { db } from "../../firestore";
 function Upload() {
     const [day, setDay] = useState("");
@@ -18,26 +18,34 @@ function Upload() {
     const [username, setUsername] = useState("");
     const [video, setVideo] = useState("");
     const [view, setView] = useState("");
+    const [commentRandom, setCommentRandom] = useState("");
+    var commentArray = [];
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const newUser = {
-            day,
-            id,
-            image,
-            title,
-            username,
-            video,
-            view,
-        };
+        generateRandomComment();
         try {
             const docRef = await addDoc(collection(db, "users"), {
-                ...newUser,
+                comments: commentArray,
+                day: day,
+                image: image,
+                id: id,
+                title: title,
+                username: username,
+                video: video,
             });
             alert("added");
         } catch (error) {
             console.log(error);
         }
     };
+
+    function generateRandomComment() {
+        for (let i = 0; i < commentRandom; i++) {
+            let randomValue =
+                commentData[Math.floor(Math.random() * commentData.length)];
+            commentArray.push(randomValue);
+        }
+    }
 
     const usernameEntered = (e) => {
         setUsername(e.target.value);
@@ -98,6 +106,12 @@ function Upload() {
                 type="number"
                 value={view}
                 onChange={(e) => setView(e.target.value)}
+            />
+            <StyledLabel>Random Comments:</StyledLabel>
+            <StyledInput
+                type="number"
+                value={commentRandom}
+                onChange={(e) => setCommentRandom(e.target.value)}
             />
 
             <StyledButton type="submit" disabled={!username || !day}>
