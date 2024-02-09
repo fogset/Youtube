@@ -14,14 +14,15 @@ import {
     addDoc,
 } from "firebase/firestore";
 import { db } from "../firestore";
+import commentData from "../components/Comments/comments.json";
 
 function About() {
     const [users, setUsers] = useState(null);
     var userRef = collection(db, "user");
-
+    var commentArray = [];
     const setCity = async () => {
         await addDoc(collection(db, "users"), {
-            comments: ["element1", "element2", "element3"],
+            comments: commentArray,
             day: 1,
             image: "https://i3.ytimg.com/vi/KgcjPd8n2Es/maxresdefault.jpg",
             id: 1,
@@ -31,11 +32,16 @@ function About() {
         });
     };
     useEffect(() => {
-        // setCity();
+        for (let i = 0; i < 3; i++) {
+            let randomValue =
+                commentData[Math.floor(Math.random() * commentData.length)];
+            commentArray.push(randomValue);
+        }
+        //setCity();
     }, []);
     function handleClick() {
         setCity();
-        alert("sfsdfsfsdf");
+        alert("click");
     }
     return (
         <Container>

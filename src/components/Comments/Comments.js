@@ -5,28 +5,26 @@ import { useRecoilState } from "recoil";
 import { recoilUserIndex } from "../../state";
 
 function Comments() {
-    const [comment, setComment] = useRecoilState(recoilUserIndex);
-    const data = null;
+    const [user, setUser] = useRecoilState(recoilUserIndex);
+
     useEffect(() => {
         console.log("comment");
-        console.log(comment.comments);
-        // data = JSON.parse(comment.comments);
-    }, [comment]);
+        console.log(user.comments);
+    }, [user]);
+
     return (
         <Container>
             <NewComment>
                 <Avatar src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg" />
                 <Input placeholder="Add a comment..." />
             </NewComment>
-            {comment.comments.map((comment) => (
+            {user.comments.map((comment) => (
                 <Comment comment={comment} />
             ))}
         </Container>
     );
 }
-// {
-//     comment.comments.map((data) => <Comment comment={data} />);
-// }
+
 export default Comments;
 const Container = styled.div`
     padding-bottom: 7%;

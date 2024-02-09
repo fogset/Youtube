@@ -1,6 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
+function Comment({ comment }) {
+    return (
+        <Container>
+            <Avatar src={comment.image} />
+            <Details>
+                <Name>
+                    {comment.name} <Date>{comment.day} day ago</Date>
+                </Name>
+                <Text>{comment.comment}</Text>
+            </Details>
+        </Container>
+    );
+}
+
+export default Comment;
+
 const Container = styled.div`
     display: flex;
     gap: 10px;
@@ -29,18 +45,3 @@ const Date = styled.span`
 const Text = styled.span`
     font-size: 14px;
 `;
-function Comment({ comment }) {
-    return (
-        <Container>
-            <Avatar src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg" />
-            <Details>
-                <Name>
-                    Jonh Doe <Date>1 day ago</Date>
-                </Name>
-                <Text>{comment}</Text>
-            </Details>
-        </Container>
-    );
-}
-
-export default Comment;
