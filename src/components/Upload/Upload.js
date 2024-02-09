@@ -32,6 +32,7 @@ function Upload() {
                 title: title,
                 username: username,
                 video: video,
+                view: view,
             });
             alert("added");
         } catch (error) {
