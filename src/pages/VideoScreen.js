@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -67,6 +67,7 @@ function VideoScreen({ users }) {
                     eu, pretium quis, sem. Nulla consequat massa quis enim.
                     Donec pede justo,
                 </Description>
+
                 <Comments />
             </VideoContainer>
             <Recommendation>

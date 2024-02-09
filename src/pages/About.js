@@ -21,19 +21,13 @@ function About() {
 
     const setCity = async () => {
         await addDoc(collection(db, "users"), {
-            comments: {
-                comment1:
-                    "Really cool project! But at the beginning i think you should have a showcase of how app looks and all the features before you start going into the set up and coding.",
-                comment2:
-                    "this is awesome project bro, keep going. i learned a lot",
-                comment3: "Wooo! Very impressive project",
-            },
-            day: 123543,
-            image: "https://i3.ytimg.com/vi/qakW05cQqaY/maxresdefault.jpg",
-            id: 7,
-            title: "村岛",
-            username: "dolore",
-            video: "https://www.youtube.com/watch?v=qakW05cQqaY&list=RDCMUCU_fSrQkYzBBe9jtep0EIIg&index=5&ab_channel=%E3%83%A4%E3%83%B3%E3%82%B8%E3%83%A3%E3%83%B3TV%E3%80%90%E9%9B%86%E8%8B%B1%E7%A4%BE%E3%83%A4%E3%83%B3%E3%82%B0%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97%E5%85%AC%E5%BC%8F%E3%80%91",
+            comments: ["element1", "element2", "element3"],
+            day: 1,
+            image: "https://i3.ytimg.com/vi/KgcjPd8n2Es/maxresdefault.jpg",
+            id: 1,
+            title: "初恋のひと",
+            username: "quia",
+            video: "https://www.youtube.com/watch?v=KgcjPd8n2Es&ab_channel=%E9%AB%98%E5%B6%BA%E3%81%AE%E3%81%AA%E3%81%A7%E3%81%97%E3%81%93Official",
         });
     };
     useEffect(() => {

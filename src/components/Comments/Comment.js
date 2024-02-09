@@ -29,7 +29,7 @@ const Date = styled.span`
 const Text = styled.span`
     font-size: 14px;
 `;
-function Comment() {
+function Comment({ comment }) {
     return (
         <Container>
             <Avatar src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg" />
@@ -37,14 +37,7 @@ function Comment() {
                 <Name>
                     Jonh Doe <Date>1 day ago</Date>
                 </Name>
-                <Text>
-                    sum dolor sit amet, consectetuer adipiscing elit. Aenean
-                    commodo ligula eget dolor. Aenean massa. Cum sociis natoque
-                    penatibus et magnis dis parturient montes, nascetur
-                    ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-                    eu, pretium quis, sem. Nulla consequat massa quis enim.
-                    Donec pede justo,
-                </Text>
+                <Text>{comment}</Text>
             </Details>
         </Container>
     );
