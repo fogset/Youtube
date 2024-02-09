@@ -17,19 +17,19 @@ function Card({ id, type, title, username, view, day, image, video, user }) {
             onClick={() => setUserIndex(user)}
         >
             <Container type={type}>
-                <Image type={type} src={image} />
+                <Image type={type} src={user.image} />
                 <Details type={type}>
                     <ChannelImage
                         type={type}
                         src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg"
                     />
-                    <h2>id={id}</h2>
+                    <h2>id={user.id}</h2>
 
                     <Texts>
-                        <Title>{title}</Title>
-                        <ChannelName>{username}</ChannelName>
+                        <Title>{user.title}</Title>
+                        <ChannelName>{user.username}</ChannelName>
                         <Info>
-                            {view} views . {day} day ago
+                            {user.view} views . {user.day} day ago
                         </Info>
                     </Texts>
                 </Details>

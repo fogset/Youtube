@@ -25,14 +25,14 @@ function Upload() {
         generateRandomComment();
         try {
             const docRef = await addDoc(collection(db, "users"), {
-                comments: commentArray,
                 day: day,
-                image: image,
                 id: id,
+                image: image,
                 title: title,
                 username: username,
                 video: video,
                 view: view,
+                comments: commentArray,
             });
             alert("added");
         } catch (error) {

@@ -71,13 +71,19 @@ function VideoScreen({ users }) {
                 <Comments />
             </VideoContainer>
             <Recommendation>
-                <Card type="sm" />
-                <Card type="sm" />
-                <Card type="sm" />
-                <Card type="sm" />
-                <Card type="sm" />
-                <Card type="sm" />
-                <Card type="sm" />
+                {users.map((user, index) => (
+                    <Card
+                        key={index}
+                        id={user.id}
+                        title={user.title}
+                        username={user.username}
+                        view={user.view}
+                        day={user.day}
+                        image={user.image}
+                        video={user.video}
+                        user={user}
+                    />
+                ))}
             </Recommendation>
         </Container>
     );
@@ -103,8 +109,9 @@ const VideoContainer = styled.div`
     width: 70%;
 `;
 const Recommendation = styled.div`
-    margin-left: 1%;
+    margin-left: 2%;
     width: 30%;
+    margin-bottom: 8%;
 `;
 const Content = styled.div`
     flex: 5;
