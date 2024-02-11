@@ -24,7 +24,6 @@ function Card({ type, user }) {
                         src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg"
                     />
                     <h2>id={user.id}</h2>
-
                     <Texts>
                         <Title>{user.title}</Title>
                         <ChannelName>{user.username}</ChannelName>

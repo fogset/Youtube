@@ -3,7 +3,7 @@ import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
 import VideoScreen from "./pages/VideoScreen";
 import styled from "styled-components";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Upload from "./components/Upload/Upload";
@@ -36,38 +36,31 @@ function App() {
     }, [users]);
     return (
         <Container>
-            <BrowserRouter>
-                <Header_Container>
-                    <Header />
-                </Header_Container>
-                <Main>
-                    <Sidebar_Container>
-                        <Sidebar />
-                    </Sidebar_Container>
-                    <Wrapper>
-                        <Routes>
-                            {users !== null && (
-                                <Route path="/">
+            <Header_Container>
+                <Header />
+            </Header_Container>
+            <Main>
+                <Sidebar_Container>
+                    <Sidebar />
+                </Sidebar_Container>
+                <Wrapper>
+                    <Routes>
+                        {users !== null && (
+                            <Route path="/">
+                                <Route index element={<Home users={users} />} />
+                                <Route path="video">
                                     <Route
-                                        index
-                                        element={<Home users={users} />}
+                                        path=":id"
+                                        element={<VideoScreen users={users} />}
                                     />
-                                    <Route path="video">
-                                        <Route
-                                            path=":id"
-                                            element={
-                                                <VideoScreen users={users} />
-                                            }
-                                        />
-                                    </Route>
                                 </Route>
-                            )}
-                            <Route path="/about" element={<About />}></Route>
-                            <Route path="/upload" element={<Upload />}></Route>
-                        </Routes>
-                    </Wrapper>
-                </Main>
-            </BrowserRouter>
+                            </Route>
+                        )}
+                        <Route path="/about" element={<About />}></Route>
+                        <Route path="/upload" element={<Upload />}></Route>
+                    </Routes>
+                </Wrapper>
+            </Main>
         </Container>
     );
 }
