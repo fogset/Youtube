@@ -24,7 +24,7 @@ function Upload() {
         e.preventDefault();
         generateRandomComment();
         try {
-            const docRef = await addDoc(collection(db, "users"), {
+            const docRef = await addDoc(collection(db, "page2"), {
                 day: day,
                 id: id,
                 image: image,

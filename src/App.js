@@ -16,9 +16,15 @@ import {
     getDoc,
 } from "firebase/firestore";
 import { db } from "./firestore";
+import Admin from "./components/Admin/Admin";
+import { useRecoilState } from "recoil";
+import { recoilPage1 } from "./state";
 
 function App() {
     const [users, setUsers] = useState(null);
+    const [page1, setPage1] = useState(null);
+    const [page2, setPage2] = useState(null);
+
     const getUsers = async () => {
         const querySnapshot = await getDocs(collection(db, "users"));
         const users = querySnapshot.docs.map((doc) => ({
@@ -27,13 +33,35 @@ function App() {
         }));
         setUsers(users);
     };
+    const getPage1 = async () => {
+        const querySnapshot = await getDocs(collection(db, "page1"));
+        const page1Snapshot = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        setPage1(page1Snapshot);
+    };
+    const getPage2 = async () => {
+        const querySnapshot = await getDocs(collection(db, "page2"));
+        const page2Snapshot = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        setPage2(page2Snapshot);
+    };
     useEffect(() => {
+        getPage1();
         getUsers();
+        getPage2();
     }, []);
     useEffect(() => {
         console.log("users");
         console.log(users);
-    }, [users]);
+        console.log("page1");
+        console.log(page1);
+        console.log("page2");
+        console.log(page2);
+    }, [users, page1, page2]);
     return (
         <Container>
             <Header_Container>
@@ -58,6 +86,12 @@ function App() {
                         )}
                         <Route path="/about" element={<About />}></Route>
                         <Route path="/upload" element={<Upload />}></Route>
+                        {page1 !== null && (
+                            <Route
+                                path="/admin"
+                                element={<Admin page1={page1} page2={page2} />}
+                            ></Route>
+                        )}
                     </Routes>
                 </Wrapper>
             </Main>
