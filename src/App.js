@@ -19,6 +19,7 @@ import { db } from "./firestore";
 import Admin from "./components/Admin/Admin";
 import { useRecoilState } from "recoil";
 import { recoilPageIndex } from "./state";
+import Channel from "./pages/Channel";
 
 function App() {
     const [recoilpageIndex, setRecoilPageIndex] =
@@ -131,6 +132,7 @@ function App() {
                         )}
                         <Route path="/about" element={<About />}></Route>
                         <Route path="/upload" element={<Upload />}></Route>
+                        <Route path="/channel" element={<Channel />}></Route>
                         {page1 !== null && (
                             <Route
                                 path="/admin"
