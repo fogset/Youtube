@@ -5,7 +5,7 @@ import { useRecoilState } from "recoil";
 import { recoilPageIndex } from "../../state";
 import Card from "../Card/Card";
 
-function Admin({ changeState, page1, page2 }) {
+function Admin({ changeState, page1, page2, page3 }) {
     const [pageIndex, setPageIndex] = useState(null);
     const [recoilpageIndex, setRecoilPageIndex] =
         useRecoilState(recoilPageIndex);
@@ -18,6 +18,10 @@ function Admin({ changeState, page1, page2 }) {
     }
     function button2Clicked() {
         setPageIndex(page2);
+        // changePage();
+    }
+    function button3Clicked() {
+        setPageIndex(page3);
         // changePage();
     }
     function setButtonClicked() {
@@ -33,6 +37,7 @@ function Admin({ changeState, page1, page2 }) {
             <ButtonContainer>
                 <Button onClick={button1Clicked}>page 1</Button>
                 <Button onClick={button2Clicked}>page 2</Button>
+                <Button onClick={button3Clicked}>page 3</Button>
                 <Button onClick={pageTest}>page test</Button>
             </ButtonContainer>
             {pageIndex !== null && (

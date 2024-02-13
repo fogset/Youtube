@@ -23,60 +23,83 @@ import { recoilPageIndex } from "./state";
 function App() {
     const [recoilpageIndex, setRecoilPageIndex] =
         useRecoilState(recoilPageIndex);
-    const [currentPage, setCurrentPage] = useState(0);
+    const [currentPage, setCurrentPage] = useState(null);
     const [page1, setPage1] = useState(null);
     const [page2, setPage2] = useState(null);
+    const [page3, setPage3] = useState(null);
 
-    const getUsers = async () => {
-        const querySnapshot = await getDocs(collection(db, "users"));
-        const users = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-        //setUsers(users);
-    };
     const getPage1 = async () => {
         const querySnapshot = await getDocs(collection(db, "page1"));
-        const page1Snapshot = querySnapshot.docs.map((doc) => ({
+        const snapshot = querySnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
         }));
-        setPage1(page1Snapshot);
+        setPage1(snapshot);
+        //setCurrentPage(snapshot);
     };
     const getPage2 = async () => {
         const querySnapshot = await getDocs(collection(db, "page2"));
-        const page2Snapshot = querySnapshot.docs.map((doc) => ({
+        const snapshot = querySnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
         }));
-        setPage2(page2Snapshot);
+        setPage2(snapshot);
     };
-    useEffect(() => {
-        console.log("------page1");
-        console.log(page1);
-        // setPage1(recoilpageIndex);
-    }, [page1]);
+    const getPage3 = async () => {
+        const querySnapshot = await getDocs(collection(db, "page3"));
+        const snapshot = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        setPage3(snapshot);
+    };
+
     useEffect(() => {
         getPage1();
-        getUsers();
         getPage2();
-        //console.log("---------------------------");
+        getPage3();
     }, []);
     // useEffect(() => {
-    //     console.log("users");
-    //     console.log(users);
-    //     console.log("page1");
-    //     console.log(page1);
-    //     console.log("page2");
-    //     console.log(page2);
-    // }, [users, page1, page2]);
+    //     // console.log("page1");
+    //     // console.log(page1);
+    //     // console.log("page2");
+    //     // console.log(page2);
+    //     // console.log("page3");
+    //     // console.log(page3);
+    // }, [page3, page1, page2]);
     function changePage() {
-        alert("app");
-        setUsers("change state");
-        console.log("users----------------");
-        alert("sdkfjsdl;fkjsdlfksjflksdjf");
-        alert(users);
+        //alert("app");
+        //setUsers("change state");
+        //console.log("users----------------");
+        //alert(users);
     }
+    useEffect(() => {
+        //localStorage.clear();
+        if (localStorage.getItem("currentPage") === null) {
+            localStorage.setItem("currentPage", 1);
+        } else {
+            var current = Number(localStorage.getItem("currentPage"));
+            localStorage.setItem("currentPage", current + 1);
+        }
+        if (localStorage.getItem("currentPage") > 3) {
+            localStorage.setItem("currentPage", 1);
+        }
+        console.log("firstload");
+        console.log(localStorage.getItem("currentPage"));
+    }, []);
+
+    useEffect(() => {
+        var currentPageStorage = localStorage.getItem("currentPage");
+        if (currentPageStorage === "1") {
+            setCurrentPage(page1);
+        } else if (currentPageStorage === "2") {
+            setCurrentPage(page2);
+        } else if (currentPageStorage === "3") {
+            setCurrentPage(page3);
+        }
+        console.log("currentPage");
+        console.log(currentPage);
+    }, [page3, page1, page2]);
     return (
         <Container>
             <Header_Container>
@@ -85,18 +108,23 @@ function App() {
             <Main>
                 <Sidebar_Container>
                     <Sidebar />
-                    <h2>{users} </h2>
+                    <h2></h2>
                     <Button onClick={changePage}>page 1</Button>
                 </Sidebar_Container>
                 <Wrapper>
                     <Routes>
-                        {page1 !== null && (
+                        {currentPage !== null && (
                             <Route path="/">
-                                <Route index element={<Home users={page1} />} />
+                                <Route
+                                    index
+                                    element={<Home users={currentPage} />}
+                                />
                                 <Route path="video">
                                     <Route
                                         path=":id"
-                                        element={<VideoScreen users={page1} />}
+                                        element={
+                                            <VideoScreen users={currentPage} />
+                                        }
                                     />
                                 </Route>
                             </Route>
@@ -111,6 +139,7 @@ function App() {
                                         changeState={changePage}
                                         page1={page1}
                                         page2={page2}
+                                        page3={page3}
                                     />
                                 }
                             ></Route>
