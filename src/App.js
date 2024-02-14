@@ -18,12 +18,11 @@ import {
 import { db } from "./firestore";
 import Admin from "./components/Admin/Admin";
 import { useRecoilState } from "recoil";
-import { recoilPageIndex } from "./state";
+import { recoilChannelList } from "./state";
 import Channel from "./pages/Channel";
 
 function App() {
-    const [recoilpageIndex, setRecoilPageIndex] =
-        useRecoilState(recoilPageIndex);
+    const [channels, setChannels] = useRecoilState(recoilChannelList);
     const [currentPage, setCurrentPage] = useState(null);
     const [page1, setPage1] = useState(null);
     const [page2, setPage2] = useState(null);
@@ -54,11 +53,20 @@ function App() {
         }));
         setPage3(snapshot);
     };
+    const getChannels = async () => {
+        const querySnapshot = await getDocs(collection(db, "channels"));
+        const snapshot = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        setChannels(snapshot);
+    };
 
     useEffect(() => {
         getPage1();
         getPage2();
         getPage3();
+        getChannels();
     }, []);
     // useEffect(() => {
     //     // console.log("page1");
@@ -67,7 +75,9 @@ function App() {
     //     // console.log(page2);
     //     // console.log("page3");
     //     // console.log(page3);
-    // }, [page3, page1, page2]);
+    //     console.log("channel");
+    //     console.log(channels);
+    // }, [page3, page1, page2, channels]);
     function changePage() {
         //alert("app");
         //setUsers("change state");

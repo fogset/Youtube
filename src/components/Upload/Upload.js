@@ -19,12 +19,13 @@ function Upload() {
     const [video, setVideo] = useState("");
     const [view, setView] = useState("");
     const [commentRandom, setCommentRandom] = useState("");
+    const [channelId, setChannelId] = useState("");
     var commentArray = [];
     const handleSubmit = async (e) => {
         e.preventDefault();
         generateRandomComment();
         try {
-            const docRef = await addDoc(collection(db, "page3"), {
+            const docRef = await addDoc(collection(db, "page1"), {
                 day: day,
                 id: id,
                 image: image,
@@ -32,6 +33,7 @@ function Upload() {
                 username: username,
                 video: video,
                 view: view,
+                channelId: channelId,
                 comments: commentArray,
             });
             alert("added");
@@ -107,6 +109,12 @@ function Upload() {
                 type="number"
                 value={view}
                 onChange={(e) => setView(e.target.value)}
+            />
+            <StyledLabel>ChannelId:</StyledLabel>
+            <StyledInput
+                type="number"
+                value={channelId}
+                onChange={(e) => setChannelId(e.target.value)}
             />
             <StyledLabel>Random Comments:</StyledLabel>
             <StyledInput

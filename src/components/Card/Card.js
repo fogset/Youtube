@@ -2,28 +2,36 @@ import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { recoilUserIndex } from "../../state";
+import { recoilUserIndex, currentChannelRecoil } from "../../state";
 
 function Card({ type, user }) {
     const [userIndex, setUserIndex] = useRecoilState(recoilUserIndex);
+    const [currentChannel, setCurrentChannel] =
+        useRecoilState(currentChannelRecoil);
     const params = useParams();
-    const value = `/video/${user.id}`;
+    const videoId = `/video/${user.id}`;
+    const channelId = `/channel`;
     console.log(params);
 
     return (
         <Link
-            to={value}
+            to={videoId}
             style={{ textDecoration: "none" }}
             onClick={() => setUserIndex(user)}
         >
             <Container type={type}>
                 <Image type={type} src={user.image} />
                 <Details type={type}>
-                    <ChannelImage
-                        type={type}
-                        src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg"
-                    />
-                    <h2>id={user.id}</h2>
+                    <Link
+                        to={channelId}
+                        onClick={() => setCurrentChannel(user.channelId)}
+                    >
+                        <ChannelImage
+                            type={type}
+                            src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg"
+                        />
+                    </Link>
+                    <h2>channel={user.channelId}</h2>
                     <Texts>
                         <Title>{user.title}</Title>
                         <ChannelName>{user.username}</ChannelName>

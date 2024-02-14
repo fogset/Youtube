@@ -1,22 +1,49 @@
-import React from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
+import { useRecoilState } from "recoil";
+import { currentChannelRecoil, recoilChannelList } from "../state";
+import About from "./About";
+
 function Channel() {
+    const [currentChannelIndex, setCurrentChannelIndex] =
+        useRecoilState(currentChannelRecoil);
+    const [channelList, setChannelList] = useRecoilState(recoilChannelList);
+    const [currentChannel, setCurrentChannel] = useState(null);
+    console.log("currentChannelIndex");
+    console.log(currentChannelIndex);
+    console.log("channelList");
+    console.log(channelList);
+    useEffect(() => {
+        let i = 0;
+        while (i < 2) {
+            if (Number(channelList[i].id) === Number(currentChannelIndex)) {
+                setCurrentChannel(channelList[i]);
+            }
+            i++;
+        }
+    }, []);
+
     return (
         <div>
-            <BannerImg src="https://images.unsplash.com/photo-1504805572947-34fad45aed93?q=80&w=2607&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-            <Profile>
-                <ProfileImg src="https://images.unsplash.com/photo-1707343844152-6d33a0bb32c3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
-                <ProfileDetail>
-                    <ProfileName>MISS MAXIM CONTEST</ProfileName>
-                    <ProfileVideo>
-                        @missmaxim ‧ 192K subscribers ‧ 363 videos
-                    </ProfileVideo>
-                    <ProfileAbout>
-                        미스맥심 콘테스트 (MISS MAXIM CONTEST)
-                    </ProfileAbout>
-                    <ProfileSubscribe>Subscribe</ProfileSubscribe>
-                </ProfileDetail>
-            </Profile>
+            {currentChannel !== null && (
+                <div>
+                    <BannerImg src={currentChannel.Banner} />
+                    <Profile>
+                        <ProfileImg src={currentChannel.profileImg} />
+
+                        <ProfileDetail>
+                            <ProfileName>{currentChannel.title}</ProfileName>
+                            <ProfileVideo>
+                                @{currentChannel.channelLink} ‧
+                                {currentChannel.subscribers}
+                                subscribers ‧ 363 videos
+                            </ProfileVideo>
+                            <ProfileAbout>{currentChannel.about}</ProfileAbout>
+                            <ProfileSubscribe>Subscribe</ProfileSubscribe>
+                        </ProfileDetail>
+                    </Profile>
+                </div>
+            )}
             <ProfileList>
                 <ButtonList>Home</ButtonList>
                 <ButtonList>Videos</ButtonList>
