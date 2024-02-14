@@ -17,6 +17,14 @@ function Channel() {
                     <ProfileSubscribe>Subscribe</ProfileSubscribe>
                 </ProfileDetail>
             </Profile>
+            <ProfileList>
+                <ButtonList>Home</ButtonList>
+                <ButtonList>Videos</ButtonList>
+                <ButtonList>Shorts</ButtonList>
+                <ButtonList>Live</ButtonList>
+                <ButtonList>Playlists</ButtonList>
+                <ButtonList>Community</ButtonList>
+            </ProfileList>
         </div>
     );
 }
@@ -55,5 +63,20 @@ const ProfileSubscribe = styled.button`
     background-color: black;
     color: white;
     border-radius: 25px;
-    height: 40px;
+    height: 45px;
+    text-align: center;
+    width: 130px;
+`;
+const ProfileList = styled.div`
+    margin-top: 2%;
+    display: flex;
+`;
+const ButtonList = styled.div`
+    font-size: 25px;
+    font-weight: 500;
+    margin-left: 2%;
+    &:hover {
+        border-bottom: 4px solid #000;
+        margin-bottom: 8px;
+    }
 `;
