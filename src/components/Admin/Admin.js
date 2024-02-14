@@ -79,8 +79,14 @@ const Button = styled.div`
     font-size: larger;
 `;
 const Container = styled.div`
-    height: 800px;
-    width: 100%;
     background-color: lightblue;
     font-size: larger;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 100px;
 `;
