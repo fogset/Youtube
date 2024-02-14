@@ -3,17 +3,40 @@ import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { currentChannelRecoil, recoilChannelList } from "../state";
 import About from "./About";
+import Card from "../components/Card/Card";
+import {
+    collection,
+    query,
+    where,
+    getDocs,
+    doc,
+    getDoc,
+    collectionGroup,
+} from "firebase/firestore";
+import { db } from "../firestore";
 
 function Channel() {
     const [currentChannelIndex, setCurrentChannelIndex] =
         useRecoilState(currentChannelRecoil);
     const [channelList, setChannelList] = useRecoilState(recoilChannelList);
     const [currentChannel, setCurrentChannel] = useState(null);
-    console.log("currentChannelIndex");
-    console.log(currentChannelIndex);
-    console.log("channelList");
-    console.log(channelList);
+    const [currentChannelVideo, setCurrentChannelVideo] = useState(null);
+    const getChannelVideo = async () => {
+        const querySnapshot = await getDocs(collectionGroup(db, "videos"));
+        const snapshot = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        setCurrentChannelVideo(snapshot);
+    };
+    // console.log("currentChannelIndex");
+    // console.log(currentChannelIndex);
+    // console.log("channelList");
+    // console.log(channelList);
     useEffect(() => {
+        getChannelVideo();
+        console.log("currentChannelVideo");
+        console.log(currentChannelVideo);
         let i = 0;
         while (i < 2) {
             if (Number(channelList[i].id) === Number(currentChannelIndex)) {
@@ -52,11 +75,40 @@ function Channel() {
                 <ButtonList>Playlists</ButtonList>
                 <ButtonList>Community</ButtonList>
             </ProfileList>
+            <ChannelVideo>
+                {currentChannelVideo !== null && (
+                    <Container>
+                        {currentChannelVideo.map((user, index) => (
+                            <Card key={index} user={user} />
+                        ))}
+                    </Container>
+                )}
+            </ChannelVideo>
         </div>
     );
 }
 
 export default Channel;
+
+const ChannelVideo = styled.div`
+    /* overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    background-color: antiquewhite; */
+`;
+const Container = styled.div`
+    background-color: lightblue;
+    font-size: larger;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 100px;
+`;
 
 const BannerImg = styled.img`
     width: 90%;
