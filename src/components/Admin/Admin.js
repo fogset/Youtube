@@ -8,7 +8,6 @@ import Modal from "../Modal/Modal";
 
 function Admin({ changeState, page1, page2, page3 }) {
     const [currentPageVideo, setCurrentPageVideo] = useState(null);
-
     const [openModal, setOpenModal] = useState(false);
 
     function button1Clicked() {
@@ -48,11 +47,7 @@ function Admin({ changeState, page1, page2, page3 }) {
             )}
             <SetButton onClick={openModalButton}>openModal</SetButton>
             {openModal === true && (
-                <Modal
-                    open={openModal}
-                    setOpenModal={setOpenModal}
-                    page1={page1}
-                />
+                <Modal setOpenModal={setOpenModal} page1={page1} />
             )}
         </div>
     );

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { recoilPageIndex } from "../../state";
 import ChannelCard from "../Admin/ChannelCard";
-function Modal({ open, setOpenModal, page1 }) {
+function Modal({ setOpenModal, page1 }) {
     function closeButton() {
         setOpenModal(false);
         //alert("close");
