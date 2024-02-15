@@ -16,30 +16,30 @@ import {
 import { db } from "../firestore";
 
 function Channel() {
-    const [currentChannelIndex, setCurrentChannelIndex] =
+    const [currentChannelId, setCurrentChannelId] =
         useRecoilState(currentChannelRecoil);
     const [channelList, setChannelList] = useRecoilState(recoilChannelList);
     const [currentChannel, setCurrentChannel] = useState(null);
     const [currentChannelVideo, setCurrentChannelVideo] = useState(null);
     const getChannelVideo = async () => {
-        const querySnapshot = await getDocs(collectionGroup(db, "videos"));
+        const querySnapshot = await getDocs(collection(db, "videos"));
         const snapshot = querySnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
         }));
         setCurrentChannelVideo(snapshot);
     };
-    // console.log("currentChannelIndex");
-    // console.log(currentChannelIndex);
+    // console.log("currentChannelId");
+    // console.log(currentChannelId);
     // console.log("channelList");
     // console.log(channelList);
     useEffect(() => {
         getChannelVideo();
-        console.log("currentChannelVideo");
-        console.log(currentChannelVideo);
+        // console.log("currentChannelVideo");
+        // console.log(currentChannelVideo);
         let i = 0;
-        while (i < 2) {
-            if (Number(channelList[i].id) === Number(currentChannelIndex)) {
+        while (i < channelList.length) {
+            if (channelList[i].channelId === currentChannelId) {
                 setCurrentChannel(channelList[i]);
             }
             i++;
@@ -57,7 +57,7 @@ function Channel() {
                         <ProfileDetail>
                             <ProfileName>{currentChannel.title}</ProfileName>
                             <ProfileVideo>
-                                @{currentChannel.channelLink} ‧
+                                @{currentChannel.channelId} ‧
                                 {currentChannel.subscribers}
                                 subscribers ‧ 363 videos
                             </ProfileVideo>
