@@ -31,7 +31,7 @@ function Card({ type, user }) {
                             src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg"
                         />
                     </Link>
-                    <h2>{user.channelId}</h2>
+                    <h3>{user.channelId}</h3>
                     <Texts>
                         <Title>{user.title}</Title>
                         <ChannelName>{user.username}</ChannelName>

@@ -4,29 +4,32 @@ import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { recoilPageIndex } from "../../state";
 import Card from "../Card/Card";
+import Modal from "../Modal/Modal";
 
 function Admin({ changeState, page1, page2, page3 }) {
-    const [pageIndex, setPageIndex] = useState(null);
+    const [currentPageVideo, setCurrentPageVideo] = useState(null);
     const [recoilpageIndex, setRecoilPageIndex] =
         useRecoilState(recoilPageIndex);
+    const [openModal, setOpenModal] = useState(false);
     useEffect(() => {
         console.log("recoilpageIndex");
         console.log(recoilpageIndex);
     }, [recoilpageIndex]);
     function button1Clicked() {
-        setPageIndex(page1);
+        setCurrentPageVideo(page1);
     }
     function button2Clicked() {
-        setPageIndex(page2);
+        setCurrentPageVideo(page2);
         // changePage();
     }
     function button3Clicked() {
-        setPageIndex(page3);
+        setCurrentPageVideo(page3);
         // changePage();
     }
-    function setButtonClicked() {
-        alert("sfsdf");
-        setRecoilPageIndex(pageIndex);
+    function openModalButton() {
+        alert("openModal");
+        //setRecoilPageIndex(currentPageVideo);
+        setOpenModal(true);
     }
     function pageTest() {
         changeState();
@@ -40,14 +43,18 @@ function Admin({ changeState, page1, page2, page3 }) {
                 <Button onClick={button3Clicked}>page 3</Button>
                 <Button onClick={pageTest}>page test</Button>
             </ButtonContainer>
-            {pageIndex !== null && (
+            {currentPageVideo !== null && (
                 <Container>
-                    {pageIndex.map((user, index) => (
+                    {currentPageVideo.map((user, index) => (
                         <Card key={index} user={user} />
                     ))}
                 </Container>
             )}
-            <SetButton onClick={setButtonClicked}>Set</SetButton>
+            <SetButton onClick={openModalButton}>openModal</SetButton>
+            {openModal === true && (
+                <Modal open={openModal} setOpenModal={setOpenModal} />
+            )}
+            <h1>sdfsdfsdlf{openModal}</h1>
         </div>
     );
 }
@@ -63,7 +70,7 @@ const SetButton = styled.div`
     bottom: 2%;
     right: 2%;
     height: 30px;
-    width: 70px;
+    width: 120px;
     background-color: pink;
     color: red;
     font-size: larger;

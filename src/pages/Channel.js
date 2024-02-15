@@ -31,8 +31,8 @@ function Channel() {
     // console.log(currentChannelId);
     // console.log("channelList");
     // console.log(channelList);
-    console.log("totalvideo----");
-    console.log(totalVideo);
+    // console.log("totalvideo----");
+    // console.log(totalVideo);
     useEffect(() => {
         let i = 0;
         while (i < channelList.length) {
@@ -59,7 +59,6 @@ function Channel() {
                     <BannerImg src={currentChannel.Banner} />
                     <Profile>
                         <ProfileImg src={currentChannel.profileImg} />
-
                         <ProfileDetail>
                             <ProfileName>{currentChannel.title}</ProfileName>
                             <ProfileVideo>
@@ -104,7 +103,6 @@ const ChannelVideo = styled.div`
     background-color: antiquewhite; */
 `;
 const Container = styled.div`
-    background-color: lightblue;
     font-size: larger;
     display: flex;
     justify-content: space-between;
