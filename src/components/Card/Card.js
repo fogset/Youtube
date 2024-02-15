@@ -26,10 +26,7 @@ function Card({ type, user }) {
                         to={channelId}
                         onClick={() => setCurrentChannel(user.channelId)}
                     >
-                        <ChannelImage
-                            type={type}
-                            src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg"
-                        />
+                        <ChannelImage type={type} src={user.channelImg} />
                     </Link>
                     <h3>{user.channelId}</h3>
                     <Texts>

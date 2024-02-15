@@ -8,8 +8,9 @@ function ChannelCard({ currentVideo }) {
             <Details>
                 <div>
                     <ChannelImage src={currentVideo.channelImg} />
+                    <ChannelId>{currentVideo.channelId}</ChannelId>
                 </div>
-                <h3>{currentVideo.channelId}</h3>
+
                 <Texts>
                     <Title>{currentVideo.title}</Title>
                     <ChannelName>{currentVideo.username}</ChannelName>
@@ -25,32 +26,33 @@ function ChannelCard({ currentVideo }) {
 export default ChannelCard;
 
 const Container = styled.div`
-    width: ${(props) => props.type !== "sm" && "360px"};
-    margin-bottom: ${(props) => (props.type === "sm" ? "10px" : "45p")};
+    width: 300px;
+    margin-bottom: 1%;
     cursor: pointer;
-    margin-right: 2%;
-    display: ${(props) => props.type === "sm" && "flex"};
+    margin-right: 1%;
     gap: 10px;
 `;
 
 const Image = styled.img`
     width: 100%;
-    height: ${(props) => (props.type === "sm" ? "120px" : "202px")};
+    height: 180px;
     background-color: #999;
     flex: 1;
 `;
 const Details = styled.div`
     display: flex;
-    margin-top: ${(props) => (props.type === "sm" ? "0px" : "16px")};
-    gap: 12px;
-    flex: 1;
+    margin-top: 1%;
+    gap: 1%;
 `;
 const ChannelImage = styled.img`
     width: 36px;
     height: 36px;
     border-radius: 50%;
     background-color: #999;
-    display: ${(props) => props.type === "sm" && "none"};
+`;
+const ChannelId = styled.div`
+    margin-top: 10px;
+    font-size: 15px;
 `;
 const Texts = styled.div``;
 const Title = styled.h1`
@@ -61,7 +63,7 @@ const Title = styled.h1`
 const ChannelName = styled.h2`
     font-size: 14px;
     color: ${({ theme }) => theme.textSoft};
-    margin: 10px 0px;
+    margin: 5px 0px;
 `;
 const Info = styled.div`
     font-size: 14px;
