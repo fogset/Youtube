@@ -18,7 +18,7 @@ import {
 import { db } from "./firestore";
 import Admin from "./components/Admin/Admin";
 import { useRecoilState } from "recoil";
-import { recoilChannelList } from "./state";
+import { recoilChannelList, totalVideoRecoil } from "./state";
 import Channel from "./pages/Channel";
 
 function App() {
@@ -27,6 +27,7 @@ function App() {
     const [page1, setPage1] = useState(null);
     const [page2, setPage2] = useState(null);
     const [page3, setPage3] = useState(null);
+    const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
 
     const getPage1 = async () => {
         const querySnapshot = await getDocs(collection(db, "page1"));
@@ -61,23 +62,34 @@ function App() {
         }));
         setChannels(snapshot);
     };
+    const getTotalVideo = async () => {
+        const querySnapshot = await getDocs(collection(db, "videos"));
+        const snapshot = querySnapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+        }));
+        setTotalVideo(snapshot);
+    };
 
     useEffect(() => {
         getPage1();
         getPage2();
         getPage3();
         getChannels();
+        getTotalVideo();
     }, []);
     // useEffect(() => {
-    //     // console.log("page1");
-    //     // console.log(page1);
-    //     // console.log("page2");
-    //     // console.log(page2);
-    //     // console.log("page3");
-    //     // console.log(page3);
+    //     console.log("page1");
+    //     console.log(page1);
+    //     console.log("page2");
+    //     console.log(page2);
+    //     console.log("page3");
+    //     console.log(page3);
     //     console.log("channel");
     //     console.log(channels);
-    // }, [page3, page1, page2, channels]);
+    //     console.log("totalvideo");
+    //     console.log(totalVideo);
+    // }, [page3, page1, page2, channels, totalVideo]);
     function changePage() {
         //alert("app");
         //setUsers("change state");

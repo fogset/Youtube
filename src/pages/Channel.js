@@ -1,7 +1,11 @@
 import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { currentChannelRecoil, recoilChannelList } from "../state";
+import {
+    currentChannelRecoil,
+    recoilChannelList,
+    totalVideoRecoil,
+} from "../state";
 import About from "./About";
 import Card from "../components/Card/Card";
 import {
@@ -21,22 +25,15 @@ function Channel() {
     const [channelList, setChannelList] = useRecoilState(recoilChannelList);
     const [currentChannel, setCurrentChannel] = useState(null);
     const [currentChannelVideo, setCurrentChannelVideo] = useState(null);
-    const getChannelVideo = async () => {
-        const querySnapshot = await getDocs(collection(db, "videos"));
-        const snapshot = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-        setCurrentChannelVideo(snapshot);
-    };
+    const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
+
     // console.log("currentChannelId");
     // console.log(currentChannelId);
     // console.log("channelList");
     // console.log(channelList);
+    console.log("totalvideo----");
+    console.log(totalVideo);
     useEffect(() => {
-        getChannelVideo();
-        // console.log("currentChannelVideo");
-        // console.log(currentChannelVideo);
         let i = 0;
         while (i < channelList.length) {
             if (channelList[i].channelId === currentChannelId) {
@@ -45,6 +42,15 @@ function Channel() {
             i++;
         }
     }, []);
+    useEffect(() => {
+        let filterChannel = [];
+        for (let i = 0; i < totalVideo.length; i++) {
+            if (totalVideo[i].channelId === currentChannelId) {
+                filterChannel.push(totalVideo[i]);
+            }
+        }
+        setCurrentChannelVideo(filterChannel);
+    }, [totalVideo]);
 
     return (
         <div>

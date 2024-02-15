@@ -16,3 +16,7 @@ export const currentChannelRecoil = atom({
     key: "currentChannelRecoil",
     default: null,
 });
+export const totalVideoRecoil = atom({
+    key: "totalVideoRecoil",
+    default: null,
+});
