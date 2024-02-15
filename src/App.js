@@ -107,8 +107,8 @@ function App() {
         if (localStorage.getItem("currentPage") > 3) {
             localStorage.setItem("currentPage", 1);
         }
-        console.log("firstload");
-        console.log(localStorage.getItem("currentPage"));
+        //console.log("firstload");
+        //console.log(localStorage.getItem("currentPage"));
     }, []);
 
     useEffect(() => {
@@ -120,8 +120,8 @@ function App() {
         } else if (currentPageStorage === "3") {
             setCurrentPage(page3);
         }
-        console.log("currentPage");
-        console.log(currentPage);
+        //console.log("currentPage");
+        //console.log(currentPage);
     }, [page3, page1, page2]);
     return (
         <Container>
@@ -132,7 +132,9 @@ function App() {
                 <Sidebar_Container>
                     <Sidebar />
                     <h2></h2>
-                    <Button onClick={changePage}>page 1</Button>
+                    <Button onClick={changePage}>
+                        page {localStorage.getItem("currentPage")}
+                    </Button>
                 </Sidebar_Container>
                 <Wrapper>
                     <Routes>
