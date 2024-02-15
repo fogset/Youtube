@@ -8,13 +8,9 @@ import Modal from "../Modal/Modal";
 
 function Admin({ changeState, page1, page2, page3 }) {
     const [currentPageVideo, setCurrentPageVideo] = useState(null);
-    const [recoilpageIndex, setRecoilPageIndex] =
-        useRecoilState(recoilPageIndex);
+
     const [openModal, setOpenModal] = useState(false);
-    useEffect(() => {
-        console.log("recoilpageIndex");
-        console.log(recoilpageIndex);
-    }, [recoilpageIndex]);
+
     function button1Clicked() {
         setCurrentPageVideo(page1);
     }
@@ -27,7 +23,7 @@ function Admin({ changeState, page1, page2, page3 }) {
         // changePage();
     }
     function openModalButton() {
-        alert("openModal");
+        //alert("openModal");
         //setRecoilPageIndex(currentPageVideo);
         setOpenModal(true);
     }
@@ -52,9 +48,12 @@ function Admin({ changeState, page1, page2, page3 }) {
             )}
             <SetButton onClick={openModalButton}>openModal</SetButton>
             {openModal === true && (
-                <Modal open={openModal} setOpenModal={setOpenModal} />
+                <Modal
+                    open={openModal}
+                    setOpenModal={setOpenModal}
+                    page1={page1}
+                />
             )}
-            <h1>sdfsdfsdlf{openModal}</h1>
         </div>
     );
 }
