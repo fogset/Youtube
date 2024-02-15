@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { recoilUserIndex, currentChannelRecoil } from "../../state";
+import { currentVideoRecoil, currentChannelRecoil } from "../../state";
 
 function Card({ type, user }) {
-    const [userIndex, setUserIndex] = useRecoilState(recoilUserIndex);
+    const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
     const [currentChannel, setCurrentChannel] =
         useRecoilState(currentChannelRecoil);
     const params = useParams();
@@ -17,7 +17,7 @@ function Card({ type, user }) {
         <Link
             to={videoId}
             style={{ textDecoration: "none" }}
-            onClick={() => setUserIndex(user)}
+            onClick={() => setCurrentVideo(user)}
         >
             <Container type={type}>
                 <Image type={type} src={user.image} />

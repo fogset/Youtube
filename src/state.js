@@ -1,8 +1,8 @@
 import { atom, selector } from "recoil";
 
-export const recoilUserIndex = atom({
-    key: "recoilUserIndex",
-    default: "",
+export const currentVideoRecoil = atom({
+    key: "currentVideoRecoil",
+    default: null,
 });
 export const recoilPageIndex = atom({
     key: "recoilPageIndex",

@@ -14,22 +14,22 @@ import VideoPlayer from "./VideoPlayer";
 import { Link, useParams } from "react-router-dom";
 import data from "./data.json";
 import { useRecoilState } from "recoil";
-import { recoilUserIndex } from "../state";
+import { currentVideoRecoil } from "../state";
 
 function VideoScreen({ users }) {
-    const [userIndex, setUserIndex] = useRecoilState(recoilUserIndex);
+    const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
 
     return (
         <Container>
             <VideoContainer>
                 <VideoWrapper>
-                    <VideoPlayer video={userIndex.video} />
+                    <VideoPlayer video={currentVideo.video} />
                 </VideoWrapper>
                 <Title>Test Video</Title>
                 <Details>
                     <Info>7,948154 views . Jun 22, 2022</Info>
 
-                    <p>id = {userIndex.id}</p>
+                    <p>id = {currentVideo.id}</p>
                     <Buttons>
                         <Button>
                             <FontAwesomeIcon icon={faThumbsUp} />

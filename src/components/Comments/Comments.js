@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Comment from "./Comment";
 import { useRecoilState } from "recoil";
-import { recoilUserIndex } from "../../state";
+import { currentVideoRecoil } from "../../state";
 
 function Comments() {
-    const [user, setUser] = useRecoilState(recoilUserIndex);
+    const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
 
-    useEffect(() => {
-        console.log("comment");
-        console.log(user.comments);
-    }, [user]);
+    // useEffect(() => {
+    //     console.log("comment");
+    //     console.log(currentVideo.comments);
+    // }, [currentVideo]);
 
     return (
         <Container>
@@ -18,7 +18,7 @@ function Comments() {
                 <Avatar src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg" />
                 <Input placeholder="Add a comment..." />
             </NewComment>
-            {user.comments.map((comment) => (
+            {currentVideo.comments.map((comment) => (
                 <Comment comment={comment} />
             ))}
         </Container>
