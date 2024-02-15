@@ -1,9 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
+import { useRecoilState } from "recoil";
+import { recoilChannelList, totalVideoRecoil, page1Recoil } from "../../state";
+
 function ChannelCard({ currentVideo }) {
     const [selected, setSelected] = useState(false);
+
     function selectedVideoButton() {
-        //alert(currentVideo.channelId);
+        alert(currentVideo.username);
         setSelected(!selected);
     }
     return (
@@ -39,6 +43,7 @@ const Container = styled.div`
         props.selected === false ? "lightblue" : "blue"};
     color: ${(props) => (props.selected === false ? "black" : "white")};
     height: 290px;
+    border: 1px solid;
 `;
 
 const Image = styled.img`

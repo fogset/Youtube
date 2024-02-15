@@ -18,13 +18,13 @@ import {
 import { db } from "./firestore";
 import Admin from "./components/Admin/Admin";
 import { useRecoilState } from "recoil";
-import { recoilChannelList, totalVideoRecoil } from "./state";
+import { recoilChannelList, totalVideoRecoil, page1Recoil } from "./state";
 import Channel from "./pages/Channel";
 
 function App() {
     const [channels, setChannels] = useRecoilState(recoilChannelList);
     const [currentPage, setCurrentPage] = useState(null);
-    const [page1, setPage1] = useState(null);
+    const [page1, setPage1] = useRecoilState(page1Recoil);
     const [page2, setPage2] = useState(null);
     const [page3, setPage3] = useState(null);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);

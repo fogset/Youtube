@@ -20,3 +20,15 @@ export const totalVideoRecoil = atom({
     key: "totalVideoRecoil",
     default: null,
 });
+export const page1Recoil = atom({
+    key: "page1Recoil",
+    default: null,
+});
+export const page2Recoil = atom({
+    key: "page2Recoil",
+    default: null,
+});
+export const page3Recoil = atom({
+    key: "page3Recoil",
+    default: null,
+});
