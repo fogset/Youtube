@@ -1,9 +1,13 @@
-import React from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 function ChannelCard({ currentVideo }) {
-    function setUserIndex() {}
+    const [selected, setSelected] = useState(false);
+    function selectedVideoButton() {
+        //alert(currentVideo.channelId);
+        setSelected(!selected);
+    }
     return (
-        <Container onClick={setUserIndex}>
+        <Container onClick={selectedVideoButton} selected={selected}>
             <Image src={currentVideo.image} />
             <Details>
                 <div>
@@ -31,6 +35,10 @@ const Container = styled.div`
     cursor: pointer;
     margin-right: 1%;
     gap: 10px;
+    background-color: ${(props) =>
+        props.selected === false ? "lightblue" : "blue"};
+    color: ${(props) => (props.selected === false ? "black" : "white")};
+    height: 290px;
 `;
 
 const Image = styled.img`
@@ -54,7 +62,9 @@ const ChannelId = styled.div`
     margin-top: 10px;
     font-size: 15px;
 `;
-const Texts = styled.div``;
+const Texts = styled.div`
+    margin-left: 1%;
+`;
 const Title = styled.h1`
     font-size: 16px;
     font-weight: 500;

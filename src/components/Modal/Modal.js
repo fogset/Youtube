@@ -9,7 +9,7 @@ function Modal({ open, setOpenModal, page1 }) {
         //alert("close");
     }
     return (
-        <Overlay onClick={closeButton}>
+        <Overlay>
             <ModalContainer>
                 <Container>
                     {page1.map((currentVideo) => (
@@ -43,6 +43,7 @@ const ModalContainer = styled.div`
 `;
 const CloseButton = styled.div`
     position: fixed;
+    font-size: 25px;
     top: 8px;
     right: 8px;
 `;
@@ -57,4 +58,5 @@ const Container = styled.div`
     height: 100%;
     width: 100%;
     margin-bottom: 100px;
+    padding-right: 1%;
 `;
