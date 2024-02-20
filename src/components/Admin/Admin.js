@@ -45,6 +45,9 @@ function Admin({ changeState, page1, page2, page3 }) {
                     ))}
                 </Container>
             )}
+            <SetPageButton onClick={openModalButton}>
+                Set Current Page
+            </SetPageButton>
             <SetButton onClick={openModalButton}>openModal</SetButton>
             {openModal === true && (
                 <Modal
@@ -63,6 +66,21 @@ const ButtonContainer = styled.div`
     display: flex;
 `;
 
+const SetPageButton = styled.div`
+    position: fixed;
+    bottom: 7%;
+    right: 2%;
+    height: 30px;
+    width: 150px;
+    background-color: pink;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    &:hover {
+        background-color: blue;
+        color: white;
+    }
+`;
 const SetButton = styled.div`
     position: fixed;
     bottom: 2%;
@@ -73,6 +91,10 @@ const SetButton = styled.div`
     color: red;
     font-size: larger;
     text-align: center;
+    &:hover {
+        background-color: blue;
+        color: white;
+    }
 `;
 
 const Button = styled.div`

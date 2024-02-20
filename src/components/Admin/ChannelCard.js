@@ -16,9 +16,6 @@ function ChannelCard({ currentVideo, currentPageVideo, setCurrentPageVideo }) {
         //setSelected(!selected);
     }
     function AddToCurrentPage() {
-        //alert(currentVideo.username);
-        //currentPageVideo.push(currentVideo);
-
         setCurrentPageVideo([...currentPageVideo, currentVideo]);
         console.log("currentPageVideo");
         console.log(currentPageVideo);
