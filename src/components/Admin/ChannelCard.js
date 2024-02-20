@@ -7,19 +7,21 @@ import {
     page1Recoil,
 } from "../../state";
 
-function ChannelCard({ currentVideo, currentPageVideo }) {
+function ChannelCard({ currentVideo, currentPageVideo, setCurrentPageVideo }) {
     const [selected, setSelected] = useState(false);
 
     const [page1, setPage1] = useRecoilState(page1Recoil);
     function selectedVideoButton() {
         //alert(currentVideo.username);
-        setSelected(!selected);
+        //setSelected(!selected);
     }
     function AddToCurrentPage() {
         //alert(currentVideo.username);
         //currentPageVideo.push(currentVideo);
-        //console.log("currentPageVideo");
-        //console.log(currentPageVideo);
+
+        setCurrentPageVideo([...currentPageVideo, currentVideo]);
+        console.log("currentPageVideo");
+        console.log(currentPageVideo);
     }
     return (
         <Container onClick={selectedVideoButton} selected={selected}>

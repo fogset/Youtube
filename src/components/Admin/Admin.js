@@ -7,7 +7,7 @@ import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
 
 function Admin({ changeState, page1, page2, page3 }) {
-    const [currentPageVideo, setCurrentPageVideo] = useState(null);
+    const [currentPageVideo, setCurrentPageVideo] = useState([]);
     const [openModal, setOpenModal] = useState(false);
 
     function button1Clicked() {
@@ -46,7 +46,13 @@ function Admin({ changeState, page1, page2, page3 }) {
                 </Container>
             )}
             <SetButton onClick={openModalButton}>openModal</SetButton>
-            {openModal === true && <Modal setOpenModal={setOpenModal} />}
+            {openModal === true && (
+                <Modal
+                    setOpenModal={setOpenModal}
+                    currentPageVideo={currentPageVideo}
+                    setCurrentPageVideo={setCurrentPageVideo}
+                />
+            )}
         </div>
     );
 }
