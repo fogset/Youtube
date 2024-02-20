@@ -1,14 +1,25 @@
 import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
-import { useRecoilState } from "recoil";
-import { recoilChannelList, totalVideoRecoil, page1Recoil } from "../../state";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {
+    addCurrentPageVideoRecoil,
+    totalVideoRecoil,
+    page1Recoil,
+} from "../../state";
 
-function ChannelCard({ currentVideo }) {
+function ChannelCard({ currentVideo, currentPageVideo }) {
     const [selected, setSelected] = useState(false);
 
+    const [page1, setPage1] = useRecoilState(page1Recoil);
     function selectedVideoButton() {
-        alert(currentVideo.username);
+        //alert(currentVideo.username);
         setSelected(!selected);
+    }
+    function AddToCurrentPage() {
+        //alert(currentVideo.username);
+        //currentPageVideo.push(currentVideo);
+        //console.log("currentPageVideo");
+        //console.log(currentPageVideo);
     }
     return (
         <Container onClick={selectedVideoButton} selected={selected}>
@@ -18,7 +29,6 @@ function ChannelCard({ currentVideo }) {
                     <ChannelImage src={currentVideo.channelImg} />
                     <ChannelId>{currentVideo.channelId}</ChannelId>
                 </div>
-
                 <Texts>
                     <Title>{currentVideo.title}</Title>
                     <ChannelName>{currentVideo.username}</ChannelName>
@@ -26,6 +36,7 @@ function ChannelCard({ currentVideo }) {
                         {currentVideo.view} views . {currentVideo.day} day ago
                     </Info>
                 </Texts>
+                <AddButton onClick={AddToCurrentPage}>Add</AddButton>
             </Details>
         </Container>
     );
@@ -44,6 +55,7 @@ const Container = styled.div`
     color: ${(props) => (props.selected === false ? "black" : "white")};
     height: 290px;
     border: 1px solid;
+    position: relative;
 `;
 
 const Image = styled.img`
@@ -83,4 +95,15 @@ const ChannelName = styled.h2`
 const Info = styled.div`
     font-size: 14px;
     color: ${({ theme }) => theme.textSoft};
+`;
+const AddButton = styled.div`
+    position: absolute;
+    font-size: 25px;
+    right: 2%;
+    bottom: 5%;
+    background-color: pink;
+    color: white;
+    height: 30px;
+    width: 45px;
+    text-align: center;
 `;
