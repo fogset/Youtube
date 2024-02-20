@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { recoilPageIndex } from "../../state";
+import { recoilPageIndex, totalVideoRecoil } from "../../state";
+
 import ChannelCard from "../Admin/ChannelCard";
-function Modal({ setOpenModal, page1 }) {
+function Modal({ setOpenModal }) {
+    const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     function closeButton() {
         setOpenModal(false);
         //alert("close");
@@ -12,7 +14,7 @@ function Modal({ setOpenModal, page1 }) {
         <Overlay>
             <ModalContainer>
                 <Container>
-                    {page1.map((currentVideo) => (
+                    {totalVideo.map((currentVideo) => (
                         <ChannelCard currentVideo={currentVideo} />
                     ))}
                 </Container>

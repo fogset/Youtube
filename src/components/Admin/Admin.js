@@ -46,9 +46,7 @@ function Admin({ changeState, page1, page2, page3 }) {
                 </Container>
             )}
             <SetButton onClick={openModalButton}>openModal</SetButton>
-            {openModal === true && (
-                <Modal setOpenModal={setOpenModal} page1={page1} />
-            )}
+            {openModal === true && <Modal setOpenModal={setOpenModal} />}
         </div>
     );
 }

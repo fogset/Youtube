@@ -32,3 +32,7 @@ export const page3Recoil = atom({
     key: "page3Recoil",
     default: null,
 });
+export const selectPageVideoRecoil = atom({
+    key: "selectPageVideoRecoil",
+    default: [],
+});
