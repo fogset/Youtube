@@ -1,19 +1,49 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { recoilPageIndex, totalVideoRecoil } from "../../state";
+import {
+    recoilPageIndex,
+    totalVideoRecoil,
+    recoilChannelList,
+} from "../../state";
+import { Dropdown } from "primereact/dropdown";
 
 import ChannelCard from "../Admin/ChannelCard";
+import About from "./../../pages/About";
 function Modal({ setOpenModal }) {
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
+    const [filteredtotalVideo, setFilteredtotalVideo] = useState(null);
+    const [channels, setChannels] = useRecoilState(recoilChannelList);
+    const [selectChannel, setSelectChannel] = useState(null);
+
+    useEffect(() => {
+        const filtered = totalVideo.filter((video) =>
+            video.channelId.includes(selectChannel.channelId)
+        );
+        setFilteredtotalVideo(filtered);
+        alert(selectChannel.channelId);
+        console.log("filteredtotalVideo");
+        console.log(filteredtotalVideo);
+    }, [selectChannel]);
+
     function closeButton() {
         setOpenModal(false);
     }
     return (
         <Overlay>
+            <DropdownSelect>
+                <Dropdown
+                    value={selectChannel}
+                    onChange={(e) => setSelectChannel(e.value)}
+                    options={channels}
+                    optionLabel="title"
+                    placeholder="Select a Channel"
+                    className="w-full md:w-30px"
+                />
+            </DropdownSelect>
             <ModalContainer>
                 <Container>
-                    {totalVideo.map((currentVideo) => (
+                    {filteredtotalVideo.map((currentVideo) => (
                         <ChannelCard currentVideo={currentVideo} />
                     ))}
                 </Container>
@@ -24,6 +54,17 @@ function Modal({ setOpenModal }) {
 }
 
 export default Modal;
+const DropdownSelect = styled.div`
+    position: fixed;
+    left: 35%;
+    top: 1%;
+    display: flex;
+    width: 22%;
+    background-color: lightblue;
+    color: white;
+    z-index: 1;
+    font-size: 30px;
+`;
 const Overlay = styled.div`
     position: fixed;
     width: 100%;
@@ -60,4 +101,5 @@ const Container = styled.div`
     width: 100%;
     margin-bottom: 100px;
     padding-right: 1%;
+    z-index: 0;
 `;

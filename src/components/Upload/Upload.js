@@ -45,8 +45,8 @@ function Upload() {
                 username: username,
                 video: video,
                 view: view,
-                channelId: channelId,
-                profileImg: selectChannel.profileImg,
+                channelId: selectChannel.channelId,
+                channelImg: selectChannel.profileImg,
                 comments: commentArray,
             });
             alert("added");
