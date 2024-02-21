@@ -32,11 +32,11 @@ export const page3Recoil = atom({
     key: "page3Recoil",
     default: null,
 });
-export const modalTotalVideo = atom({
-    key: "modalTotalVideo",
+export const modalTotalVideoRecoil = atom({
+    key: "modalTotalVideoRecoil",
     default: [],
 });
-export const addedModalVideo = atom({
-    key: "addedModalVideo",
+export const addedModalVideoRecoil = atom({
+    key: "addedModalVideoRecoil",
     default: [],
 });

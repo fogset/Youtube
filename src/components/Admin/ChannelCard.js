@@ -1,25 +1,40 @@
 import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { modalTotalVideo } from "../../state";
+import { modalTotalVideoRecoil, addedModalVideoRecoil } from "../../state";
 
-function ChannelCard({ currentVideo, addModalPageVideo }) {
+function ChannelCard({ currentVideo }) {
     const [selected, setSelected] = useState(false);
-    const [modalTotalVideoPage, setModalTotalVideoPage] =
-        useRecoilState(modalTotalVideo);
+    const [modalTotalVideo, setModalTotalVideo] = useRecoilState(
+        modalTotalVideoRecoil
+    );
+    const [addedModalVideo, setAddedModalVideo] = useRecoilState(
+        addedModalVideoRecoil
+    );
 
     function selectedVideoButton() {
         //alert(currentVideo.username);
         //setSelected(!selected);
     }
     function AddToCurrentPage() {
-        setModalTotalVideoPage([...modalTotalVideoPage, currentVideo]);
-        addModalPageVideo.push(currentVideo);
+        setModalTotalVideo([...modalTotalVideo, currentVideo]);
+        setAddedModalVideo([...addedModalVideo, currentVideo]);
+        alert(addedModalVideo.title);
+        // if (addedModalVideo.length == 0) {
+        //     let array = [];
+        //     array.push(currentVideo);
+        //     setAddedModalVideo(array);
+        //     alert(0);
+        // } else {
+        //     alert(1);
+        //     setAddedModalVideo([...addedModalVideo, currentVideo]);
+        // }
+
         //alert(currentVideo.title);
-        console.log("modalTotalVideoPage");
-        console.log(modalTotalVideoPage);
-        console.log("addModalPageVideo");
-        console.log(addModalPageVideo);
+        console.log("modalTotalVideo");
+        console.log(modalTotalVideo);
+        console.log("addedModalVideo");
+        console.log(addedModalVideo);
     }
     return (
         <Container onClick={selectedVideoButton} selected={selected}>

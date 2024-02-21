@@ -2,25 +2,28 @@ import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { recoilPageIndex, modalTotalVideo, addedModalVideo } from "../../state";
+import { addedModalVideoRecoil, modalTotalVideoRecoil } from "../../state";
 import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
 
 function Admin({ changeState, page1, page2, page3 }) {
-    const [currentPageVideo, setCurrentPageVideo] =
-        useRecoilState(modalTotalVideo);
-
+    const [modalTotalVideo, setModalTotalVideo] = useRecoilState(
+        modalTotalVideoRecoil
+    );
+    const [addedModalVideo, setAddedModalVideo] = useRecoilState(
+        addedModalVideoRecoil
+    );
     const [openModal, setOpenModal] = useState(false);
-    var addModalPageVideo = [];
+
     function button1Clicked() {
-        setCurrentPageVideo(page1);
+        setModalTotalVideo(page1);
     }
     function button2Clicked() {
-        setCurrentPageVideo(page2);
+        setModalTotalVideo(page2);
         // changePage();
     }
     function button3Clicked() {
-        setCurrentPageVideo(page3);
+        setModalTotalVideo(page3);
         // changePage();
     }
     function openModalButton() {
@@ -32,6 +35,13 @@ function Admin({ changeState, page1, page2, page3 }) {
         changeState();
         alert("admin");
     }
+    useEffect(() => {
+        console.log("modalTotalVideo");
+        console.log(modalTotalVideo);
+        console.log("addedModalVideo");
+        console.log(addedModalVideo);
+    }, [modalTotalVideo, addedModalVideo]);
+
     return (
         <div>
             <ButtonContainer>
@@ -40,9 +50,9 @@ function Admin({ changeState, page1, page2, page3 }) {
                 <Button onClick={button3Clicked}>page 3</Button>
                 <Button onClick={pageTest}>page test</Button>
             </ButtonContainer>
-            {currentPageVideo !== null && (
+            {modalTotalVideo !== null && (
                 <Container>
-                    {currentPageVideo.map((user, index) => (
+                    {modalTotalVideo.map((user, index) => (
                         <Card key={index} user={user} />
                     ))}
                 </Container>
@@ -51,12 +61,7 @@ function Admin({ changeState, page1, page2, page3 }) {
                 Set Current Page
             </SetPageButton>
             <SetButton onClick={openModalButton}>openModal</SetButton>
-            {openModal === true && (
-                <Modal
-                    setOpenModal={setOpenModal}
-                    addModalPageVideo={addModalPageVideo}
-                />
-            )}
+            {openModal === true && <Modal setOpenModal={setOpenModal} />}
         </div>
     );
 }

@@ -4,7 +4,7 @@ import { useRecoilState } from "recoil";
 import { recoilPageIndex, totalVideoRecoil } from "../../state";
 
 import ChannelCard from "../Admin/ChannelCard";
-function Modal({ setOpenModal, addModalPageVideo }) {
+function Modal({ setOpenModal }) {
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     function closeButton() {
         setOpenModal(false);
@@ -14,10 +14,7 @@ function Modal({ setOpenModal, addModalPageVideo }) {
             <ModalContainer>
                 <Container>
                     {totalVideo.map((currentVideo) => (
-                        <ChannelCard
-                            currentVideo={currentVideo}
-                            addModalPageVideo={addModalPageVideo}
-                        />
+                        <ChannelCard currentVideo={currentVideo} />
                     ))}
                 </Container>
                 <CloseButton onClick={closeButton}>X</CloseButton>
