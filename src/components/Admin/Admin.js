@@ -2,16 +2,16 @@ import React, { useState, useEffect } from "react";
 
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { recoilPageIndex, addCurrentPageVideoRecoil } from "../../state";
+import { recoilPageIndex, modalTotalVideo, addedModalVideo } from "../../state";
 import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
 
 function Admin({ changeState, page1, page2, page3 }) {
-    const [currentPageVideo, setCurrentPageVideo] = useRecoilState(
-        addCurrentPageVideoRecoil
-    );
-    const [openModal, setOpenModal] = useState(false);
+    const [currentPageVideo, setCurrentPageVideo] =
+        useRecoilState(modalTotalVideo);
 
+    const [openModal, setOpenModal] = useState(false);
+    var addModalPageVideo = [];
     function button1Clicked() {
         setCurrentPageVideo(page1);
     }
@@ -51,7 +51,12 @@ function Admin({ changeState, page1, page2, page3 }) {
                 Set Current Page
             </SetPageButton>
             <SetButton onClick={openModalButton}>openModal</SetButton>
-            {openModal === true && <Modal setOpenModal={setOpenModal} />}
+            {openModal === true && (
+                <Modal
+                    setOpenModal={setOpenModal}
+                    addModalPageVideo={addModalPageVideo}
+                />
+            )}
         </div>
     );
 }
