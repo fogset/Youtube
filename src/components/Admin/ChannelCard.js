@@ -20,22 +20,8 @@ function ChannelCard({ currentVideo }) {
         setModalTotalVideo([...modalTotalVideo, currentVideo]);
         setAddedModalVideo([...addedModalVideo, currentVideo]);
         alert(addedModalVideo.title);
-        // if (addedModalVideo.length == 0) {
-        //     let array = [];
-        //     array.push(currentVideo);
-        //     setAddedModalVideo(array);
-        //     alert(0);
-        // } else {
-        //     alert(1);
-        //     setAddedModalVideo([...addedModalVideo, currentVideo]);
-        // }
-
-        //alert(currentVideo.title);
-        console.log("modalTotalVideo");
-        console.log(modalTotalVideo);
-        console.log("addedModalVideo");
-        console.log(addedModalVideo);
     }
+
     return (
         <Container onClick={selectedVideoButton} selected={selected}>
             <Image src={currentVideo.image} />

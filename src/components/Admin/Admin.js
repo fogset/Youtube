@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "../../firestore";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { addedModalVideoRecoil, modalTotalVideoRecoil } from "../../state";
@@ -14,17 +15,20 @@ function Admin({ changeState, page1, page2, page3 }) {
         addedModalVideoRecoil
     );
     const [openModal, setOpenModal] = useState(false);
+    const [currentPage, setCurrentPage] = useState(page1);
 
     function button1Clicked() {
         setModalTotalVideo(page1);
+        setCurrentPage(page1);
     }
     function button2Clicked() {
         setModalTotalVideo(page2);
+        setCurrentPage(page2);
         // changePage();
     }
     function button3Clicked() {
         setModalTotalVideo(page3);
-        // changePage();
+        setCurrentPage(page3);
     }
     function openModalButton() {
         //alert("openModal");
@@ -35,9 +39,29 @@ function Admin({ changeState, page1, page2, page3 }) {
         changeState();
         alert("admin");
     }
+
+    function SetCurrentPage() {
+        for (let i = 0; i < addedModalVideo.length; i++) {
+            console.log("view");
+            console.log(addedModalVideo[i].view);
+            const docRef = addDoc(collection(db, "page3"), {
+                day: addedModalVideo[i].day,
+                id: addedModalVideo[i].id,
+                image: addedModalVideo[i].image,
+                title: addedModalVideo[i].title,
+                username: addedModalVideo[i].username,
+                video: addedModalVideo[i].video,
+                view: addedModalVideo[i].view,
+                channelId: addedModalVideo[i].channelId,
+                comments: addedModalVideo[i].comments,
+            });
+        }
+        alert("added");
+    }
+
     useEffect(() => {
-        console.log("modalTotalVideo");
-        console.log(modalTotalVideo);
+        // console.log("modalTotalVideo");
+        // console.log(modalTotalVideo);
         console.log("addedModalVideo");
         console.log(addedModalVideo);
     }, [modalTotalVideo, addedModalVideo]);
@@ -57,7 +81,7 @@ function Admin({ changeState, page1, page2, page3 }) {
                     ))}
                 </Container>
             )}
-            <SetPageButton onClick={openModalButton}>
+            <SetPageButton onClick={SetCurrentPage}>
                 Set Current Page
             </SetPageButton>
             <SetButton onClick={openModalButton}>openModal</SetButton>
