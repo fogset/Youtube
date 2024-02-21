@@ -19,7 +19,7 @@ function ChannelCard({ currentVideo }) {
     function AddToCurrentPage() {
         setModalTotalVideo([...modalTotalVideo, currentVideo]);
         setAddedModalVideo([...addedModalVideo, currentVideo]);
-        alert(addedModalVideo.title);
+        alert(modalTotalVideo[modalTotalVideo.length - 1].title);
     }
 
     return (
