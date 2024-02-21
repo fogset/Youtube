@@ -17,13 +17,12 @@ function Modal({ setOpenModal }) {
     const [selectChannel, setSelectChannel] = useState(null);
 
     useEffect(() => {
-        const filtered = totalVideo.filter((video) =>
-            video.channelId.includes(selectChannel.channelId)
-        );
-        setFilteredtotalVideo(filtered);
-        alert(selectChannel.channelId);
-        console.log("filteredtotalVideo");
-        console.log(filteredtotalVideo);
+        if (selectChannel !== null) {
+            const filtered = totalVideo.filter((video) =>
+                video.channelId.includes(selectChannel.channelId)
+            );
+            setFilteredtotalVideo(filtered);
+        }
     }, [selectChannel]);
 
     function closeButton() {
@@ -42,11 +41,13 @@ function Modal({ setOpenModal }) {
                 />
             </DropdownSelect>
             <ModalContainer>
-                <Container>
-                    {filteredtotalVideo.map((currentVideo) => (
-                        <ChannelCard currentVideo={currentVideo} />
-                    ))}
-                </Container>
+                {filteredtotalVideo && (
+                    <Container>
+                        {filteredtotalVideo.map((currentVideo) => (
+                            <ChannelCard currentVideo={currentVideo} />
+                        ))}
+                    </Container>
+                )}
                 <CloseButton onClick={closeButton}>X</CloseButton>
             </ModalContainer>
         </Overlay>
@@ -57,10 +58,10 @@ export default Modal;
 const DropdownSelect = styled.div`
     position: fixed;
     left: 35%;
-    top: 1%;
+    top: 0%;
     display: flex;
-    width: 22%;
-    background-color: lightblue;
+    width: 40%;
+    background-color: lightcoral;
     color: white;
     z-index: 1;
     font-size: 30px;
