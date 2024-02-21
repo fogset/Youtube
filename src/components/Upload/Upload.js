@@ -10,6 +10,10 @@ import {
 import styled from "styled-components";
 import commentData from "../Comments/comments.json";
 import { db } from "../../firestore";
+import { useRecoilState } from "recoil";
+import { recoilChannelList } from "../../state";
+import { Dropdown } from "primereact/dropdown";
+
 function Upload() {
     const [day, setDay] = useState("");
     const [id, setId] = useState("");
@@ -21,6 +25,14 @@ function Upload() {
     const [commentRandom, setCommentRandom] = useState(1);
     const [channelId, setChannelId] = useState("");
     var commentArray = [];
+    const [channels, setChannels] = useRecoilState(recoilChannelList);
+    const [selectChannel, setSelectChannel] = useState(null);
+
+    useEffect(() => {
+        console.log("selectChannel");
+        console.log(selectChannel);
+    }, [selectChannel]);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         generateRandomComment();
@@ -34,6 +46,7 @@ function Upload() {
                 video: video,
                 view: view,
                 channelId: channelId,
+                profileImg: selectChannel.profileImg,
                 comments: commentArray,
             });
             alert("added");
@@ -68,6 +81,17 @@ function Upload() {
     };
     return (
         <StyledForm onSubmit={handleSubmit}>
+            <DropdownSelect>
+                <Dropdown
+                    value={selectChannel}
+                    onChange={(e) => setSelectChannel(e.value)}
+                    options={channels}
+                    optionLabel="title"
+                    placeholder="Select a Channel"
+                    className="w-full md:w-30px"
+                />
+            </DropdownSelect>
+            <ChannelImage src={selectChannel.profileImg} />
             <StyledLabel>Day:</StyledLabel>
             <StyledInput
                 type="number"
@@ -122,7 +146,6 @@ function Upload() {
                 value={commentRandom}
                 onChange={(e) => setCommentRandom(e.target.value)}
             />
-
             <StyledButton type="submit" disabled={!username || !day}>
                 Upload
             </StyledButton>
@@ -131,6 +154,23 @@ function Upload() {
 }
 
 export default Upload;
+const DropdownSelect = styled.div`
+    position: absolute;
+    left: 35%;
+    top: 1%;
+    display: flex;
+    width: 100%;
+`;
+const ChannelImage = styled.img`
+    position: absolute;
+    left: 55%;
+    top: 0%;
+    margin-left: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #999;
+`;
 
 const StyledForm = styled.form`
     background-color: #f4f4f4;
