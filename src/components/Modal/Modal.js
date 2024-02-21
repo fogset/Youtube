@@ -4,22 +4,17 @@ import { useRecoilState } from "recoil";
 import { recoilPageIndex, totalVideoRecoil } from "../../state";
 
 import ChannelCard from "../Admin/ChannelCard";
-function Modal({ setOpenModal, currentPageVideo, setCurrentPageVideo }) {
+function Modal({ setOpenModal }) {
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     function closeButton() {
         setOpenModal(false);
-        //alert("close");
     }
     return (
         <Overlay>
             <ModalContainer>
                 <Container>
                     {totalVideo.map((currentVideo) => (
-                        <ChannelCard
-                            currentVideo={currentVideo}
-                            currentPageVideo={currentPageVideo}
-                            setCurrentPageVideo={setCurrentPageVideo}
-                        />
+                        <ChannelCard currentVideo={currentVideo} />
                     ))}
                 </Container>
                 <CloseButton onClick={closeButton}>X</CloseButton>

@@ -1,16 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import {
-    addCurrentPageVideoRecoil,
-    totalVideoRecoil,
-    page1Recoil,
-} from "../../state";
+import { addCurrentPageVideoRecoil, totalVideoRecoil } from "../../state";
 
-function ChannelCard({ currentVideo, currentPageVideo, setCurrentPageVideo }) {
+function ChannelCard({ currentVideo }) {
     const [selected, setSelected] = useState(false);
-
-    const [page1, setPage1] = useRecoilState(page1Recoil);
+    const [currentPageVideo, setCurrentPageVideo] = useRecoilState(
+        addCurrentPageVideoRecoil
+    );
     function selectedVideoButton() {
         //alert(currentVideo.username);
         //setSelected(!selected);
