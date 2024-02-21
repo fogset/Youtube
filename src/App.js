@@ -20,6 +20,7 @@ import Admin from "./components/Admin/Admin";
 import { useRecoilState } from "recoil";
 import { recoilChannelList, totalVideoRecoil, page1Recoil } from "./state";
 import Channel from "./pages/Channel";
+import CreateChannel from "./pages/CreateChannel";
 
 function App() {
     const [channels, setChannels] = useRecoilState(recoilChannelList);
@@ -157,6 +158,10 @@ function App() {
                         <Route path="/about" element={<About />}></Route>
                         <Route path="/upload" element={<Upload />}></Route>
                         <Route path="/channel" element={<Channel />}></Route>
+                        <Route
+                            path="/createchannel"
+                            element={<CreateChannel />}
+                        ></Route>
                         {page1 !== null && (
                             <Route
                                 path="/admin"
