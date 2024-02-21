@@ -15,20 +15,20 @@ function Admin({ changeState, page1, page2, page3 }) {
         addedModalVideoRecoil
     );
     const [openModal, setOpenModal] = useState(false);
-    const [currentPage, setCurrentPage] = useState(page1);
+    const [currentPage, setCurrentPage] = useState("page1");
 
     function button1Clicked() {
         setModalTotalVideo(page1);
-        setCurrentPage(page1);
+        setCurrentPage("page1");
     }
     function button2Clicked() {
         setModalTotalVideo(page2);
-        setCurrentPage(page2);
+        setCurrentPage("page2");
         // changePage();
     }
     function button3Clicked() {
         setModalTotalVideo(page3);
-        setCurrentPage(page3);
+        setCurrentPage("page3");
     }
     function openModalButton() {
         //alert("openModal");
@@ -44,7 +44,7 @@ function Admin({ changeState, page1, page2, page3 }) {
         for (let i = 0; i < addedModalVideo.length; i++) {
             console.log("view");
             console.log(addedModalVideo[i].view);
-            const docRef = addDoc(collection(db, "page3"), {
+            const docRef = addDoc(collection(db, currentPage), {
                 day: addedModalVideo[i].day,
                 id: addedModalVideo[i].id,
                 image: addedModalVideo[i].image,
