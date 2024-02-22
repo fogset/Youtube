@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../firestore";
 import commentData from "../components/Comments/comments.json";
+import VideoPlayer from "./VideoPlayer";
 
 function About() {
     const [users, setUsers] = useState(null);
@@ -46,6 +47,12 @@ function About() {
     return (
         <Container>
             <button onClick={handleClick}>Clicked element's key is </button>
+            <VideoPlayer
+                video={[
+                    "https://www.youtube.com/watch?v=oUFJJNQGwhk",
+                    "https://www.youtube.com/watch?v=jNgP6d9HraI",
+                ]}
+            />
         </Container>
     );
 }

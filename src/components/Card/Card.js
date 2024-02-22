@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { currentVideoRecoil, currentChannelRecoil } from "../../state";
-
+import ReactPlayer from "react-player";
 function Card({ type, user }) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
     const [currentChannel, setCurrentChannel] =
@@ -20,7 +20,12 @@ function Card({ type, user }) {
             onClick={() => setCurrentVideo(user)}
         >
             <Container type={type}>
-                <Image type={type} src={user.image} />
+                <ReactPlayer
+                    light
+                    url={user.video}
+                    width="100%"
+                    height="202px"
+                />
                 <Details type={type}>
                     <Link
                         to={channelId}
