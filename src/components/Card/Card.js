@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { currentVideoRecoil, currentChannelRecoil } from "../../state";
 import ReactPlayer from "react-player";
-function Card({ type, user }) {
+function Card({ type, user, play }) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
     const [currentChannel, setCurrentChannel] =
         useRecoilState(currentChannelRecoil);
@@ -21,10 +21,10 @@ function Card({ type, user }) {
         >
             <Container type={type}>
                 <ReactPlayer
-                    light
                     url={user.video}
                     width="100%"
                     height="202px"
+                    playing={play}
                 />
                 <Details type={type}>
                     <Link
