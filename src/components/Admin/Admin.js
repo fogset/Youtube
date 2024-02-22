@@ -54,6 +54,7 @@ function Admin({ changeState, page1, page2, page3 }) {
                 view: addedModalVideo[i].view,
                 channelId: addedModalVideo[i].channelId,
                 comments: addedModalVideo[i].comments,
+                channelImg: addedModalVideo[i].channelImg,
             });
         }
         alert("added");
