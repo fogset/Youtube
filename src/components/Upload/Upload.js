@@ -91,7 +91,7 @@ function Upload() {
                     className="w-full md:w-30px"
                 />
             </DropdownSelect>
-            <ChannelImage src={selectChannel.profileImg} />
+            {selectChannel && <ChannelImage src={selectChannel.profileImg} />}
             <StyledLabel>Day:</StyledLabel>
             <StyledInput
                 type="number"
@@ -137,7 +137,7 @@ function Upload() {
             <StyledLabel>ChannelId:</StyledLabel>
             <StyledInput
                 type="text"
-                value={channelId}
+                value={selectChannel.channelId}
                 onChange={(e) => setChannelId(e.target.value)}
             />
             <StyledLabel>Random Comments:</StyledLabel>

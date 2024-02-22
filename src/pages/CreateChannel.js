@@ -22,10 +22,9 @@ function CreateChannel() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
         try {
             const docRef = await addDoc(collection(db, "channels"), {
-                banner: banner,
+                Banner: banner,
                 about: about,
                 channelId: channelId,
                 profileImg: profileImg,
@@ -51,7 +50,7 @@ function CreateChannel() {
                 value={about}
                 onChange={(e) => setAbout(e.target.value)}
             />
-            <StyledLabel>Image:</StyledLabel>
+            <StyledLabel>Channel Id:</StyledLabel>
             <StyledInput
                 type="text"
                 value={channelId}
