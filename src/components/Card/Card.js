@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { currentVideoRecoil, currentChannelRecoil } from "../../state";
 import ReactPlayer from "react-player";
-function Card({ type, user, play }) {
+function Card({ type, user }) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
     const [currentChannel, setCurrentChannel] =
         useRecoilState(currentChannelRecoil);
@@ -12,19 +12,33 @@ function Card({ type, user, play }) {
     const videoId = `/video/${user.id}`;
     const channelId = `/channel`;
     console.log(params);
-
+    const [play, setPlay] = useState(false);
+    const [light, setLight] = useState(false);
+    function Enter() {
+        setPlay(true);
+    }
+    function Out() {
+        setPlay(false);
+    }
+    function currentVideoClicked() {
+        setCurrentVideo(user);
+        setLight(true);
+        setPlay(false);
+    }
     return (
         <Link
             to={videoId}
             style={{ textDecoration: "none" }}
-            onClick={() => setCurrentVideo(user)}
+            onClick={currentVideoClicked}
         >
-            <Container type={type}>
+            <Container type={type} onMouseEnter={Enter} onMouseOut={Out}>
                 <ReactPlayer
                     url={user.video}
                     width="100%"
                     height="202px"
                     playing={play}
+                    light={light}
+                    playIcon={true}
                 />
                 <Details type={type}>
                     <Link

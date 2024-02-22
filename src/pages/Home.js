@@ -25,7 +25,7 @@ function Home({ users }) {
                 Play{play}
             </Button>
             {users.map((user, index) => (
-                <Card key={index} user={user} play={play} />
+                <Card key={index} user={user} play={play} setPlay={setPlay} />
             ))}
         </Container>
     );
