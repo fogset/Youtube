@@ -135,11 +135,13 @@ function Upload() {
                 onChange={(e) => setView(e.target.value)}
             />
             <StyledLabel>ChannelId:</StyledLabel>
-            <StyledInput
-                type="text"
-                value={selectChannel.channelId}
-                onChange={(e) => setChannelId(e.target.value)}
-            />
+            {selectChannel && (
+                <StyledInput
+                    type="text"
+                    value={selectChannel.channelId}
+                    onChange={(e) => setChannelId(e.target.value)}
+                />
+            )}
             <StyledLabel>Random Comments:</StyledLabel>
             <StyledInput
                 type="number"

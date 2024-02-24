@@ -36,8 +36,7 @@ function Card({ type, user }) {
                     url={user.video}
                     width="100%"
                     height="202px"
-                    playing={play}
-                    light={light}
+                    light={true}
                     playIcon={true}
                 />
                 <Details type={type}>
