@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { modalTotalVideoRecoil, addedModalVideoRecoil } from "../../state";
-
+import ReactPlayer from "react-player";
 function ChannelCard({ currentVideo }) {
     const [selected, setSelected] = useState(false);
     const [modalTotalVideo, setModalTotalVideo] = useRecoilState(
@@ -21,10 +21,24 @@ function ChannelCard({ currentVideo }) {
         setAddedModalVideo([...addedModalVideo, currentVideo]);
         alert(modalTotalVideo[modalTotalVideo.length - 1].title);
     }
-
+    const [play, setPlay] = useState(false);
+    function Enter() {
+        setPlay(true);
+        //alert("enter");
+    }
+    function Out() {
+        setPlay(false);
+    }
     return (
         <Container onClick={selectedVideoButton} selected={selected}>
-            <Image src={currentVideo.image} />
+            <VideoContainer onMouseEnter={Enter} onMouseOut={Out}>
+                <ReactPlayer
+                    url={currentVideo.video}
+                    width="100%"
+                    height="100%"
+                    playing={play}
+                />
+            </VideoContainer>
             <Details>
                 <div>
                     <ChannelImage src={currentVideo.channelImg} />
@@ -59,11 +73,9 @@ const Container = styled.div`
     position: relative;
 `;
 
-const Image = styled.img`
+const VideoContainer = styled.div`
     width: 100%;
     height: 180px;
-    background-color: #999;
-    flex: 1;
 `;
 const Details = styled.div`
     display: flex;
