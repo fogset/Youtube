@@ -121,68 +121,41 @@ function App() {
     }, [page3, page1, page2]);
     return (
         <Container>
-            <Header />
-            <Sidebar />
-            <Main>
-                <Routes>
-                    {currentPage !== null && (
-                        <Route path="/">
+            <Routes>
+                {currentPage !== null && (
+                    <Route path="/">
+                        <Route index element={<Home users={currentPage} />} />
+                        <Route path="video">
                             <Route
-                                index
-                                element={<Home users={currentPage} />}
+                                path=":id"
+                                element={<VideoScreen users={currentPage} />}
                             />
-                            <Route path="video">
-                                <Route
-                                    path=":id"
-                                    element={
-                                        <VideoScreen users={currentPage} />
-                                    }
-                                />
-                            </Route>
                         </Route>
-                    )}
-                    <Route path="/about" element={<About />}></Route>
-                    <Route path="/upload" element={<Upload />}></Route>
-                    <Route path="/channel" element={<Channel />}></Route>
+                    </Route>
+                )}
+                <Route path="/about" element={<About />}></Route>
+                <Route path="/upload" element={<Upload />}></Route>
+                <Route path="/channel" element={<Channel />}></Route>
+                <Route
+                    path="/createchannel"
+                    element={<CreateChannel />}
+                ></Route>
+                {page1 !== null && (
                     <Route
-                        path="/createchannel"
-                        element={<CreateChannel />}
+                        path="/admin"
+                        element={
+                            <Admin page1={page1} page2={page2} page3={page3} />
+                        }
                     ></Route>
-                    {page1 !== null && (
-                        <Route
-                            path="/admin"
-                            element={
-                                <Admin
-                                    page1={page1}
-                                    page2={page2}
-                                    page3={page3}
-                                />
-                            }
-                        ></Route>
-                    )}
-                </Routes>
-            </Main>
+                )}
+            </Routes>
         </Container>
     );
 }
 
 export default App;
 
-const Container = styled.div`
-    position: absolute;
-    top: 0px;
-    left: 0px;
-`;
-
-const Main = styled.div`
-    top: 10%;
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    left: 10%;
-    display: flex;
-    background-color: white;
-`;
+const Container = styled.div``;
 
 const Wrapper = styled.div`
     /* padding: 22px 96px; */

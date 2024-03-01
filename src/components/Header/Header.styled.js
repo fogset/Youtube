@@ -6,6 +6,7 @@ export const Container = styled.div`
     position: fixed;
     width: 100%;
     font-size: large;
+    z-index: 15;
 `;
 export const FaBars_Container = styled.div`
     margin-left: 2%;
