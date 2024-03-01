@@ -6,7 +6,7 @@ import { recoilUserIndex } from "../state";
 import {
     collection,
     query,
-    where,
+    deleteDoc,
     getDocs,
     doc,
     getDoc,
@@ -40,17 +40,23 @@ function About() {
         }
         //setCity();
     }, []);
-    function handleClick() {
-        setCity();
+    // function handleClick() {
+    //     //setCity();
+    //     alert("click");
+    //     const reference = doc(db, "page2");
+    // }
+    const handleClick = async () => {
+        const reference = doc(db, "page2", "4G9OTrIN76PUC2wBAFRg");
+        await deleteDoc(reference);
         alert("click");
-    }
+    };
     return (
         <Container>
             <button onClick={handleClick}>Clicked element's key is </button>
             <VideoPlayer
                 video={[
-                    "https://www.youtube.com/watch?v=oUFJJNQGwhk",
-                    "https://www.youtube.com/watch?v=jNgP6d9HraI",
+                    "https://www.twitch.tv/sodapoppin",
+                    "https://www.youtube.com/watch?v=eO4TEm3Fllo&list=PLKgRDYt8mDh8o_bTkbJqZvKlr9MTy5WyL&index=4&ab_channel=MISSMAXIMCONTEST",
                 ]}
             />
         </Container>

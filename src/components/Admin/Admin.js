@@ -36,7 +36,6 @@ function Admin({ changeState, page1, page2, page3 }) {
         setOpenModal(true);
     }
     function pageTest() {
-        changeState();
         alert("admin");
     }
 

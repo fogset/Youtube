@@ -65,7 +65,7 @@ const Container = styled.div`
     width: ${(props) => props.type !== "sm" && "360px"};
     margin-bottom: ${(props) => (props.type === "sm" ? "10px" : "45p")};
     cursor: pointer;
-    margin-right: 2%;
+    margin-right: 20px;
     display: ${(props) => props.type === "sm" && "flex"};
     gap: 10px;
 `;

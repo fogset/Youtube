@@ -19,7 +19,7 @@ import {
     faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
-function Sidebar({ darkMode, setDarkMode }) {
+function Sidebar() {
     return (
         <Container>
             <Item>
@@ -43,16 +43,7 @@ function Sidebar({ darkMode, setDarkMode }) {
                 <FontAwesomeIcon icon={faClockRotateLeft} />
                 <Item_text>History</Item_text>
             </Item>
-            <Hr>
-                <Login>
-                    Sign in to like videos, comments, and subscribe.
-                    <Button>
-                        <FontAwesomeIcon icon={faUser} />
-                        SIGN IN
-                    </Button>
-                </Login>
-            </Hr>
-            <Title>BEST OF LAMATUBE</Title>
+
             <Item>
                 <FontAwesomeIcon icon={faMusic} />
                 <Item_text>Music</Item_text>
@@ -90,18 +81,23 @@ function Sidebar({ darkMode, setDarkMode }) {
                 <FontAwesomeIcon icon={faQuestion} />
                 <Item_text>Help</Item_text>
             </Item>
-            <Item onClick={() => setDarkMode(!darkMode)}>
-                <FontAwesomeIcon icon={faArrowsRotate} />
-                <Item_text>Light Mode</Item_text>
-            </Item>
+
+            <Page>page {localStorage.getItem("currentPage")}</Page>
         </Container>
     );
 }
 
 export default Sidebar;
 const Container = styled.div`
-    flex: 1;
     font-size: 15px;
+    background-color: white;
+    color: black;
+
+    position: absolute;
+    width: 15%;
+    height: 100%;
+    top: 60px;
+    left: 0%;
 `;
 const Item = styled.div`
     display: flex;
@@ -120,9 +116,7 @@ const Hr = styled.div`
     margin: 15px 0px;
     border: 0.5px solid ${({ theme }) => theme.soft};
 `;
-const Login = styled.div`
-    font-size: 15px;
-`;
+
 const Button = styled.button`
     padding: 5x 15px;
     background-color: transparent;
@@ -141,4 +135,12 @@ const Title = styled.h2`
     font-weight: 500;
     color: #aaaaaa;
     margin-bottom: 20px;
+`;
+const Page = styled.div`
+    margin-left: 5px;
+    height: 30px;
+    width: 70px;
+    background-color: pink;
+    color: red;
+    font-size: larger;
 `;

@@ -9,23 +9,12 @@ function Home({ users }) {
         setPlay(!play);
         alert(play);
     }
-    function Enter() {
-        setPlay(true);
-    }
-    function Out() {
-        setPlay(false);
-    }
+
     return (
         <Container>
-            <Button
-                onClick={button1Clicked}
-                onMouseEnter={Enter}
-                onMouseOut={Out}
-            >
-                Play{play}
-            </Button>
+            <Button onClick={button1Clicked}>Play</Button>
             {users.map((user, index) => (
-                <Card key={index} user={user} play={play} setPlay={setPlay} />
+                <Card key={index} user={user} />
             ))}
         </Container>
     );
@@ -40,11 +29,12 @@ const Container = styled.div`
     overflow-y: auto;
     height: 100%;
     width: 100%;
+    margin-right: 10%;
     margin-bottom: 100px;
 `;
 const Button = styled.div`
     margin-left: 5px;
-    height: 60px;
+    height: 40px;
     width: 100px;
     background-color: pink;
     color: red;

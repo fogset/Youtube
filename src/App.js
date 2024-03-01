@@ -91,12 +91,7 @@ function App() {
     //     console.log("totalvideo");
     //     console.log(totalVideo);
     // }, [page3, page1, page2, channels, totalVideo]);
-    function changePage() {
-        //alert("app");
-        //setUsers("change state");
-        //console.log("users----------------");
-        //alert(users);
-    }
+
     useEffect(() => {
         //localStorage.clear();
         if (localStorage.getItem("currentPage") === null) {
@@ -126,71 +121,53 @@ function App() {
     }, [page3, page1, page2]);
     return (
         <Container>
-            <Header_Container>
-                <Header />
-            </Header_Container>
+            <Header />
+            <Sidebar />
             <Main>
-                <Sidebar_Container>
-                    <Sidebar />
-                    <h2></h2>
-                    <Button onClick={changePage}>
-                        page {localStorage.getItem("currentPage")}
-                    </Button>
-                </Sidebar_Container>
-                <Wrapper>
-                    <Routes>
-                        {currentPage !== null && (
-                            <Route path="/">
-                                <Route
-                                    index
-                                    element={<Home users={currentPage} />}
-                                />
-                                <Route path="video">
-                                    <Route
-                                        path=":id"
-                                        element={
-                                            <VideoScreen users={currentPage} />
-                                        }
-                                    />
-                                </Route>
-                            </Route>
-                        )}
-                        <Route path="/about" element={<About />}></Route>
-                        <Route path="/upload" element={<Upload />}></Route>
-                        <Route path="/channel" element={<Channel />}></Route>
-                        <Route
-                            path="/createchannel"
-                            element={<CreateChannel />}
-                        ></Route>
-                        {page1 !== null && (
+                <Routes>
+                    {currentPage !== null && (
+                        <Route path="/">
                             <Route
-                                path="/admin"
-                                element={
-                                    <Admin
-                                        changeState={changePage}
-                                        page1={page1}
-                                        page2={page2}
-                                        page3={page3}
-                                    />
-                                }
-                            ></Route>
-                        )}
-                    </Routes>
-                </Wrapper>
+                                index
+                                element={<Home users={currentPage} />}
+                            />
+                            <Route path="video">
+                                <Route
+                                    path=":id"
+                                    element={
+                                        <VideoScreen users={currentPage} />
+                                    }
+                                />
+                            </Route>
+                        </Route>
+                    )}
+                    <Route path="/about" element={<About />}></Route>
+                    <Route path="/upload" element={<Upload />}></Route>
+                    <Route path="/channel" element={<Channel />}></Route>
+                    <Route
+                        path="/createchannel"
+                        element={<CreateChannel />}
+                    ></Route>
+                    {page1 !== null && (
+                        <Route
+                            path="/admin"
+                            element={
+                                <Admin
+                                    page1={page1}
+                                    page2={page2}
+                                    page3={page3}
+                                />
+                            }
+                        ></Route>
+                    )}
+                </Routes>
             </Main>
         </Container>
     );
 }
 
 export default App;
-const Button = styled.div`
-    margin-left: 5px;
-    height: 30px;
-    width: 70px;
-    background-color: pink;
-    color: red;
-    font-size: larger;
-`;
+
 const Container = styled.div`
     position: absolute;
     top: 0px;
@@ -202,31 +179,19 @@ const Main = styled.div`
     position: fixed;
     width: 100%;
     height: 100%;
+    left: 10%;
     display: flex;
-`;
-const Header_Container = styled.div`
     background-color: white;
-    height: 56px;
-    position: fixed;
-    width: 100%;
-    font-size: large;
 `;
-const Sidebar_Container = styled.div`
-    background-color: ${({ theme }) => theme.bg};
-    color: ${({ theme }) => theme.text};
-    height: 100%;
-    width: 10%;
-    font-size: large;
-`;
-const Video_Container = styled.div`
-    background-color: ${({ theme }) => theme.bg};
-    width: 100%;
-`;
+
 const Wrapper = styled.div`
     /* padding: 22px 96px; */
     overflow-x: hidden;
     overflow-y: auto;
-    height: 100%;
-    width: 100%;
-    background-color: antiquewhite;
+    height: 500px;
+    width: 85%;
+    background-color: blue;
+    position: absolute;
+    left: 15%;
+    top: 50px;
 `;

@@ -1,9 +1,11 @@
 import styled from "styled-components";
 export const Container = styled.div`
-    position: sticky;
     top: 0;
-    background-color: ${({ theme }) => theme.bgLighter};
     height: 56px;
+    background-color: white;
+    position: fixed;
+    width: 100%;
+    font-size: large;
 `;
 export const FaBars_Container = styled.div`
     margin-left: 2%;
