@@ -10,7 +10,13 @@ import {
 } from "firebase/firestore";
 import { db } from "./firestore";
 import { useRecoilState } from "recoil";
-import { recoilChannelList, totalVideoRecoil, page1Recoil } from "./state";
+import {
+    recoilChannelList,
+    totalVideoRecoil,
+    page1Recoil,
+    page2Recoil,
+    page3Recoil,
+} from "./state";
 import Main from "./pages/Main";
 import AdminRoute from "./components/Admin/AdminRoute";
 
@@ -18,8 +24,8 @@ function App() {
     const [channels, setChannels] = useRecoilState(recoilChannelList);
     const [currentPage, setCurrentPage] = useState(null);
     const [page1, setPage1] = useRecoilState(page1Recoil);
-    const [page2, setPage2] = useState(null);
-    const [page3, setPage3] = useState(null);
+    const [page2, setPage2] = useRecoilState(page2Recoil);
+    const [page3, setPage3] = useRecoilState(page3Recoil);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
 
     const getCurrentPage = async (setData, currentPage) => {
