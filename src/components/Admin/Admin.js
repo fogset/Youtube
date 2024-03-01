@@ -7,7 +7,7 @@ import { addedModalVideoRecoil, modalTotalVideoRecoil } from "../../state";
 import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
 
-function Admin({ changeState, page1, page2, page3 }) {
+function Admin({ page1, page2, page3 }) {
     const [modalTotalVideo, setModalTotalVideo] = useRecoilState(
         modalTotalVideoRecoil
     );
@@ -59,12 +59,6 @@ function Admin({ changeState, page1, page2, page3 }) {
         alert("added");
     }
 
-    // useEffect(() => {
-    //     console.log("modalTotalVideo");
-    //     console.log(modalTotalVideo);
-    //     console.log("addedModalVideo");
-    //     console.log(addedModalVideo);
-    // }, [modalTotalVideo, addedModalVideo]);
     useEffect(() => {
         button1Clicked();
     }, []);

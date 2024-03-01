@@ -2,7 +2,6 @@ import styled from "styled-components";
 import Card from "../components/Card/Card";
 import data from "./data.json";
 import React, { Fragment, useState, useEffect } from "react";
-import Header from "../components/Header/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
 
 function Home({ currentPage }) {
@@ -14,7 +13,6 @@ function Home({ currentPage }) {
 
     return (
         <Container>
-            <Header />
             <Sidebar />
             <Video>
                 {currentPage.map((user, index) => (

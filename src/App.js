@@ -1,12 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import Header from "./components/Header/Header";
-import Sidebar from "./components/Sidebar/Sidebar";
-import VideoScreen from "./pages/VideoScreen";
 import styled from "styled-components";
-import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Upload from "./components/Upload/Upload";
 import {
     collection,
     query,
@@ -16,11 +9,8 @@ import {
     getDoc,
 } from "firebase/firestore";
 import { db } from "./firestore";
-import Admin from "./components/Admin/Admin";
 import { useRecoilState } from "recoil";
 import { recoilChannelList, totalVideoRecoil, page1Recoil } from "./state";
-import Channel from "./pages/Channel";
-import CreateChannel from "./pages/CreateChannel";
 import Main from "./pages/Main";
 import AdminRoute from "./components/Admin/AdminRoute";
 
