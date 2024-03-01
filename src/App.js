@@ -21,6 +21,8 @@ import { useRecoilState } from "recoil";
 import { recoilChannelList, totalVideoRecoil, page1Recoil } from "./state";
 import Channel from "./pages/Channel";
 import CreateChannel from "./pages/CreateChannel";
+import Main from "./pages/Main";
+import AdminRoute from "./components/Admin/AdminRoute";
 
 function App() {
     const [channels, setChannels] = useRecoilState(recoilChannelList);
@@ -121,34 +123,10 @@ function App() {
     }, [page3, page1, page2]);
     return (
         <Container>
-            <Routes>
-                {currentPage !== null && (
-                    <Route path="/">
-                        <Route index element={<Home users={currentPage} />} />
-                        <Route path="video">
-                            <Route
-                                path=":id"
-                                element={<VideoScreen users={currentPage} />}
-                            />
-                        </Route>
-                    </Route>
-                )}
-                <Route path="/about" element={<About />}></Route>
-                <Route path="/upload" element={<Upload />}></Route>
-                <Route path="/channel" element={<Channel />}></Route>
-                <Route
-                    path="/createchannel"
-                    element={<CreateChannel />}
-                ></Route>
-                {page1 !== null && (
-                    <Route
-                        path="/admin"
-                        element={
-                            <Admin page1={page1} page2={page2} page3={page3} />
-                        }
-                    ></Route>
-                )}
-            </Routes>
+            {currentPage !== null && <Main currentPage={currentPage} />}
+            {page1 !== null && (
+                <AdminRoute page1={page1} page2={page2} page3={page3} />
+            )}
         </Container>
     );
 }
@@ -156,15 +134,3 @@ function App() {
 export default App;
 
 const Container = styled.div``;
-
-const Wrapper = styled.div`
-    /* padding: 22px 96px; */
-    overflow-x: hidden;
-    overflow-y: auto;
-    height: 500px;
-    width: 85%;
-    background-color: blue;
-    position: absolute;
-    left: 15%;
-    top: 50px;
-`;

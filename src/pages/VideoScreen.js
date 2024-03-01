@@ -16,7 +16,7 @@ import data from "./data.json";
 import { useRecoilState } from "recoil";
 import { currentVideoRecoil } from "../state";
 
-function VideoScreen({ users }) {
+function VideoScreen({ currentPage }) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
 
     return (
@@ -71,7 +71,7 @@ function VideoScreen({ users }) {
                 <Comments />
             </VideoContainer>
             <Recommendation>
-                {users.map((user, index) => (
+                {currentPage.map((user, index) => (
                     <Card key={index} user={user} />
                 ))}
             </Recommendation>

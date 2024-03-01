@@ -5,7 +5,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import Header from "../components/Header/Header";
 import Sidebar from "../components/Sidebar/Sidebar";
 
-function Home({ users }) {
+function Home({ currentPage }) {
     const [play, setPlay] = useState(false);
     function button1Clicked() {
         setPlay(!play);
@@ -17,7 +17,7 @@ function Home({ users }) {
             <Header />
             <Sidebar />
             <Video>
-                {users.map((user, index) => (
+                {currentPage.map((user, index) => (
                     <Card key={index} user={user} />
                 ))}
             </Video>
