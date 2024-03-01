@@ -29,8 +29,8 @@ const Video = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    overflow-x: hidden;
-    overflow-y: auto;
+    /* overflow-x: hidden;
+    overflow-y: auto; */
     height: 100%;
     width: 90%;
     top: 10%;

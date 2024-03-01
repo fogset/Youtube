@@ -11,7 +11,7 @@ function Card({ type, user }) {
     const params = useParams();
     const videoId = `/video/${user.id}`;
     const channelId = `/channel`;
-    console.log(params);
+    //console.log(params);
     const [play, setPlay] = useState(false);
     const [light, setLight] = useState(false);
     function Enter() {

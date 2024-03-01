@@ -92,13 +92,17 @@ const Container = styled.div`
     font-size: 15px;
     background-color: white;
     color: black;
-
     position: absolute;
     width: 15%;
     height: 100%;
     top: 60px;
     left: 0%;
+    @media only screen and (max-width: 700px) {
+        /* hide element on small screens */
+        display: none;
+    }
 `;
+
 const Item = styled.div`
     display: flex;
     margin-top: 5px;
