@@ -22,54 +22,21 @@ function App() {
     const [page3, setPage3] = useState(null);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
 
-    const getPage1 = async () => {
-        const querySnapshot = await getDocs(collection(db, "page1"));
+    const getCurrentPage = async (setData, currentPage) => {
+        const querySnapshot = await getDocs(collection(db, currentPage));
         const snapshot = querySnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
         }));
-        setPage1(snapshot);
-        //setCurrentPage(snapshot);
-    };
-    const getPage2 = async () => {
-        const querySnapshot = await getDocs(collection(db, "page2"));
-        const snapshot = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-        setPage2(snapshot);
-    };
-    const getPage3 = async () => {
-        const querySnapshot = await getDocs(collection(db, "page3"));
-        const snapshot = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-        setPage3(snapshot);
-    };
-    const getChannels = async () => {
-        const querySnapshot = await getDocs(collection(db, "channels"));
-        const snapshot = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-        setChannels(snapshot);
-    };
-    const getTotalVideo = async () => {
-        const querySnapshot = await getDocs(collection(db, "videos"));
-        const snapshot = querySnapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-        }));
-        setTotalVideo(snapshot);
+        setData(snapshot);
     };
 
     useEffect(() => {
-        getPage1();
-        getPage2();
-        getPage3();
-        getChannels();
-        getTotalVideo();
+        getCurrentPage(setPage1, "page1");
+        getCurrentPage(setPage2, "page2");
+        getCurrentPage(setPage3, "page3");
+        getCurrentPage(setChannels, "channels");
+        getCurrentPage(setTotalVideo, "videos");
     }, []);
     // useEffect(() => {
     //     console.log("page1");
