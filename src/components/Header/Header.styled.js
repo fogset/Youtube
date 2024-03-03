@@ -13,6 +13,7 @@ export const FaBars_Container = styled.div`
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    color: black;
 `;
 export const MagnifyingGlass_Container = styled.div`
     margin-right: 4%;
