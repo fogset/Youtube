@@ -28,12 +28,13 @@ function Sidebar() {
             </Item>
             <Item>
                 <FontAwesomeIcon icon={faMagnifyingGlass} />
-                <Item_text>Explore</Item_text>
+                <Item_text>Shorts</Item_text>
             </Item>
             <Item>
                 <FontAwesomeIcon icon={faList} />
                 <Item_text>Subscriptions</Item_text>
             </Item>
+            <hr />
             <Item>
                 <FontAwesomeIcon icon={faBook} />
                 <Item_text>Library</Item_text>
@@ -89,7 +90,7 @@ function Sidebar() {
 
 export default Sidebar;
 const Container = styled.div`
-    font-size: 15px;
+    font-size: 16px;
     background-color: white;
     color: black;
     position: absolute;
@@ -106,7 +107,7 @@ const Container = styled.div`
 const Item = styled.div`
     display: flex;
     margin-top: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 6%;
     margin-left: 10px;
     &:hover {
         background-color: black;
