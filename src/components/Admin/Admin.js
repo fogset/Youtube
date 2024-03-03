@@ -98,17 +98,17 @@ const MainPage = styled.div`
     width: 89vw;
     height: 100vw;
     position: fixed;
+    overflow-x: hidden;
+    overflow-y: auto;
 `;
 
 const Container = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    overflow-x: hidden;
-    overflow-y: auto;
     height: 100%;
     width: 100%;
-    margin-bottom: 100px;
+    padding-bottom: 60%;
 `;
 
 const ButtonContainer = styled.div`
