@@ -162,6 +162,7 @@ const DropdownSelect = styled.div`
     top: 1%;
     display: flex;
     width: 100%;
+    font-size: larger;
 `;
 const ChannelImage = styled.img`
     position: absolute;
@@ -178,6 +179,7 @@ const StyledForm = styled.form`
     background-color: #f4f4f4;
     padding: 20px;
     border-radius: 5px;
+    font-size: large;
 `;
 
 const StyledLabel = styled.label`

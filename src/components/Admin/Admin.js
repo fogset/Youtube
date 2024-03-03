@@ -6,8 +6,7 @@ import { useRecoilState } from "recoil";
 import { addedModalVideoRecoil, modalTotalVideoRecoil } from "../../state";
 import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
-import AdminSideBar from "./AdminSideBar";
-import Main from "./../../pages/Main";
+import About from "./../../pages/About";
 
 function Admin({ page1, page2, page3 }) {
     const [modalTotalVideo, setModalTotalVideo] = useRecoilState(
@@ -66,52 +65,77 @@ function Admin({ page1, page2, page3 }) {
     }, []);
 
     return (
-        <div>
-            <AdminSideBar />
-            <MainPage>
-                <ButtonContainer>
-                    <Button onClick={button1Clicked}>page 1</Button>
-                    <Button onClick={button2Clicked}>page 2</Button>
-                    <Button onClick={button3Clicked}>page 3</Button>
-                    <Button onClick={pageTest}>page test</Button>
-                </ButtonContainer>
-                {modalTotalVideo !== null && (
-                    <Container>
-                        {modalTotalVideo.map((user, index) => (
-                            <Card key={index} user={user} />
-                        ))}
-                    </Container>
-                )}
-                <SetPageButton onClick={SetCurrentPage}>
-                    Set Current Page
-                </SetPageButton>
-                <SetButton onClick={openModalButton}>openModal</SetButton>
-                {openModal === true && <Modal setOpenModal={setOpenModal} />}
-            </MainPage>
-        </div>
+        <MainPage>
+            <ButtonContainer>
+                <Button onClick={button1Clicked}>page 1</Button>
+                <Button onClick={button2Clicked}>page 2</Button>
+                <Button onClick={button3Clicked}>page 3</Button>
+                <Button onClick={pageTest}>page test</Button>
+            </ButtonContainer>
+            {modalTotalVideo !== null && (
+                <Container>
+                    {modalTotalVideo.map((user, index) => (
+                        <Card key={index} user={user} />
+                    ))}
+                </Container>
+            )}
+            <SetPageButton onClick={SetCurrentPage}>
+                Add to DataBase
+            </SetPageButton>
+            <SetButton onClick={openModalButton}>openModal</SetButton>
+            {openModal === true && <Modal setOpenModal={setOpenModal} />}
+        </MainPage>
     );
 }
 
 export default Admin;
 
 const MainPage = styled.div`
-    position: absolute;
-    left: 15%;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    left: 190px;
+    top: 0;
+    width: 89vw;
+    height: 100vw;
+    position: fixed;
+`;
+
+const Container = styled.div`
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    margin-bottom: 100px;
 `;
 
 const ButtonContainer = styled.div`
     display: flex;
+    margin-bottom: 2%;
 `;
-
+const Button = styled.div`
+    height: 30px;
+    width: 100%;
+    background-color: #fff8dc;
+    color: #cd853f;
+    border: 1px solid grey;
+    margin-right: 1%;
+    &:hover,
+    &:focus {
+        color: #800000;
+    }
+    //color: ${(props) => (props.selected === false ? "#d2691e" : "#800000")};
+`;
 const SetPageButton = styled.div`
     position: fixed;
     bottom: 7%;
     right: 2%;
-    height: 30px;
+    height: 50px;
     width: 150px;
     background-color: pink;
     color: white;
-    font-size: 20px;
     text-align: center;
     &:hover {
         background-color: blue;
@@ -123,34 +147,12 @@ const SetButton = styled.div`
     bottom: 2%;
     right: 2%;
     height: 30px;
-    width: 120px;
+    width: 150px;
     background-color: pink;
-    color: red;
-    font-size: larger;
+    color: white;
     text-align: center;
     &:hover {
         background-color: blue;
         color: white;
     }
-`;
-
-const Button = styled.div`
-    margin-left: 5px;
-    height: 30px;
-    width: 70px;
-    background-color: pink;
-    color: red;
-    font-size: larger;
-`;
-const Container = styled.div`
-    background-color: lightblue;
-    font-size: larger;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    overflow-x: hidden;
-    overflow-y: auto;
-    height: 100%;
-    width: 100%;
-    margin-bottom: 100px;
 `;

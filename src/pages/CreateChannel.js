@@ -86,6 +86,7 @@ const StyledForm = styled.form`
     background-color: #f4f4f4;
     padding: 20px;
     border-radius: 5px;
+    font-size: large;
 `;
 
 const StyledLabel = styled.label`
@@ -109,7 +110,7 @@ const StyledButton = styled.button`
     margin-top: 10px;
     border: none;
     border-radius: 5px;
-    margin-left: 50px;
+    margin-left: 20px;
     height: 40px;
     cursor: pointer;
     &:disabled {

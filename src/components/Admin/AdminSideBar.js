@@ -35,7 +35,7 @@ function AdminSideBar() {
                         </SidebarLink>
                     </Item>
                     <Item>
-                        <SidebarLink to="/mainPage">
+                        <SidebarLink to="/admin">
                             <LinkIcon>
                                 <GrDomain />
                             </LinkIcon>
@@ -74,14 +74,13 @@ const Container = styled.div`
     position: fixed;
     left: 0;
     top: 0;
-    width: 200px;
+    width: 180px;
     height: 100%;
     background-color: white;
     padding: 20px 14px;
     box-shadow: rgba(100, 100, 111, 0.1) 0px 7px 29px 0px;
     display: flex;
     flex-direction: column;
-    z-index: 999;
     transition: var(--default-transition);
 `;
 const Top = styled.div`

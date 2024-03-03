@@ -27,12 +27,6 @@ function Channel() {
     const [currentChannelVideo, setCurrentChannelVideo] = useState(null);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
 
-    // console.log("currentChannelId");
-    // console.log(currentChannelId);
-    // console.log("channelList");
-    // console.log(channelList);
-    // console.log("totalvideo----");
-    // console.log(totalVideo);
     useEffect(() => {
         let i = 0;
         while (i < channelList.length) {
