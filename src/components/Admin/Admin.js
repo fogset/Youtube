@@ -6,6 +6,8 @@ import { useRecoilState } from "recoil";
 import { addedModalVideoRecoil, modalTotalVideoRecoil } from "../../state";
 import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
+import AdminSideBar from "./AdminSideBar";
+import Main from "./../../pages/Main";
 
 function Admin({ page1, page2, page3 }) {
     const [modalTotalVideo, setModalTotalVideo] = useRecoilState(
@@ -65,29 +67,37 @@ function Admin({ page1, page2, page3 }) {
 
     return (
         <div>
-            <ButtonContainer>
-                <Button onClick={button1Clicked}>page 1</Button>
-                <Button onClick={button2Clicked}>page 2</Button>
-                <Button onClick={button3Clicked}>page 3</Button>
-                <Button onClick={pageTest}>page test</Button>
-            </ButtonContainer>
-            {modalTotalVideo !== null && (
-                <Container>
-                    {modalTotalVideo.map((user, index) => (
-                        <Card key={index} user={user} />
-                    ))}
-                </Container>
-            )}
-            <SetPageButton onClick={SetCurrentPage}>
-                Set Current Page
-            </SetPageButton>
-            <SetButton onClick={openModalButton}>openModal</SetButton>
-            {openModal === true && <Modal setOpenModal={setOpenModal} />}
+            <AdminSideBar />
+            <MainPage>
+                <ButtonContainer>
+                    <Button onClick={button1Clicked}>page 1</Button>
+                    <Button onClick={button2Clicked}>page 2</Button>
+                    <Button onClick={button3Clicked}>page 3</Button>
+                    <Button onClick={pageTest}>page test</Button>
+                </ButtonContainer>
+                {modalTotalVideo !== null && (
+                    <Container>
+                        {modalTotalVideo.map((user, index) => (
+                            <Card key={index} user={user} />
+                        ))}
+                    </Container>
+                )}
+                <SetPageButton onClick={SetCurrentPage}>
+                    Set Current Page
+                </SetPageButton>
+                <SetButton onClick={openModalButton}>openModal</SetButton>
+                {openModal === true && <Modal setOpenModal={setOpenModal} />}
+            </MainPage>
         </div>
     );
 }
 
 export default Admin;
+
+const MainPage = styled.div`
+    position: absolute;
+    left: 15%;
+`;
 
 const ButtonContainer = styled.div`
     display: flex;

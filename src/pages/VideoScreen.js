@@ -102,12 +102,27 @@ const Recommendation = styled.div`
     margin-left: 2%;
     width: 30%;
     margin-bottom: 8%;
+    @media only screen and (max-width: 1200px) {
+        /* hide element on small screens */
+        display: none;
+    }
 `;
 const Content = styled.div`
     flex: 5;
 `;
 const VideoWrapper = styled.div`
-    height: 400px;
+    @media only screen and (max-width: 500px) {
+        height: 200px;
+        width: 100%;
+    }
+    @media only screen and (min-width: 500px) and (max-width: 1300px) {
+        height: 500px;
+        width: 800px;
+    }
+    @media only screen and (min-width: 1300px) {
+        height: 600px;
+        width: 1000px;
+    }
 `;
 const Title = styled.h1`
     font-size: 18px;

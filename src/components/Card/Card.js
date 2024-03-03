@@ -45,8 +45,9 @@ function Card({ type, user }) {
                         onClick={() => setCurrentChannel(user.channelId)}
                     >
                         <ChannelImage type={type} src={user.channelImg} />
+                        <h4>{user.channelId}</h4>
                     </Link>
-                    <h3>{user.channelId}</h3>
+
                     <Texts>
                         <Title>{user.title}</Title>
                         <ChannelName>{user.username}</ChannelName>
