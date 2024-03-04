@@ -19,7 +19,7 @@ import { currentVideoRecoil } from "../state";
 function VideoScreen({ currentPage }) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
     useEffect(() => {
-        console.log("currentVideo");
+        console.log("Videoscreen currentVideo");
         console.log(currentVideo);
     }, [currentVideo]);
     return (
@@ -55,8 +55,10 @@ function VideoScreen({ currentPage }) {
                     <ChannelInfo>
                         <Image src={currentVideo.channelImg} />
                         <ChannelDetail>
-                            <ChannelName>sdlfk</ChannelName>
-                            <ChannelCounter>200K subscribers</ChannelCounter>
+                            <ChannelName>{currentVideo.channelId}</ChannelName>
+                            <ChannelCounter>
+                                {currentVideo.subscribers} subscribers
+                            </ChannelCounter>
                         </ChannelDetail>
                     </ChannelInfo>
                     <Subscribe>SUBSCRIBE</Subscribe>

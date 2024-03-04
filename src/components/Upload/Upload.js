@@ -17,7 +17,6 @@ import { Dropdown } from "primereact/dropdown";
 function Upload() {
     const [day, setDay] = useState("");
     const [id, setId] = useState("");
-    const [image, setImage] = useState("");
     const [title, setTitle] = useState("");
     const [video, setVideo] = useState("");
     const [view, setView] = useState("");
@@ -26,7 +25,7 @@ function Upload() {
     var commentArray = [];
     const [channels, setChannels] = useRecoilState(recoilChannelList);
     const [selectChannel, setSelectChannel] = useState(null);
-
+    const [subscribers, setSubscribers] = useState("");
     useEffect(() => {
         console.log("selectChannel");
         console.log(selectChannel);
@@ -39,12 +38,12 @@ function Upload() {
             const docRef = await addDoc(collection(db, "videos"), {
                 day: day,
                 id: id,
-                image: image,
                 title: title,
                 video: video,
                 view: view,
                 channelId: selectChannel.channelId,
                 channelImg: selectChannel.profileImg,
+                subscribers: selectChannel.subscribers,
                 comments: commentArray,
             });
             alert("added");
@@ -102,12 +101,7 @@ function Upload() {
                 value={id}
                 onChange={(e) => setId(e.target.value)}
             />
-            <StyledLabel>Image:</StyledLabel>
-            <StyledInput
-                type="text"
-                value={image}
-                onChange={(e) => setImage(e.target.value)}
-            />
+
             <StyledLabel>Title:</StyledLabel>
             <StyledInput
                 type="text"
@@ -127,6 +121,14 @@ function Upload() {
                 value={view}
                 onChange={(e) => setView(e.target.value)}
             />
+            <StyledLabel>subscribers:</StyledLabel>
+            {selectChannel && (
+                <StyledInput
+                    type="text"
+                    value={selectChannel.subscribers}
+                    onChange={(e) => setSubscribers(e.target.value)}
+                />
+            )}
             <StyledLabel>ChannelId:</StyledLabel>
             {selectChannel && (
                 <StyledInput

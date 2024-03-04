@@ -47,14 +47,13 @@ function Admin({ page1, page2, page3 }) {
             const docRef = addDoc(collection(db, currentPage), {
                 day: addedModalVideo[i].day,
                 id: addedModalVideo[i].id,
-                image: addedModalVideo[i].image,
                 title: addedModalVideo[i].title,
-                username: addedModalVideo[i].username,
                 video: addedModalVideo[i].video,
                 view: addedModalVideo[i].view,
                 channelId: addedModalVideo[i].channelId,
                 comments: addedModalVideo[i].comments,
                 channelImg: addedModalVideo[i].channelImg,
+                subscribers: addedModalVideo[i].subscribers,
             });
         }
         alert("added");
