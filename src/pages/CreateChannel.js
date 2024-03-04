@@ -87,6 +87,7 @@ const StyledForm = styled.form`
     padding: 20px;
     border-radius: 5px;
     font-size: large;
+    width: 90%;
 `;
 
 const StyledLabel = styled.label`

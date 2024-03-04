@@ -19,7 +19,6 @@ function Upload() {
     const [id, setId] = useState("");
     const [image, setImage] = useState("");
     const [title, setTitle] = useState("");
-    const [username, setUsername] = useState("");
     const [video, setVideo] = useState("");
     const [view, setView] = useState("");
     const [commentRandom, setCommentRandom] = useState(1);
@@ -42,7 +41,6 @@ function Upload() {
                 id: id,
                 image: image,
                 title: title,
-                username: username,
                 video: video,
                 view: view,
                 channelId: selectChannel.channelId,
@@ -64,7 +62,7 @@ function Upload() {
     }
 
     const usernameEntered = (e) => {
-        setUsername(e.target.value);
+        setTitle(e.target.value);
         // buttonEnabled(username, password)
     };
     const dayEntered = (e) => {
@@ -72,8 +70,8 @@ function Upload() {
         // buttonEnabled(username, password)
     };
 
-    const buttonEnabled = (username, password) => {
-        if (username.length > 0 && password.length > 0) {
+    const buttonEnabled = (title, password) => {
+        if (title.length > 0 && password.length > 0) {
             //setEnabled(true);
         } else {
             //setEnabled(false);
@@ -116,12 +114,7 @@ function Upload() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
-            <StyledLabel>username:</StyledLabel>
-            <StyledInput
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-            />
+
             <StyledLabel>VideoUrl:</StyledLabel>
             <StyledInput
                 type="text"
@@ -148,7 +141,7 @@ function Upload() {
                 value={commentRandom}
                 onChange={(e) => setCommentRandom(e.target.value)}
             />
-            <StyledButton type="submit" disabled={!username || !day}>
+            <StyledButton type="submit" disabled={!title || !day}>
                 Upload
             </StyledButton>
         </StyledForm>
@@ -180,6 +173,8 @@ const StyledForm = styled.form`
     padding: 20px;
     border-radius: 5px;
     font-size: large;
+    margin-top: 50px;
+    width: 90%;
 `;
 
 const StyledLabel = styled.label`

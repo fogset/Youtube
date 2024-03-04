@@ -45,12 +45,11 @@ function Card({ type, user }) {
                         onClick={() => setCurrentChannel(user.channelId)}
                     >
                         <ChannelImage type={type} src={user.channelImg} />
-                        <h4>{user.channelId}</h4>
                     </Link>
 
                     <Texts>
                         <Title>{user.title}</Title>
-                        <ChannelName>{user.username}</ChannelName>
+                        <ChannelName>{user.channelId}</ChannelName>
                         <Info>
                             {user.view} views . {user.day} day ago
                         </Info>
@@ -64,7 +63,7 @@ function Card({ type, user }) {
 export default Card;
 const Container = styled.div`
     width: ${(props) => props.type !== "sm" && "360px"};
-    margin-bottom: ${(props) => (props.type === "sm" ? "10px" : "45p")};
+    margin-bottom: ${(props) => (props.type === "sm" ? "10px" : "45px")};
     cursor: pointer;
     margin-right: 20px;
     display: ${(props) => props.type === "sm" && "flex"};
