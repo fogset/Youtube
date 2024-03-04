@@ -65,9 +65,8 @@ const Container = styled.div`
     width: ${(props) => props.type !== "sm" && "360px"};
     margin-bottom: ${(props) => (props.type === "sm" ? "10px" : "45px")};
     cursor: pointer;
-    margin-right: 20px;
+
     display: ${(props) => props.type === "sm" && "flex"};
-    gap: 10px;
 `;
 
 const Image = styled.img`

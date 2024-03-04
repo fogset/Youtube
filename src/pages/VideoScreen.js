@@ -91,7 +91,10 @@ function VideoScreen({ currentPage }) {
 
 export default VideoScreen;
 const Container = styled.div`
+    position: absolute;
+    top: 10%;
     display: flex;
+    width: 99%;
 `;
 
 const VideoContainer = styled.div`
