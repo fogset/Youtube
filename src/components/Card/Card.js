@@ -10,7 +10,7 @@ function Card({ type, user }) {
         useRecoilState(currentChannelRecoil);
     const params = useParams();
     const videoId = `/video/${user.id}`;
-    const channelId = `/channel`;
+    const channelId = `/channel/${user.channelId}`;
     //console.log(params);
     const [play, setPlay] = useState(false);
     const [light, setLight] = useState(false);
@@ -39,22 +39,22 @@ function Card({ type, user }) {
                     light={true}
                     playIcon={true}
                 />
-                <Details type={type}>
-                    <Link
-                        to={channelId}
-                        onClick={() => setCurrentChannel(user.channelId)}
-                    >
-                        <ChannelImage type={type} src={user.channelImg} />
-                    </Link>
 
-                    <Texts>
-                        <Title>{user.title}</Title>
-                        <ChannelName>{user.channelId}</ChannelName>
-                        <Info>
-                            {user.view} views . {user.day} day ago
-                        </Info>
-                    </Texts>
-                </Details>
+                <LinkChannel
+                    to={channelId}
+                    onClick={() => setCurrentChannel(user.channelId)}
+                >
+                    <Details type={type}>
+                        <ChannelImage type={type} src={user.channelImg} />
+                        <Texts>
+                            <Title>{user.title}</Title>
+                            <ChannelName>{user.channelId}</ChannelName>
+                            <Info>
+                                {user.view} views . {user.day} day ago
+                            </Info>
+                        </Texts>
+                    </Details>
+                </LinkChannel>
             </Container>
         </Link>
     );
@@ -65,30 +65,24 @@ const Container = styled.div`
     width: ${(props) => props.type !== "sm" && "360px"};
     margin-bottom: ${(props) => (props.type === "sm" ? "10px" : "45px")};
     cursor: pointer;
-
     display: ${(props) => props.type === "sm" && "flex"};
 `;
 
-const Image = styled.img`
-    width: 100%;
-    height: ${(props) => (props.type === "sm" ? "120px" : "202px")};
-    background-color: #999;
-    flex: 1;
+const LinkChannel = styled(Link)`
+    text-decoration: none;
 `;
 const Details = styled.div`
     display: flex;
-    margin-top: ${(props) => (props.type === "sm" ? "0px" : "16px")};
-    gap: 12px;
-    flex: 1;
 `;
 const ChannelImage = styled.img`
+    margin-top: 20px;
     width: 36px;
     height: 36px;
     border-radius: 50%;
-    background-color: #999;
-    display: ${(props) => props.type === "sm" && "none"};
 `;
-const Texts = styled.div``;
+const Texts = styled.div`
+    margin-left: 50px;
+`;
 const Title = styled.h1`
     font-size: 16px;
     font-weight: 500;

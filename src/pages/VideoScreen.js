@@ -71,7 +71,6 @@ function VideoScreen({ currentPage }) {
                     eu, pretium quis, sem. Nulla consequat massa quis enim.
                     Donec pede justo,
                 </Description>
-
                 <Comments />
             </VideoContainer>
             <Recommendation>

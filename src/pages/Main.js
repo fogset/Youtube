@@ -3,6 +3,7 @@ import Home from "./Home";
 import VideoScreen from "./VideoScreen";
 import Header from "../components/Header/Header";
 import React, { useState, useEffect } from "react";
+import Channel from "./Channel";
 
 function Main({ currentPage }) {
     const [admin, setAdmin] = useState(false);
@@ -22,6 +23,12 @@ function Main({ currentPage }) {
                         <Route
                             path=":id"
                             element={<VideoScreen currentPage={currentPage} />}
+                        />
+                    </Route>
+                    <Route path="/channel">
+                        <Route
+                            path=":id"
+                            element={<Channel currentPage={currentPage} />}
                         />
                     </Route>
                 </Route>
