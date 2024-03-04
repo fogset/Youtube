@@ -63,26 +63,23 @@ const DropdownSelect = styled.div`
     width: 40%;
     background-color: lightcoral;
     color: white;
-    z-index: 1;
+    z-index: 11;
     font-size: 30px;
 `;
-const Overlay = styled.div`
-    position: fixed;
-    width: 100%;
-    height: 100%;
-`;
+const Overlay = styled.div``;
 const ModalContainer = styled.div`
-    max-width: 1400px;
-    width: 100%;
-    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    position: fixed;
+    height: 95%;
+    width: 95%;
     display: flex;
-    background-color: #ffffff;
+    flex-direction: row;
+    background-color: lightblue;
     box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
     border-radius: 8px;
-    height: 700px;
+    z-index: 10;
 `;
 const CloseButton = styled.div`
     position: fixed;
@@ -91,7 +88,7 @@ const CloseButton = styled.div`
     right: 8px;
 `;
 const Container = styled.div`
-    background-color: lightblue;
+    /* background-color: lightblue;
     font-size: larger;
     display: flex;
     justify-content: space-between;
@@ -102,5 +99,5 @@ const Container = styled.div`
     width: 100%;
     margin-bottom: 100px;
     padding-right: 1%;
-    z-index: 0;
+    z-index: 0; */
 `;

@@ -18,18 +18,20 @@ import { currentVideoRecoil } from "../state";
 
 function VideoScreen({ currentPage }) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
-
+    useEffect(() => {
+        console.log("currentVideo");
+        console.log(currentVideo);
+    }, [currentVideo]);
     return (
         <Container>
             <VideoContainer>
                 <VideoWrapper>
                     <VideoPlayer video={currentVideo.video} />
                 </VideoWrapper>
-                <Title>Test Video</Title>
+                <Title>{currentVideo.title}</Title>
                 <Details>
-                    <Info>7,948154 views . Jun 22, 2022</Info>
+                    <Info>{currentVideo.view} views . Jun 22, 2022</Info>
 
-                    <p>id = {currentVideo.id}</p>
                     <Buttons>
                         <Button>
                             <FontAwesomeIcon icon={faThumbsUp} />
@@ -51,7 +53,7 @@ function VideoScreen({ currentPage }) {
                 </Details>
                 <Channel>
                     <ChannelInfo>
-                        <Image src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg" />
+                        <Image src={currentVideo.channelImg} />
                         <ChannelDetail>
                             <ChannelName>sdlfk</ChannelName>
                             <ChannelCounter>200K subscribers</ChannelCounter>
