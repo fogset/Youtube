@@ -34,9 +34,8 @@ const Video = styled.div`
     height: 100%;
     width: 90%;
     top: 10%;
-    left: 10%;
-    margin-right: 10%;
-    margin-bottom: 100px;
+    left: 180px;
+    padding-bottom: 100px;
     position: absolute;
 `;
 const Button = styled.div`

@@ -18,7 +18,14 @@ import {
     faArrowsRotate,
     faUser,
 } from "@fortawesome/free-solid-svg-icons";
-
+import { IoIosArrowForward } from "react-icons/io";
+import { MdOutlineWatchLater, MdOutlineMovieFilter } from "react-icons/md";
+import { AiOutlineLike } from "react-icons/ai";
+import { IoMusicalNoteOutline, IoGameControllerOutline } from "react-icons/io5";
+import { CgMediaLive } from "react-icons/cg";
+import { ImFire } from "react-icons/im";
+import { FaRegNewspaper } from "react-icons/fa6";
+import { TfiCup } from "react-icons/tfi";
 function Sidebar() {
     return (
         <Container>
@@ -36,8 +43,10 @@ function Sidebar() {
             </Item>
             <hr />
             <Item>
-                <FontAwesomeIcon icon={faBook} />
-                <Item_text>Library</Item_text>
+                <You_text>You</You_text>
+                <RightArrowIcon>
+                    <IoIosArrowForward />
+                </RightArrowIcon>
             </Item>
 
             <Item>
@@ -46,37 +55,39 @@ function Sidebar() {
             </Item>
 
             <Item>
-                <FontAwesomeIcon icon={faMusic} />
+                <MdOutlineWatchLater />
+                <Item_text>Watch later</Item_text>
+            </Item>
+            <Item>
+                <AiOutlineLike />
+                <Item_text>Liked videos</Item_text>
+            </Item>
+            <hr />
+            <Explore_text>Explore</Explore_text>
+            <Item>
+                <ImFire />
+                <Item_text>Trending</Item_text>
+            </Item>
+            <Item>
+                <IoMusicalNoteOutline />
                 <Item_text>Music</Item_text>
             </Item>
             <Item>
-                <FontAwesomeIcon icon={faClockRotateLeft} />
-                <Item_text>Sports</Item_text>
+                <MdOutlineMovieFilter />
+                <Item_text>Movies & TV</Item_text>
             </Item>
             <Item>
-                <FontAwesomeIcon icon={faBaseball} />
-                <Item_text>Gaming</Item_text>
-            </Item>
-            <Item>
-                <FontAwesomeIcon icon={faFilm} />
-                <Item_text>Movies</Item_text>
-            </Item>
-            <Item>
-                <FontAwesomeIcon icon={faNewspaper} />
-                <Item_text>News</Item_text>
-            </Item>
-            <Item>
-                <FontAwesomeIcon icon={faVideo} />
+                <CgMediaLive />
                 <Item_text>Live</Item_text>
             </Item>
 
             <Item>
-                <FontAwesomeIcon icon={faGear} />
-                <Item_text>Settings</Item_text>
+                <IoGameControllerOutline />
+                <Item_text>Gaming</Item_text>
             </Item>
             <Item>
-                <FontAwesomeIcon icon={faFlag} />
-                <Item_text>Report</Item_text>
+                <TfiCup />
+                <Item_text>Sports</Item_text>
             </Item>
             <Item>
                 <FontAwesomeIcon icon={faQuestion} />
@@ -90,14 +101,15 @@ function Sidebar() {
 
 export default Sidebar;
 const Container = styled.div`
-    font-size: 16px;
+    font-size: 14px;
     background-color: white;
     color: black;
     position: absolute;
-    width: 15%;
+    width: 150px;
     height: 100%;
     top: 60px;
     left: 0%;
+
     @media only screen and (max-width: 700px) {
         /* hide element on small screens */
         display: none;
@@ -106,13 +118,27 @@ const Container = styled.div`
 
 const Item = styled.div`
     display: flex;
-    margin-top: 5px;
-    margin-bottom: 6%;
-    margin-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 15px;
+    padding-left: 10px;
     &:hover {
-        background-color: black;
-        color: white;
+        background-color: #dcdcdc;
     }
+`;
+const RightArrowIcon = styled.div`
+    margin-top: 2px;
+    margin-left: 7px;
+    z-index: 10;
+`;
+const You_text = styled.div`
+    font-weight: 500;
+    font-size: 17px;
+`;
+const Explore_text = styled.div`
+    font-weight: 600;
+    font-size: 15px;
+    margin-left: 15px;
+    margin-bottom: 10px;
 `;
 const Item_text = styled.div`
     margin-left: 10px;
