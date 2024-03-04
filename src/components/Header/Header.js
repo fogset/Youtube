@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faBars,
@@ -12,14 +12,22 @@ import youtubeLogo from "./youtube.png";
 import SearchLogo from "./Search.png";
 
 function Header() {
+    const [name, setName] = useState("");
     return (
         <Container>
             <IconContainer>
                 <FontAwesomeIcon icon={faBars} size="1x" />
             </IconContainer>
             <Image src={youtubeLogo} />
+            <SearchContainer>
+                <SearchInput
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+                <SearchImage src={SearchLogo} />
+            </SearchContainer>
 
-            <SearchImage src={SearchLogo} />
             <Button>
                 <FontAwesomeIcon icon={faUser} />
                 SIGN IN
@@ -29,12 +37,6 @@ function Header() {
 }
 
 export default Header;
-// <Search>
-//     <Input type="text" placeholder="Search" />
-//     <MagnifyingGlass_Container>
-//         <FontAwesomeIcon icon={faMagnifyingGlass} />
-//     </MagnifyingGlass_Container>
-// </Search>;
 
 const IconContainer = styled.div`
     margin-left: 2%;
@@ -47,12 +49,7 @@ const Image = styled.img`
     width: 100px;
     height: 35px;
 `;
-const SearchImage = styled.img`
-    margin-left: 3%;
-    margin-top: 2px;
-    width: 500px;
-    height: 45px;
-`;
+
 const Container = styled.div`
     top: 0;
     height: 56px;
@@ -64,27 +61,25 @@ const Container = styled.div`
     display: flex;
 `;
 
-const MagnifyingGlass_Container = styled.div`
-    margin-right: 4%;
+const SearchContainer = styled.div`
+    position: relative;
 `;
 
-const Search = styled.div`
-    height: 30px;
-    width: 40%;
+const SearchInput = styled.input`
     position: absolute;
-    right: 30%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-`;
-const Input = styled.div`
     border: none;
     background-color: transparent;
+    top: 9px;
+    left: 26px;
+    height: 28px;
+    width: 385px;
 `;
-
+const SearchImage = styled.img`
+    margin-left: 3%;
+    margin-top: 2px;
+    width: 500px;
+    height: 45px;
+`;
 const Button = styled.button`
     padding: 5x 15px;
     background-color: transparent;
@@ -98,4 +93,16 @@ const Button = styled.button`
     gap: 5px;
     position: absolute;
     right: 2%;
+`;
+const Search = styled.div`
+    height: 30px;
+    width: 40%;
+    position: absolute;
+    right: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
 `;
