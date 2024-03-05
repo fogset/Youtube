@@ -6,7 +6,6 @@ import { useRecoilState } from "recoil";
 import { addedModalVideoRecoil, modalTotalVideoRecoil } from "../../state";
 import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
-import About from "./../../pages/About";
 
 function Admin({ page1, page2, page3 }) {
     const [modalTotalVideo, setModalTotalVideo] = useRecoilState(
@@ -94,7 +93,7 @@ const MainPage = styled.div`
     font-family: Arial, Helvetica, sans-serif;
     left: 190px;
     top: 0;
-    width: 89vw;
+    width: 85%;
     height: 100vw;
     position: fixed;
     overflow-x: hidden;
@@ -105,9 +104,8 @@ const Container = styled.div`
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    height: 100%;
-    width: 100%;
-    padding-bottom: 60%;
+    padding-bottom: 800px;
+    padding-right: 1%;
 `;
 
 const ButtonContainer = styled.div`

@@ -4,34 +4,34 @@ import VideoScreen from "./VideoScreen";
 import Header from "../components/Header/Header";
 import React, { useState, useEffect } from "react";
 import Channel from "./Channel";
+import About from "./Test/About";
+import VideoDetail from "./VideoDetail";
+import About2 from "./Test/About2";
+import Test from "./Test/Test";
 
 function Main({ currentPage }) {
     const [admin, setAdmin] = useState(false);
+
     const pathname = window.location.pathname;
     useEffect(() => {
         if (pathname === "/admin") {
             setAdmin(true);
         }
     }, [pathname]);
+
     return (
         <div>
             {admin === false && <Header />}
+
             <Routes>
-                <Route path="/">
-                    <Route index element={<Home currentPage={currentPage} />} />
-                    <Route path="video">
-                        <Route
-                            path=":id"
-                            element={<VideoScreen currentPage={currentPage} />}
-                        />
-                    </Route>
-                    <Route path="/channel">
-                        <Route
-                            path=":id"
-                            element={<Channel currentPage={currentPage} />}
-                        />
-                    </Route>
-                </Route>
+                <Route
+                    path="/"
+                    element={<Home currentPage={currentPage} />}
+                ></Route>
+                <Route path="/video" element={<VideoDetail />}></Route>
+                <Route path="/about" element={<About />}></Route>
+                <Route path="/about2" element={<About2 />}></Route>
+                <Route path="/test" element={<Test />}></Route>
             </Routes>
         </div>
     );

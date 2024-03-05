@@ -11,14 +11,15 @@ import Comments from "../components/Comments/Comments";
 import Card from "../components/Card/Card";
 import VideoPlayer from "./VideoPlayer";
 import { useRecoilState } from "recoil";
-import { currentVideoRecoil } from "../state";
-
-function VideoScreen({ currentPage }) {
+import { currentVideoRecoil, testRecoil } from "../state";
+function VideoDetail({}) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
+
     useEffect(() => {
+        localStorage.getItem("selectVideo");
         console.log("Videoscreen currentVideo");
-        console.log(currentVideo);
-    }, [currentVideo]);
+        console.log(localStorage.getItem("selectVideo"));
+    }, []);
     return (
         <Container>
             {currentVideo && (
@@ -77,30 +78,27 @@ function VideoScreen({ currentPage }) {
         </Container>
     );
 }
-// <Recommendation>
-//     {currentPage.map((user, index) => (
-//         <Card key={index} user={user} />
-//     ))}
-// </Recommendation>;
+//
 
-export default VideoScreen;
+export default VideoDetail;
 const Container = styled.div`
+    color: black;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    font-size: large;
     position: fixed;
-    top: 10%;
-    display: flex;
-    width: 99%;
-    z-index: 20;
-    background-color: blue;
+    top: 60px;
+    left: 0px;
 `;
 
 const VideoContainer = styled.div`
-    top: 10%;
-    left: 10%;
-    position: fixed;
-    height: 500px;
+    position: absolute;
+    top: 0px;
+    left: 5%;
+    height: 100%;
     width: 70%;
-    z-index: 30;
-    background-color: blue;
 `;
 const Recommendation = styled.div`
     margin-left: 2%;
@@ -115,7 +113,9 @@ const Content = styled.div`
     flex: 5;
 `;
 const VideoWrapper = styled.div`
-    @media only screen and (max-width: 500px) {
+    height: 370px;
+    width: 590px;
+    /* @media only screen and (max-width: 500px) {
         height: 200px;
         width: 100%;
     }
@@ -126,7 +126,7 @@ const VideoWrapper = styled.div`
     @media only screen and (min-width: 1300px) {
         height: 600px;
         width: 1000px;
-    }
+    } */
 `;
 const Title = styled.h1`
     font-size: 18px;

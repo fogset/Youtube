@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import About from "../../pages/About";
 import Upload from "../Upload/Upload";
 import Channel from "../../pages/Channel";
 import CreateChannel from "../../pages/CreateChannel";
@@ -18,11 +17,9 @@ function AdminRoute({ page1, page2, page3 }) {
     }, [pathname]);
     return (
         <div>
-            {home === false && <AdminSideBar />}
             {home === false && (
                 <AdminPage>
                     <Routes>
-                        <Route path="/about" element={<About />}></Route>
                         <Route path="/upload" element={<Upload />}></Route>
 
                         <Route

@@ -6,7 +6,7 @@ import {
     recoilChannelList,
     totalVideoRecoil,
 } from "../state";
-import About from "./About";
+import About from "./Test/About";
 import Card from "../components/Card/Card";
 import {
     collection,

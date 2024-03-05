@@ -9,7 +9,7 @@ import {
 import { Dropdown } from "primereact/dropdown";
 
 import ChannelCard from "../Admin/ChannelCard";
-import About from "./../../pages/About";
+
 function Modal({ setOpenModal }) {
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const [filteredtotalVideo, setFilteredtotalVideo] = useState(null);

@@ -2,36 +2,39 @@ import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { currentVideoRecoil, currentChannelRecoil } from "../../state";
+import {
+    currentVideoRecoil,
+    currentChannelRecoil,
+    testRecoil,
+} from "../../state";
 import ReactPlayer from "react-player";
 function Card({ type, user }) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
     const [currentChannel, setCurrentChannel] =
         useRecoilState(currentChannelRecoil);
+    const [test, setTest] = useRecoilState(testRecoil);
     const params = useParams();
     const videoId = `/video/${user.id}`;
     const channelId = `/channel/${user.channelId}`;
-    //console.log(params);
-    const [play, setPlay] = useState(false);
-    const [light, setLight] = useState(false);
-    function Enter() {
-        setPlay(true);
+
+    function onMouseDown() {
+        setCurrentVideo(user);
+        //alert(user.title);
+        console.log("currentVideo from card");
+        console.log(currentVideo);
     }
-    function Out() {
-        setPlay(false);
-    }
+
     function currentVideoClicked() {
         setCurrentVideo(user);
-        setLight(true);
-        setPlay(false);
     }
+
     return (
         <Link
-            to={videoId}
+            to="/video"
             style={{ textDecoration: "none" }}
             onClick={currentVideoClicked}
         >
-            <Container type={type} onMouseEnter={Enter} onMouseOut={Out}>
+            <Container type={type} onMouseDown={onMouseDown}>
                 <ReactPlayer
                     url={user.video}
                     width="100%"

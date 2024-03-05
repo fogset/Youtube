@@ -40,3 +40,7 @@ export const addedModalVideoRecoil = atom({
     key: "addedModalVideoRecoil",
     default: [],
 });
+export const testRecoil = atom({
+    key: "testRecoil",
+    default: 0,
+});
