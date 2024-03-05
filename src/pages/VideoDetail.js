@@ -11,10 +11,12 @@ import Comments from "../components/Comments/Comments";
 import Card from "../components/Card/Card";
 import VideoPlayer from "./VideoPlayer";
 import { useRecoilState } from "recoil";
-import { currentVideoRecoil, testRecoil } from "../state";
+import { currentVideoRecoil, page1Recoil } from "../state";
+import RecommendCard from "../components/Card/RecommendCard";
+
 function VideoDetail({}) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
-
+    const [page1, setPage1] = useRecoilState(page1Recoil);
     useEffect(() => {
         localStorage.getItem("selectVideo");
         console.log("Videoscreen currentVideo");
@@ -75,6 +77,11 @@ function VideoDetail({}) {
                     <Comments />
                 </VideoContainer>
             )}
+            <Recommendation>
+                {page1.map((user, index) => (
+                    <RecommendCard key={index} user={user} />
+                ))}
+            </Recommendation>
         </Container>
     );
 }
@@ -83,14 +90,17 @@ function VideoDetail({}) {
 export default VideoDetail;
 const Container = styled.div`
     color: black;
-    overflow-x: hidden;
-    overflow-y: auto;
+    /* overflow-x: hidden;
+    overflow-y: auto; */
     height: 100%;
     width: 100%;
     font-size: large;
-    position: fixed;
+    position: absolute;
     top: 60px;
     left: 0px;
+    -webkit-scrollbar {
+        display: none;
+    }
 `;
 
 const VideoContainer = styled.div`
@@ -101,13 +111,10 @@ const VideoContainer = styled.div`
     width: 70%;
 `;
 const Recommendation = styled.div`
-    margin-left: 2%;
+    position: absolute;
     width: 30%;
-    margin-bottom: 8%;
-    @media only screen and (max-width: 1200px) {
-        /* hide element on small screens */
-        display: none;
-    }
+    height: 500px;
+    right: 0px;
 `;
 const Content = styled.div`
     flex: 5;

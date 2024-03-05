@@ -12,7 +12,6 @@ function Card({ type, user }) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
     const [currentChannel, setCurrentChannel] =
         useRecoilState(currentChannelRecoil);
-    const [test, setTest] = useRecoilState(testRecoil);
     const params = useParams();
     const videoId = `/video/${user.id}`;
     const channelId = `/channel/${user.channelId}`;
