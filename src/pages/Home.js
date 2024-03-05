@@ -25,7 +25,7 @@ const Video = styled.div`
     /* overflow-x: hidden;
     overflow-y: auto; */
     height: 100%;
-    width: 83%;
+    width: 70%;
     top: 10%;
     left: 180px;
     padding-bottom: 100px;

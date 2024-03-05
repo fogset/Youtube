@@ -1,19 +1,15 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faThumbsUp,
-    faThumbsDown,
-    faFloppyDisk,
-} from "@fortawesome/free-regular-svg-icons";
-import { faShare } from "@fortawesome/free-solid-svg-icons";
+
 import Comments from "../components/Comments/Comments";
-import Card from "../components/Card/Card";
 import VideoPlayer from "./VideoPlayer";
 import { useRecoilState } from "recoil";
 import { currentVideoRecoil, page1Recoil } from "../state";
 import RecommendCard from "../components/Card/RecommendCard";
-
+import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
+import { RiShareForwardLine } from "react-icons/ri";
+import { IoEllipsisHorizontal } from "react-icons/io5";
+import LikeDisLike from "../components/Button/LikeDisLike";
 function VideoDetail({}) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
     const [page1, setPage1] = useRecoilState(page1Recoil);
@@ -30,43 +26,39 @@ function VideoDetail({}) {
                         <VideoPlayer video={currentVideo.video} />
                     </VideoWrapper>
                     <Title>{currentVideo.title}</Title>
-                    <Details>
-                        <Info>{currentVideo.view} views . Jun 22, 2022</Info>
+                    <TopPart>
+                        <Channel>
+                            <ChannelInfo>
+                                <Image src={currentVideo.channelImg} />
+                                <ChannelDetail>
+                                    <ChannelName>
+                                        {currentVideo.channelId}
+                                    </ChannelName>
+                                    <ChannelCounter>
+                                        {currentVideo.subscribers} subscribers
+                                    </ChannelCounter>
+                                </ChannelDetail>
+                            </ChannelInfo>
+                        </Channel>
+                        <SubscribeContainer>
+                            <Subscribe>Subscribe</Subscribe>
+                        </SubscribeContainer>
+                        <LikeDisLike />
+                        <ShareContainer>
+                            <Share>
+                                <RiShareForwardLine size={26} />
+                            </Share>
+                            <ShareText>Share</ShareText>
+                        </ShareContainer>
+                        <DotContainer>
+                            <Dot>
+                                <IoEllipsisHorizontal />
+                            </Dot>
+                        </DotContainer>
+                    </TopPart>
 
-                        <Buttons>
-                            <Button>
-                                <FontAwesomeIcon icon={faThumbsUp} />
-                                123
-                            </Button>
-                            <Button>
-                                <FontAwesomeIcon icon={faThumbsDown} />
-                                Dislike
-                            </Button>
-                            <Button>
-                                <FontAwesomeIcon icon={faShare} />
-                                Share
-                            </Button>
-                            <Button>
-                                <FontAwesomeIcon icon={faFloppyDisk} />
-                                Save
-                            </Button>
-                        </Buttons>
-                    </Details>
-                    <Channel>
-                        <ChannelInfo>
-                            <Image src={currentVideo.channelImg} />
-                            <ChannelDetail>
-                                <ChannelName>
-                                    {currentVideo.channelId}
-                                </ChannelName>
-                                <ChannelCounter>
-                                    {currentVideo.subscribers} subscribers
-                                </ChannelCounter>
-                            </ChannelDetail>
-                        </ChannelInfo>
-                        <Subscribe>SUBSCRIBE</Subscribe>
-                    </Channel>
                     <Description>
+                        <Info>{currentVideo.view} views . Jun 22, 2022</Info>
                         sum dolor sit amet, consectetuer adipiscing elit. Aenean
                         commodo ligula eget dolor. Aenean massa. Cum sociis
                         natoque penatibus et magnis dis parturient montes,
@@ -98,9 +90,61 @@ const Container = styled.div`
     position: absolute;
     top: 60px;
     left: 0px;
-    -webkit-scrollbar {
-        display: none;
-    }
+`;
+
+const TopPart = styled.div`
+    display: flex;
+`;
+
+const SubscribeContainer = styled.div`
+    background-color: #060a07;
+    height: 40px;
+    width: 120px;
+    border-radius: 25px;
+    position: relative;
+    margin-left: 5%;
+`;
+const Subscribe = styled.div`
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: 800;
+`;
+
+const ShareContainer = styled.div`
+    background-color: #e8eaed;
+    height: 40px;
+    width: 115px;
+    border-radius: 25px;
+    position: relative;
+    margin-left: 2%;
+`;
+
+const Share = styled.div`
+    left: 20px;
+    top: 7px;
+    position: absolute;
+`;
+const ShareText = styled.div`
+    right: 20px;
+    top: 10px;
+    position: absolute;
+`;
+
+const DotContainer = styled.div`
+    background-color: #e8eaed;
+    height: 40px;
+    width: 40px;
+    border-radius: 25px;
+    position: relative;
+    margin-left: 2%;
+`;
+const Dot = styled.div`
+    position: absolute;
+    left: 10px;
+    top: 10px;
 `;
 
 const VideoContainer = styled.div`
@@ -108,20 +152,18 @@ const VideoContainer = styled.div`
     top: 0px;
     left: 5%;
     height: 100%;
-    width: 70%;
+    width: 55%;
 `;
 const Recommendation = styled.div`
     position: absolute;
     width: 30%;
     height: 500px;
-    right: 0px;
+    right: 7%;
 `;
-const Content = styled.div`
-    flex: 5;
-`;
+
 const VideoWrapper = styled.div`
-    height: 370px;
-    width: 590px;
+    height: 410px;
+    width: 740px;
     /* @media only screen and (max-width: 500px) {
         height: 200px;
         width: 100%;
@@ -140,7 +182,7 @@ const Title = styled.h1`
     font-weight: 400;
     margin-top: 20px;
     margin-bottom: 10px;
-    color: ${({ theme }) => theme.text};
+    color: black;
 `;
 const Details = styled.div`
     display: flex;
@@ -151,6 +193,7 @@ const Details = styled.div`
 `;
 const Info = styled.span`
     color: ${({ theme }) => theme.textSoft};
+    margin-right: 10px;
 `;
 const Buttons = styled.div`
     display: flex;
@@ -170,7 +213,6 @@ const Channel = styled.div`
 `;
 const ChannelInfo = styled.div`
     display: flex;
-    justify-content: space-between;
 `;
 const Image = styled.img`
     width: 50px;
@@ -191,17 +233,20 @@ const ChannelCounter = styled.span`
     font-size: 12px;
 `;
 const Description = styled.p`
-    font-size: 14px;
+    font-size: 16px;
     padding-left: 60px;
+    background-color: #e8eaed;
+    height: 100px;
+    border-radius: 15px;
 `;
 
-const Subscribe = styled.button`
-    background-color: #cc1a00;
-    font-weight: 500;
-    color: white;
-    border: none;
-    border-radius: 3px;
-    height: max-content;
-    padding: 10px 20px;
-    cursor: pointer;
-`;
+// const Subscribe = styled.button`
+//     background-color: #cc1a00;
+//     font-weight: 500;
+//     color: white;
+//     border: none;
+//     border-radius: 3px;
+//     height: max-content;
+//     padding: 10px 20px;
+//     cursor: pointer;
+// `;

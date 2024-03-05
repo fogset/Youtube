@@ -13,3 +13,10 @@ export const lightTheme = {
     textSoft: "#606060",
     soft: "#f5f5f5",
 };
+export const videoPageColor = {
+    background: "#e8eaed",
+    bgLighter: "white",
+    text: "black",
+    textSoft: "#606060",
+    soft: "#f5f5f5",
+};
