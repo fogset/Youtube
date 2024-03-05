@@ -21,7 +21,7 @@ function VideoDetail({}) {
     return (
         <Container>
             {currentVideo && (
-                <VideoContainer>
+                <LeftContainer>
                     <VideoWrapper>
                         <VideoPlayer video={currentVideo.video} />
                     </VideoWrapper>
@@ -67,7 +67,7 @@ function VideoDetail({}) {
                         massa quis enim. Donec pede justo,
                     </Description>
                     <Comments />
-                </VideoContainer>
+                </LeftContainer>
             )}
             <Recommendation>
                 {page1.map((user, index) => (
@@ -90,8 +90,36 @@ const Container = styled.div`
     position: absolute;
     top: 60px;
     left: 0px;
+    display: flex;
 `;
-
+const LeftContainer = styled.div`
+    position: relative;
+    top: 0px;
+    left: 1%;
+    height: 100%;
+    width: 62%;
+`;
+const Recommendation = styled.div`
+    position: relative;
+    width: 460px;
+    height: 500px;
+    right: 0%;
+    margin-left: 4%;
+`;
+const VideoWrapper = styled.div`
+    @media only screen and (max-width: 500px) {
+        height: 200px;
+        width: 100%;
+    }
+    @media only screen and (min-width: 500px) and (max-width: 1300px) {
+        height: 450px;
+        width: 100%;
+    }
+    @media only screen and (min-width: 1300px) {
+        height: 510px;
+        width: 100%;
+    }
+`;
 const TopPart = styled.div`
     display: flex;
 `;
@@ -102,7 +130,7 @@ const SubscribeContainer = styled.div`
     width: 120px;
     border-radius: 25px;
     position: relative;
-    margin-left: 5%;
+    margin-left: 7%;
 `;
 const Subscribe = styled.div`
     position: absolute;
@@ -119,7 +147,7 @@ const ShareContainer = styled.div`
     width: 115px;
     border-radius: 25px;
     position: relative;
-    margin-left: 2%;
+    margin-left: 3%;
 `;
 
 const Share = styled.div`
@@ -139,7 +167,7 @@ const DotContainer = styled.div`
     width: 40px;
     border-radius: 25px;
     position: relative;
-    margin-left: 2%;
+    margin-left: 4%;
 `;
 const Dot = styled.div`
     position: absolute;
@@ -147,42 +175,13 @@ const Dot = styled.div`
     top: 10px;
 `;
 
-const VideoContainer = styled.div`
-    position: absolute;
-    top: 0px;
-    left: 5%;
-    height: 100%;
-    width: 55%;
-`;
-const Recommendation = styled.div`
-    position: absolute;
-    width: 30%;
-    height: 500px;
-    right: 7%;
-`;
-
-const VideoWrapper = styled.div`
-    height: 410px;
-    width: 740px;
-    /* @media only screen and (max-width: 500px) {
-        height: 200px;
-        width: 100%;
-    }
-    @media only screen and (min-width: 500px) and (max-width: 1300px) {
-        height: 500px;
-        width: 800px;
-    }
-    @media only screen and (min-width: 1300px) {
-        height: 600px;
-        width: 1000px;
-    } */
-`;
 const Title = styled.h1`
-    font-size: 18px;
+    font-size: 30px;
     font-weight: 400;
     margin-top: 20px;
     margin-bottom: 10px;
     color: black;
+    font-weight: bold;
 `;
 const Details = styled.div`
     display: flex;
@@ -192,7 +191,7 @@ const Details = styled.div`
     margin-top: 3%;
 `;
 const Info = styled.span`
-    color: ${({ theme }) => theme.textSoft};
+    font-weight: bold;
     margin-right: 10px;
 `;
 const Buttons = styled.div`
@@ -233,7 +232,7 @@ const ChannelCounter = styled.span`
     font-size: 12px;
 `;
 const Description = styled.p`
-    font-size: 16px;
+    font-size: 18px;
     padding-left: 60px;
     background-color: #e8eaed;
     height: 100px;

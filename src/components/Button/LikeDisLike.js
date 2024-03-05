@@ -22,7 +22,7 @@ const LikeContainer = styled.div`
     width: 150px;
     border-radius: 25px;
     position: relative;
-    margin-left: 5%;
+    margin-left: 7%;
 `;
 const Like = styled.div`
     position: absolute;

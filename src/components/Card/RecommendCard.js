@@ -42,7 +42,6 @@ function RecommendCard({ user }) {
 
 export default RecommendCard;
 const Container = styled.div`
-    width: 460px;
     margin-bottom: 10px;
     cursor: pointer;
     display: flex;
@@ -58,15 +57,16 @@ const Texts = styled.div`
 `;
 const Title = styled.h1`
     position: absolute;
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 500;
     top: -10px;
 `;
 const ChannelName = styled.h2`
     position: absolute;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 500;
-    top: 30px;
+    top: 20px;
+    color: grey;
 `;
 const Info = styled.div`
     position: absolute;
