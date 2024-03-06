@@ -16,13 +16,15 @@ import {
     page1Recoil,
     page2Recoil,
     page3Recoil,
+    HomePageVideoRecoil,
 } from "./state";
 import Main from "./pages/Main";
 import AdminRoute from "./components/Admin/AdminRoute";
 
 function App() {
     const [channels, setChannels] = useRecoilState(recoilChannelList);
-    const [currentPage, setCurrentPage] = useState(null);
+    const [HomePageVideo, setHomePageVideo] =
+        useRecoilState(HomePageVideoRecoil);
     const [page1, setPage1] = useRecoilState(page1Recoil);
     const [page2, setPage2] = useRecoilState(page2Recoil);
     const [page3, setPage3] = useRecoilState(page3Recoil);
@@ -58,6 +60,13 @@ function App() {
     // }, [page3, page1, page2, channels, totalVideo]);
 
     useEffect(() => {
+        console.log("HomePageVideo");
+        console.log(HomePageVideo);
+        alert(HomePageVideo[0].title);
+        //setHomePageVideo(page1);
+    }, [HomePageVideo]);
+
+    useEffect(() => {
         //localStorage.clear();
         if (localStorage.getItem("currentPage") === null) {
             localStorage.setItem("currentPage", 1);
@@ -75,18 +84,18 @@ function App() {
     useEffect(() => {
         var currentPageStorage = localStorage.getItem("currentPage");
         if (currentPageStorage === "1") {
-            setCurrentPage(page1);
+            setHomePageVideo(page1);
         } else if (currentPageStorage === "2") {
-            setCurrentPage(page2);
+            setHomePageVideo(page2);
         } else if (currentPageStorage === "3") {
-            setCurrentPage(page3);
+            setHomePageVideo(page3);
         }
         //console.log("currentPage");
         //console.log(currentPage);
     }, [page3, page1, page2]);
     return (
         <Container>
-            {currentPage !== null && <Main currentPage={currentPage} />}
+            {HomePageVideo !== null && <Main />}
             {page1 !== null && (
                 <AdminRoute page1={page1} page2={page2} page3={page3} />
             )}

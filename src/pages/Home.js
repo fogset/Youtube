@@ -2,13 +2,18 @@ import styled from "styled-components";
 import Card from "../components/Card/Card";
 import React, { Fragment, useState, useEffect } from "react";
 import Sidebar from "../components/Sidebar/Sidebar";
+import { HomePageVideoRecoil } from "../state";
+import { useRecoilState } from "recoil";
 
-function Home({ currentPage }) {
+function Home() {
+    const [HomePageVideo, setHomePageVideo] =
+        useRecoilState(HomePageVideoRecoil);
+
     return (
         <Container>
             <Sidebar />
             <Video>
-                {currentPage.map((user, index) => (
+                {HomePageVideo.map((user, index) => (
                     <Card key={index} user={user} />
                 ))}
             </Video>
@@ -25,7 +30,7 @@ const Video = styled.div`
     /* overflow-x: hidden;
     overflow-y: auto; */
     height: 100%;
-    width: 70%;
+    width: 88%;
     top: 10%;
     left: 180px;
     padding-bottom: 100px;

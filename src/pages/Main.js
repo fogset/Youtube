@@ -9,7 +9,7 @@ import VideoDetail from "./VideoDetail";
 import About2 from "./Test/About2";
 import Test from "./Test/Test";
 
-function Main({ currentPage }) {
+function Main() {
     const [admin, setAdmin] = useState(false);
 
     const pathname = window.location.pathname;
@@ -22,12 +22,8 @@ function Main({ currentPage }) {
     return (
         <div>
             {admin === false && <Header />}
-
             <Routes>
-                <Route
-                    path="/"
-                    element={<Home currentPage={currentPage} />}
-                ></Route>
+                <Route path="/" element={<Home />}></Route>
                 <Route path="/video" element={<VideoDetail />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/about2" element={<About2 />}></Route>

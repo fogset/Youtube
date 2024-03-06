@@ -44,3 +44,7 @@ export const testRecoil = atom({
     key: "testRecoil",
     default: 0,
 });
+export const HomePageVideoRecoil = atom({
+    key: "HomePageVideoRecoil",
+    default: null,
+});

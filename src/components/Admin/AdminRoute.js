@@ -17,11 +17,11 @@ function AdminRoute({ page1, page2, page3 }) {
     }, [pathname]);
     return (
         <div>
+            {home === false && <AdminSideBar />}
             {home === false && (
                 <AdminPage>
                     <Routes>
                         <Route path="/upload" element={<Upload />}></Route>
-
                         <Route
                             path="/createchannel"
                             element={<CreateChannel />}

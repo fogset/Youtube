@@ -3,7 +3,11 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firestore";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { addedModalVideoRecoil, modalTotalVideoRecoil } from "../../state";
+import {
+    addedModalVideoRecoil,
+    modalTotalVideoRecoil,
+    HomePageVideoRecoil,
+} from "../../state";
 import Card from "../Card/Card";
 import Modal from "../Modal/Modal";
 
@@ -16,19 +20,23 @@ function Admin({ page1, page2, page3 }) {
     );
     const [openModal, setOpenModal] = useState(false);
     const [currentPage, setCurrentPage] = useState("page1");
+    const [HomePageVideo, setHomePageVideo] =
+        useRecoilState(HomePageVideoRecoil);
 
     function button1Clicked() {
         setModalTotalVideo(page1);
         setCurrentPage("page1");
+        setHomePageVideo(page1);
     }
     function button2Clicked() {
         setModalTotalVideo(page2);
         setCurrentPage("page2");
-        // changePage();
+        setHomePageVideo(page2);
     }
     function button3Clicked() {
         setModalTotalVideo(page3);
         setCurrentPage("page3");
+        setHomePageVideo(page3);
     }
     function openModalButton() {
         //alert("openModal");
