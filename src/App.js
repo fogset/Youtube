@@ -38,36 +38,14 @@ function App() {
         }));
         setData(snapshot);
     };
-
-    useEffect(() => {
+    function getData() {
         getCurrentPage(setPage1, "page1");
         getCurrentPage(setPage2, "page2");
         getCurrentPage(setPage3, "page3");
         getCurrentPage(setChannels, "channels");
         getCurrentPage(setTotalVideo, "videos");
-    }, []);
-    // useEffect(() => {
-    //     console.log("page1");
-    //     console.log(page1);
-    //     console.log("page2");
-    //     console.log(page2);
-    //     console.log("page3");
-    //     console.log(page3);
-    //     console.log("channel");
-    //     console.log(channels);
-    //     console.log("totalvideo");
-    //     console.log(totalVideo);
-    // }, [page3, page1, page2, channels, totalVideo]);
-
-    useEffect(() => {
-        console.log("HomePageVideo");
-        console.log(HomePageVideo);
-        alert(HomePageVideo[0].title);
-        //setHomePageVideo(page1);
-    }, [HomePageVideo]);
-
-    useEffect(() => {
-        //localStorage.clear();
+    }
+    function SwitchHomePageVideo() {
         if (localStorage.getItem("currentPage") === null) {
             localStorage.setItem("currentPage", 1);
         } else {
@@ -77,11 +55,8 @@ function App() {
         if (localStorage.getItem("currentPage") > 3) {
             localStorage.setItem("currentPage", 1);
         }
-        //console.log("firstload");
-        //console.log(localStorage.getItem("currentPage"));
-    }, []);
-
-    useEffect(() => {
+    }
+    function SetHomeVideoToPage() {
         var currentPageStorage = localStorage.getItem("currentPage");
         if (currentPageStorage === "1") {
             setHomePageVideo(page1);
@@ -90,9 +65,16 @@ function App() {
         } else if (currentPageStorage === "3") {
             setHomePageVideo(page3);
         }
-        //console.log("currentPage");
-        //console.log(currentPage);
-    }, [page3, page1, page2]);
+    }
+    useEffect(() => {
+        getData();
+        SwitchHomePageVideo();
+    }, []);
+
+    useEffect(() => {
+        SetHomeVideoToPage();
+    });
+
     return (
         <Container>
             {HomePageVideo !== null && <Main />}
@@ -104,5 +86,25 @@ function App() {
 }
 
 export default App;
-
+//<Main HomePageVideo={HomePageVideo} />
+const Test = styled.div`
+    top: 1%;
+    left: 180px;
+    color: red;
+    position: absolute;
+    z-index: 100;
+    font-size: 40px;
+`;
 const Container = styled.div``;
+// useEffect(() => {
+//     console.log("page1");
+//     console.log(page1);
+//     console.log("page2");
+//     console.log(page2);
+//     console.log("page3");
+//     console.log(page3);
+//     console.log("channel");
+//     console.log(channels);
+//     console.log("totalvideo");
+//     console.log(totalVideo);
+// }, [page3, page1, page2, channels, totalVideo]);
