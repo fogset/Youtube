@@ -1,12 +1,8 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
-import { currentVideoRecoil, currentChannelRecoil } from "../../state";
 import ReactPlayer from "react-player";
 function Card({ type, user }) {
-    const [currentChannel, setCurrentChannel] =
-        useRecoilState(currentChannelRecoil);
     const videoId = `/video/${user.id}`;
     const channelId = `/channel/${user.channelId}`;
     function onMouseDown() {}
@@ -21,10 +17,7 @@ function Card({ type, user }) {
                     light={true}
                     playIcon={true}
                 />
-                <LinkChannel
-                    to={channelId}
-                    onClick={() => setCurrentChannel(user.channelId)}
-                >
+                <LinkChannel to={channelId}>
                     <Details type={type}>
                         <ChannelImage type={type} src={user.channelImg} />
                         <Texts>

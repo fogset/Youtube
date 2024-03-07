@@ -24,6 +24,7 @@ function Main() {
             <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/video/:videoId" element={<VideoDetail />}></Route>
+                <Route path="/channel/:channelId" element={<Channel />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/about2" element={<About2 />}></Route>
                 <Route path="/test" element={<Test />}></Route>

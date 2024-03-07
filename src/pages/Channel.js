@@ -18,29 +18,33 @@ import {
     collectionGroup,
 } from "firebase/firestore";
 import { db } from "../firestore";
-
+import { Link, useParams } from "react-router-dom";
 function Channel() {
-    const [currentChannelId, setCurrentChannelId] =
-        useRecoilState(currentChannelRecoil);
     const [channelList, setChannelList] = useRecoilState(recoilChannelList);
     const [currentChannel, setCurrentChannel] = useState(null);
     const [currentChannelVideo, setCurrentChannelVideo] = useState(null);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
+    const params = useParams();
+    const currentChannelId = params.channelId;
 
     useEffect(() => {
         let i = 0;
-        while (i < channelList.length) {
-            if (channelList[i].channelId === currentChannelId) {
-                setCurrentChannel(channelList[i]);
+        if (channelList !== null) {
+            while (i < channelList.length) {
+                if (channelList[i].channelId === currentChannelId) {
+                    setCurrentChannel(channelList[i]);
+                }
+                i++;
             }
-            i++;
         }
-    }, []);
+    }, [channelList]);
     useEffect(() => {
         let filterChannel = [];
-        for (let i = 0; i < totalVideo.length; i++) {
-            if (totalVideo[i].channelId === currentChannelId) {
-                filterChannel.push(totalVideo[i]);
+        if (totalVideo !== null) {
+            for (let i = 0; i < totalVideo.length; i++) {
+                if (totalVideo[i].channelId === currentChannelId) {
+                    filterChannel.push(totalVideo[i]);
+                }
             }
         }
         setCurrentChannelVideo(filterChannel);
