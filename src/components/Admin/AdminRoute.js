@@ -1,43 +1,41 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Upload from "../Upload/Upload";
-import Channel from "../../pages/Channel";
 import CreateChannel from "../../pages/CreateChannel";
 import Admin from "./Admin";
 import AdminSideBar from "./AdminSideBar";
 import styled from "styled-components";
+import { useRecoilState } from "recoil";
+import { currentUrlRecoil } from "../../state";
 
 function AdminRoute({ page1, page2, page3 }) {
-    const [home, setHome] = useState(false);
+    const [currentUrl, setCurrentUrl] = useRecoilState(currentUrlRecoil);
     const pathname = window.location.pathname;
     useEffect(() => {
-        if (pathname === "/") {
-            setHome(true);
+        if (
+            pathname === "/" ||
+            pathname === "/createchannel" ||
+            pathname === "/admin"
+        ) {
+            setCurrentUrl("admin");
         }
     }, [pathname]);
     return (
         <div>
-            {home === false && (
-                <AdminPage>
-                    <Routes>
-                        <Route path="/upload" element={<Upload />}></Route>
-                        <Route
-                            path="/createchannel"
-                            element={<CreateChannel />}
-                        ></Route>
-                        <Route
-                            path="/admin"
-                            element={
-                                <Admin
-                                    page1={page1}
-                                    page2={page2}
-                                    page3={page3}
-                                />
-                            }
-                        ></Route>
-                    </Routes>
-                </AdminPage>
-            )}
+            {currentUrl === "admin" && <AdminSideBar />}
+            <Routes>
+                <Route path="/upload" element={<Upload />}></Route>
+                <Route
+                    path="/createchannel"
+                    element={<CreateChannel />}
+                ></Route>
+                <Route
+                    path="/admin"
+                    element={
+                        <Admin page1={page1} page2={page2} page3={page3} />
+                    }
+                ></Route>
+            </Routes>
         </div>
     );
 }

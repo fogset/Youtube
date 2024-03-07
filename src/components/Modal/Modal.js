@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import {
-    recoilPageIndex,
-    totalVideoRecoil,
-    recoilChannelList,
-} from "../../state";
+import { totalVideoRecoil, recoilChannelList } from "../../state";
 import { Dropdown } from "primereact/dropdown";
 
 import ChannelCard from "../Admin/ChannelCard";

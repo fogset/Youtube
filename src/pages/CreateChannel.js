@@ -18,8 +18,6 @@ function CreateChannel() {
     const [subscribers, setSubscribers] = useState("");
     const [title, setTitle] = useState("");
 
-    var commentArray = [];
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -87,7 +85,9 @@ const StyledForm = styled.form`
     padding: 20px;
     border-radius: 5px;
     font-size: large;
-    width: 90%;
+    position: absolute;
+    left: 210px;
+    width: 80%;
 `;
 
 const StyledLabel = styled.label`

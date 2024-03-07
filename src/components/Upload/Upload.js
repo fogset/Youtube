@@ -151,6 +151,15 @@ function Upload() {
 }
 
 export default Upload;
+const StyledForm = styled.form`
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: large;
+    position: absolute;
+    left: 210px;
+    width: 80%;
+`;
 const DropdownSelect = styled.div`
     position: absolute;
     left: 35%;
@@ -168,15 +177,6 @@ const ChannelImage = styled.img`
     height: 50px;
     border-radius: 50%;
     background-color: #999;
-`;
-
-const StyledForm = styled.form`
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 5px;
-    font-size: large;
-    margin-top: 50px;
-    width: 90%;
 `;
 
 const StyledLabel = styled.label`

@@ -4,8 +4,8 @@ export const currentVideoRecoil = atom({
     key: "currentVideoRecoil",
     default: null,
 });
-export const recoilPageIndex = atom({
-    key: "recoilPageIndex",
+export const currentUrlRecoil = atom({
+    key: "currentUrlRecoil",
     default: null,
 });
 export const recoilChannelList = atom({
