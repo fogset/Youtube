@@ -29,7 +29,7 @@ function Card({ type, user }) {
 
     return (
         <Link
-            to="/video"
+            to={videoId}
             style={{ textDecoration: "none" }}
             onClick={currentVideoClicked}
         >

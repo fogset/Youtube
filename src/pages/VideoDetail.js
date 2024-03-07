@@ -1,23 +1,36 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-
 import Comments from "../components/Comments/Comments";
 import VideoPlayer from "./VideoPlayer";
 import { useRecoilState } from "recoil";
-import { currentVideoRecoil, page1Recoil } from "../state";
+import { currentVideoRecoil, page1Recoil, totalVideoRecoil } from "../state";
 import RecommendCard from "../components/Card/RecommendCard";
-import { AiOutlineLike, AiOutlineDislike } from "react-icons/ai";
 import { RiShareForwardLine } from "react-icons/ri";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import LikeDisLike from "../components/Button/LikeDisLike";
-function VideoDetail({}) {
+import { Link, useParams } from "react-router-dom";
+function VideoDetail() {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
     const [page1, setPage1] = useRecoilState(page1Recoil);
+    const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
+    const params = useParams();
+    const videoId = params.videoId;
     useEffect(() => {
-        localStorage.getItem("selectVideo");
-        console.log("Videoscreen currentVideo");
-        console.log(localStorage.getItem("selectVideo"));
-    }, []);
+        console.log("totalVideo from video detail");
+        console.log(totalVideo);
+        console.log("params");
+        console.log(params);
+        if (totalVideo !== null) {
+            setCurrentVideo(totalVideo[0]);
+        }
+        //
+        // for (let i = 0; i < totalVideo.length; i++) {
+        //     if (totalVideo[i].id === videoId) {
+        //         setCurrentVideo(totalVideo[i]);
+        //     }
+        // }
+        //alert(currentVideo.title);
+    }, [totalVideo]);
     return (
         <Container>
             {currentVideo && (

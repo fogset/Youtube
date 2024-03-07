@@ -17,7 +17,6 @@ function AdminRoute({ page1, page2, page3 }) {
     }, [pathname]);
     return (
         <div>
-            {home === false && <AdminSideBar />}
             {home === false && (
                 <AdminPage>
                     <Routes>
@@ -42,14 +41,14 @@ function AdminRoute({ page1, page2, page3 }) {
         </div>
     );
 }
-
+// {home === false && <AdminSideBar />}
 export default AdminRoute;
 const AdminPage = styled.div`
-    position: fixed;
+    /* position: fixed;
     left: 190px;
     top: 0;
     width: 100%;
     height: 100%;
     background-color: white;
-    margin-left: 1%;
+    margin-left: 1%; */
 `;

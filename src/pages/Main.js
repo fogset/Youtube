@@ -11,7 +11,6 @@ import Test from "./Test/Test";
 
 function Main() {
     const [admin, setAdmin] = useState(false);
-
     const pathname = window.location.pathname;
     useEffect(() => {
         if (pathname === "/admin") {
@@ -24,7 +23,7 @@ function Main() {
             {admin === false && <Header />}
             <Routes>
                 <Route path="/" element={<Home />}></Route>
-                <Route path="/video" element={<VideoDetail />}></Route>
+                <Route path="/video/:videoId" element={<VideoDetail />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/about2" element={<About2 />}></Route>
                 <Route path="/test" element={<Test />}></Route>

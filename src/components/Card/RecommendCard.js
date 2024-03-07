@@ -10,7 +10,10 @@ function RecommendCard({ user }) {
     const [currentChannel, setCurrentChannel] =
         useRecoilState(currentChannelRecoil);
     function currentVideoClicked() {
+        console.log("Recommend");
+        console.log(currentVideo);
         setCurrentVideo(user);
+        alert(currentVideo.title);
     }
     return (
         <Link

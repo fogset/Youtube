@@ -3,8 +3,10 @@ import React, { useState, useEffect } from "react";
 import VideoPlayer from "../VideoPlayer";
 import { useRecoilState } from "recoil";
 import { testRecoil } from "../../state";
+import { useId } from "react";
 function About({ about }) {
     const [test, setTest] = useRecoilState(testRecoil);
+    const passwordHintId = useId();
     function button1Clicked() {
         setTest(test + 1);
     }
@@ -13,7 +15,10 @@ function About({ about }) {
     }
     return (
         <Container>
-            about 1<Text onClick={button1Clicked}>Test + 1 is {test}</Text>
+            about 1
+            <Text onClick={button1Clicked}>
+                Test + 1 is {test} {passwordHintId}
+            </Text>
             <VideoPlayer
             // video={[
             //     "https://www.twitch.tv/sodapoppin",
