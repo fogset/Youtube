@@ -13,8 +13,8 @@ function Home() {
         <Container>
             <Sidebar />
             <Video>
-                {HomePageVideo.map((user, index) => (
-                    <Card key={index} user={user} />
+                {HomePageVideo.map((currentVideoDetail) => (
+                    <Card currentVideoDetail={currentVideoDetail} />
                 ))}
             </Video>
         </Container>

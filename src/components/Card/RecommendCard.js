@@ -5,17 +5,17 @@ import { useRecoilState } from "recoil";
 import { currentVideoRecoil, totalVideoRecoil } from "../../state";
 import ReactPlayer from "react-player";
 
-function RecommendCard({ user }) {
+function RecommendCard({ currentVideoDetail }) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const params = useParams();
-    const videoUrl = `/video/${user.id}`;
+    const videoUrl = `/video/${currentVideoDetail.id}`;
 
     return (
         <Link to={videoUrl} style={{ textDecoration: "none" }}>
             <Container>
                 <ReactPlayer
-                    url={user.video}
+                    url={currentVideoDetail.video}
                     width="200px"
                     height="100px"
                     light={true}
@@ -23,10 +23,13 @@ function RecommendCard({ user }) {
                 />
                 <Details>
                     <Texts>
-                        <Title>{user.title}</Title>
-                        <ChannelName>{user.channelId}</ChannelName>
+                        <Title>{currentVideoDetail.title}</Title>
+                        <ChannelName>
+                            {currentVideoDetail.channelId}
+                        </ChannelName>
                         <Info>
-                            {user.view} views . {user.day} day ago
+                            {currentVideoDetail.view} views .{" "}
+                            {currentVideoDetail.day} day ago
                         </Info>
                     </Texts>
                 </Details>

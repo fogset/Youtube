@@ -76,8 +76,8 @@ function VideoDetail() {
                 </LeftContainer>
             )}
             <Recommendation>
-                {page1.map((user, index) => (
-                    <RecommendCard key={index} user={user} />
+                {page1.map((currentVideoDetail) => (
+                    <RecommendCard currentVideoDetail={currentVideoDetail} />
                 ))}
             </Recommendation>
         </Container>

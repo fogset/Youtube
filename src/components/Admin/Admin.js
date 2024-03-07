@@ -80,8 +80,8 @@ function Admin({ page1, page2, page3 }) {
             </ButtonContainer>
             {modalTotalVideo !== null && (
                 <Container>
-                    {modalTotalVideo.map((user, index) => (
-                        <Card key={index} user={user} />
+                    {modalTotalVideo.map((currentVideoDetail) => (
+                        <Card currentVideoDetail={currentVideoDetail} />
                     ))}
                 </Container>
             )}

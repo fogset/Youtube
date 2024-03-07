@@ -2,16 +2,16 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
-function Card({ type, user }) {
-    const videoId = `/video/${user.id}`;
-    const channelId = `/channel/${user.channelId}`;
+function Card({ type, currentVideoDetail }) {
+    const videoId = `/video/${currentVideoDetail.id}`;
+    const channelId = `/channel/${currentVideoDetail.channelId}`;
     function onMouseDown() {}
 
     return (
         <Link to={videoId} style={{ textDecoration: "none" }}>
             <Container type={type} onMouseDown={onMouseDown}>
                 <ReactPlayer
-                    url={user.video}
+                    url={currentVideoDetail.video}
                     width="100%"
                     height="202px"
                     light={true}
@@ -19,12 +19,18 @@ function Card({ type, user }) {
                 />
                 <LinkChannel to={channelId}>
                     <Details type={type}>
-                        <ChannelImage type={type} src={user.channelImg} />
+                        <ChannelImage
+                            type={type}
+                            src={currentVideoDetail.channelImg}
+                        />
                         <Texts>
-                            <Title>{user.title}</Title>
-                            <ChannelName>{user.channelId}</ChannelName>
+                            <Title>{currentVideoDetail.title}</Title>
+                            <ChannelName>
+                                {currentVideoDetail.channelId}
+                            </ChannelName>
                             <Info>
-                                {user.view} views . {user.day} day ago
+                                {currentVideoDetail.view} views .{" "}
+                                {currentVideoDetail.day} day ago
                             </Info>
                         </Texts>
                     </Details>

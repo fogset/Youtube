@@ -1,23 +1,8 @@
 import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import {
-    currentChannelRecoil,
-    recoilChannelList,
-    totalVideoRecoil,
-} from "../state";
-import About from "./Test/About";
+import { recoilChannelList, totalVideoRecoil } from "../state";
 import Card from "../components/Card/Card";
-import {
-    collection,
-    query,
-    where,
-    getDocs,
-    doc,
-    getDoc,
-    collectionGroup,
-} from "firebase/firestore";
-import { db } from "../firestore";
 import { Link, useParams } from "react-router-dom";
 function Channel() {
     const [channelList, setChannelList] = useRecoilState(recoilChannelList);
@@ -81,8 +66,8 @@ function Channel() {
             <ChannelVideo>
                 {currentChannelVideo !== null && (
                     <Container>
-                        {currentChannelVideo.map((user, index) => (
-                            <Card key={index} user={user} />
+                        {currentChannelVideo.map((currentVideoDetail) => (
+                            <Card currentVideoDetail={currentVideoDetail} />
                         ))}
                     </Container>
                 )}
