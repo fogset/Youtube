@@ -1,38 +1,18 @@
 import styled from "styled-components";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import {
-    currentVideoRecoil,
-    currentChannelRecoil,
-    testRecoil,
-} from "../../state";
+import { currentVideoRecoil, currentChannelRecoil } from "../../state";
 import ReactPlayer from "react-player";
 function Card({ type, user }) {
-    const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
     const [currentChannel, setCurrentChannel] =
         useRecoilState(currentChannelRecoil);
-    const params = useParams();
     const videoId = `/video/${user.id}`;
     const channelId = `/channel/${user.channelId}`;
-
-    function onMouseDown() {
-        setCurrentVideo(user);
-        //alert(user.title);
-        console.log("currentVideo from card");
-        console.log(currentVideo);
-    }
-
-    function currentVideoClicked() {
-        setCurrentVideo(user);
-    }
+    function onMouseDown() {}
 
     return (
-        <Link
-            to={videoId}
-            style={{ textDecoration: "none" }}
-            onClick={currentVideoClicked}
-        >
+        <Link to={videoId} style={{ textDecoration: "none" }}>
             <Container type={type} onMouseDown={onMouseDown}>
                 <ReactPlayer
                     url={user.video}
@@ -41,7 +21,6 @@ function Card({ type, user }) {
                     light={true}
                     playIcon={true}
                 />
-
                 <LinkChannel
                     to={channelId}
                     onClick={() => setCurrentChannel(user.channelId)}

@@ -2,25 +2,17 @@ import styled from "styled-components";
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
-import { currentVideoRecoil, currentChannelRecoil } from "../../state";
+import { currentVideoRecoil, totalVideoRecoil } from "../../state";
 import ReactPlayer from "react-player";
 
 function RecommendCard({ user }) {
     const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
-    const [currentChannel, setCurrentChannel] =
-        useRecoilState(currentChannelRecoil);
-    function currentVideoClicked() {
-        console.log("Recommend");
-        console.log(currentVideo);
-        setCurrentVideo(user);
-        alert(currentVideo.title);
-    }
+    const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
+    const params = useParams();
+    const videoUrl = `/video/${user.id}`;
+
     return (
-        <Link
-            to="/video"
-            style={{ textDecoration: "none" }}
-            onClick={currentVideoClicked}
-        >
+        <Link to={videoUrl} style={{ textDecoration: "none" }}>
             <Container>
                 <ReactPlayer
                     url={user.video}

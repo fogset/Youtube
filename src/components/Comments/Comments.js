@@ -4,8 +4,8 @@ import Comment from "./Comment";
 import { useRecoilState } from "recoil";
 import { currentVideoRecoil } from "../../state";
 
-function Comments() {
-    const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
+function Comments({ currentVideo }) {
+    //const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
 
     // useEffect(() => {
     //     console.log("comment");
