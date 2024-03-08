@@ -64,7 +64,9 @@ function VideoDetail() {
                     </TopPart>
 
                     <Description>
-                        <Info>{currentVideo.view} views . Jun 22, 2022</Info>
+                        <Info>
+                            {currentVideo.view} views . {currentVideo.date} ago
+                        </Info>
                         sum dolor sit amet, consectetuer adipiscing elit. Aenean
                         commodo ligula eget dolor. Aenean massa. Cum sociis
                         natoque penatibus et magnis dis parturient montes,

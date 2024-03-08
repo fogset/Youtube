@@ -16,7 +16,7 @@ import { Dropdown } from "primereact/dropdown";
 import { v4 as uuidv4 } from "uuid";
 
 function Upload() {
-    const [day, setDay] = useState("");
+    const [date, setDate] = useState("");
     const [id, setId] = useState("");
     const [title, setTitle] = useState("");
     const [video, setVideo] = useState("");
@@ -28,22 +28,17 @@ function Upload() {
     const [selectChannel, setSelectChannel] = useState(null);
     const [subscribers, setSubscribers] = useState("");
     const videoId = uuidv4().slice(0, 8);
-    useEffect(() => {
-        console.log("view Unity");
-        console.log(view);
-        console.log(selectUnit.unit);
-    }, [view]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         generateRandomComment();
         try {
             const docRef = await addDoc(collection(db, "videos"), {
-                day: day,
+                date: date + " " + selectDateUnit.unit,
                 id: videoId,
                 title: title,
                 video: video,
-                view: view + selectUnit.unit,
+                view: view + selectViewUnit.unit,
                 channelId: selectChannel.channelId,
                 channelImg: selectChannel.profileImg,
                 subscribers: selectChannel.subscribers,
@@ -68,7 +63,7 @@ function Upload() {
         // buttonEnabled(username, password)
     };
     const dayEntered = (e) => {
-        setDay(e.target.value);
+        //setDay(e.target.value);
         // buttonEnabled(username, password)
     };
 
@@ -79,8 +74,24 @@ function Upload() {
             //setEnabled(false);
         }
     };
-    const [selectUnit, setSelectUnit] = useState(null);
+    const [selectViewUnit, setSelectViewUnit] = useState(null);
+    const [selectDateUnit, setSelectDateUnit] = useState(null);
     const Units = [{ unit: "K" }, { unit: "M" }];
+    const DateUnit = [
+        { unit: "days" },
+        { unit: "months" },
+        { unit: "years" },
+        { unit: "hours" },
+        { unit: "minutes" },
+    ];
+    useEffect(() => {
+        console.log("view Unity");
+        console.log(view);
+        console.log(selectViewUnit);
+        console.log("date Unity");
+        console.log(date);
+        console.log(selectDateUnit);
+    }, [selectDateUnit]);
     return (
         <StyledForm onSubmit={handleSubmit}>
             <DropdownSelect>
@@ -94,12 +105,25 @@ function Upload() {
                 />
             </DropdownSelect>
             {selectChannel && <ChannelImage src={selectChannel.profileImg} />}
-            <StyledLabel>Date: </StyledLabel>
+            {selectDateUnit && (
+                <StyledLabel>
+                    Date:{date}
+                    {selectDateUnit.unit} Ago
+                </StyledLabel>
+            )}
             <DateContainer>
                 <DateInput
                     type="number"
-                    value={day}
-                    onChange={(e) => setDay(e.target.value)}
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                />
+                <Dropdown
+                    value={selectDateUnit}
+                    onChange={(e) => setSelectDateUnit(e.value)}
+                    options={DateUnit}
+                    optionLabel="unit"
+                    placeholder="Select a Date Unit"
+                    className="w-full md:w-20rem"
                 />
             </DateContainer>
             <StyledLabel>Video Unique Id: </StyledLabel>
@@ -130,8 +154,8 @@ function Upload() {
                     onChange={(e) => setView(e.target.value)}
                 />
                 <Dropdown
-                    value={selectUnit}
-                    onChange={(e) => setSelectUnit(e.value)}
+                    value={selectViewUnit}
+                    onChange={(e) => setSelectViewUnit(e.value)}
                     options={Units}
                     optionLabel="unit"
                     placeholder="Select a Unit"
@@ -160,7 +184,7 @@ function Upload() {
                 value={commentRandom}
                 onChange={(e) => setCommentRandom(e.target.value)}
             />
-            <StyledButton type="submit" disabled={!title || !day}>
+            <StyledButton type="submit" disabled={!title || !date}>
                 Upload
             </StyledButton>
         </StyledForm>

@@ -30,7 +30,7 @@ function Card({ type, currentVideoDetail }) {
                             </ChannelName>
                             <Info>
                                 {currentVideoDetail.view} views .{" "}
-                                {currentVideoDetail.day} day ago
+                                {currentVideoDetail.date} ago
                             </Info>
                         </Texts>
                     </Details>

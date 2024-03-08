@@ -52,7 +52,7 @@ function Admin({ page1, page2, page3 }) {
             console.log("view");
             console.log(addedModalVideo[i].view);
             const docRef = addDoc(collection(db, currentPage), {
-                day: addedModalVideo[i].day,
+                date: addedModalVideo[i].date,
                 id: addedModalVideo[i].id,
                 title: addedModalVideo[i].title,
                 video: addedModalVideo[i].video,
