@@ -13,6 +13,7 @@ import { db } from "../../firestore";
 import { useRecoilState } from "recoil";
 import { recoilChannelList } from "../../state";
 import { Dropdown } from "primereact/dropdown";
+import { v4 as uuidv4 } from "uuid";
 
 function Upload() {
     const [day, setDay] = useState("");
@@ -26,6 +27,7 @@ function Upload() {
     const [channels, setChannels] = useRecoilState(recoilChannelList);
     const [selectChannel, setSelectChannel] = useState(null);
     const [subscribers, setSubscribers] = useState("");
+    const videoId = uuidv4().slice(0, 8);
     useEffect(() => {
         console.log("selectChannel");
         console.log(selectChannel);
@@ -37,7 +39,7 @@ function Upload() {
         try {
             const docRef = await addDoc(collection(db, "videos"), {
                 day: day,
-                id: id,
+                id: videoId,
                 title: title,
                 video: video,
                 view: view,
@@ -95,10 +97,10 @@ function Upload() {
                 value={day}
                 onChange={(e) => setDay(e.target.value)}
             />
-            <StyledLabel>Id:</StyledLabel>
+            <StyledLabel>Video Unique Id: </StyledLabel>
             <StyledInput
-                type="number"
-                value={id}
+                type="text"
+                value={videoId}
                 onChange={(e) => setId(e.target.value)}
             />
 
@@ -170,7 +172,7 @@ const DropdownSelect = styled.div`
 `;
 const ChannelImage = styled.img`
     position: absolute;
-    left: 55%;
+    left: 60%;
     top: 0%;
     margin-left: 10px;
     width: 50px;

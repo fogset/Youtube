@@ -24,7 +24,7 @@ function ChannelCard({ currentVideo }) {
     const [play, setPlay] = useState(false);
     function Enter() {
         setPlay(true);
-        alert(currentVideo.title);
+        //alert(currentVideo.title);
     }
     function Out() {
         setPlay(false);

@@ -4,9 +4,11 @@ import VideoPlayer from "../VideoPlayer";
 import { useRecoilState } from "recoil";
 import { testRecoil } from "../../state";
 import { useId } from "react";
+import { v4 as uuidv4 } from "uuid";
 function About({ about }) {
     const [test, setTest] = useRecoilState(testRecoil);
     const passwordHintId = useId();
+    const small_id = uuidv4().slice(0, 8);
     function button1Clicked() {
         setTest(test + 1);
     }
@@ -17,8 +19,9 @@ function About({ about }) {
         <Container>
             about 1
             <Text onClick={button1Clicked}>
-                Test + 1 is {test} {passwordHintId}
+                Test + 1 is {test} passwordHintId{passwordHintId}
             </Text>
+            uuid {uuidv4()} ======= small_id {small_id}
             <VideoPlayer
             // video={[
             //     "https://www.twitch.tv/sodapoppin",

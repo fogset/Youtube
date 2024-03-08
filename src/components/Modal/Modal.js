@@ -71,7 +71,9 @@ const ModalContainer = styled.div`
     height: 95%;
     width: 95%;
     display: flex;
-    flex-direction: row;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-direction: column;
     background-color: lightblue;
     box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.75);
     border-radius: 8px;
