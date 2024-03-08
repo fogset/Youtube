@@ -29,9 +29,10 @@ function Upload() {
     const [subscribers, setSubscribers] = useState("");
     const videoId = uuidv4().slice(0, 8);
     useEffect(() => {
-        console.log("selectChannel");
-        console.log(selectChannel);
-    }, [selectChannel]);
+        console.log("view Unity");
+        console.log(view);
+        console.log(selectUnit.unit);
+    }, [view]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,7 +43,7 @@ function Upload() {
                 id: videoId,
                 title: title,
                 video: video,
-                view: view,
+                view: view + selectUnit.unit,
                 channelId: selectChannel.channelId,
                 channelImg: selectChannel.profileImg,
                 subscribers: selectChannel.subscribers,
@@ -78,6 +79,8 @@ function Upload() {
             //setEnabled(false);
         }
     };
+    const [selectUnit, setSelectUnit] = useState(null);
+    const Units = [{ unit: "K" }, { unit: "M" }];
     return (
         <StyledForm onSubmit={handleSubmit}>
             <DropdownSelect>
@@ -91,12 +94,14 @@ function Upload() {
                 />
             </DropdownSelect>
             {selectChannel && <ChannelImage src={selectChannel.profileImg} />}
-            <StyledLabel>Day:</StyledLabel>
-            <StyledInput
-                type="number"
-                value={day}
-                onChange={(e) => setDay(e.target.value)}
-            />
+            <StyledLabel>Date: </StyledLabel>
+            <DateContainer>
+                <DateInput
+                    type="number"
+                    value={day}
+                    onChange={(e) => setDay(e.target.value)}
+                />
+            </DateContainer>
             <StyledLabel>Video Unique Id: </StyledLabel>
             <StyledInput
                 type="text"
@@ -118,11 +123,21 @@ function Upload() {
                 onChange={(e) => setVideo(e.target.value)}
             />
             <StyledLabel>View:</StyledLabel>
-            <StyledInput
-                type="number"
-                value={view}
-                onChange={(e) => setView(e.target.value)}
-            />
+            <ViewContainer>
+                <ViewInput
+                    type="number"
+                    value={view}
+                    onChange={(e) => setView(e.target.value)}
+                />
+                <Dropdown
+                    value={selectUnit}
+                    onChange={(e) => setSelectUnit(e.value)}
+                    options={Units}
+                    optionLabel="unit"
+                    placeholder="Select a Unit"
+                    className="w-full md:w-20rem"
+                />
+            </ViewContainer>
             <StyledLabel>subscribers:</StyledLabel>
             {selectChannel && (
                 <StyledInput
@@ -161,6 +176,7 @@ const StyledForm = styled.form`
     position: absolute;
     left: 210px;
     width: 80%;
+    height: 100%;
 `;
 const DropdownSelect = styled.div`
     position: absolute;
@@ -194,7 +210,26 @@ const StyledInput = styled.input`
     border: 1px solid #ccc;
     border-radius: 5px;
 `;
+const DateInput = styled.input`
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+`;
 
+const DateContainer = styled.div`
+    display: flex;
+`;
+const ViewInput = styled.input`
+    width: 30%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+`;
+
+const ViewContainer = styled.div`
+    display: flex;
+`;
 const StyledButton = styled.button`
     background-color: #4caf50;
     color: white;
