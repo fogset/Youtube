@@ -84,14 +84,14 @@ function Upload() {
         { unit: "hours" },
         { unit: "minutes" },
     ];
-    useEffect(() => {
-        console.log("view Unity");
-        console.log(view);
-        console.log(selectViewUnit);
-        console.log("date Unity");
-        console.log(date);
-        console.log(selectDateUnit);
-    }, [selectDateUnit]);
+    // useEffect(() => {
+    //     console.log("view Unity");
+    //     console.log(view);
+    //     console.log(selectViewUnit);
+    //     console.log("date Unity");
+    //     console.log(date);
+    //     console.log(selectDateUnit);
+    // }, [selectDateUnit]);
     return (
         <StyledForm onSubmit={handleSubmit}>
             <DropdownSelect>
@@ -104,10 +104,16 @@ function Upload() {
                     className="w-full md:w-30px"
                 />
             </DropdownSelect>
+            <StyledLabel>Video Unique Id: </StyledLabel>
+            <StyledInput
+                type="text"
+                value={videoId}
+                onChange={(e) => setId(e.target.value)}
+            />
             {selectChannel && <ChannelImage src={selectChannel.profileImg} />}
             {selectDateUnit && (
                 <StyledLabel>
-                    Date:{date}
+                    Date:{date} {"\t"}
                     {selectDateUnit.unit} Ago
                 </StyledLabel>
             )}
@@ -126,26 +132,6 @@ function Upload() {
                     className="w-full md:w-20rem"
                 />
             </DateContainer>
-            <StyledLabel>Video Unique Id: </StyledLabel>
-            <StyledInput
-                type="text"
-                value={videoId}
-                onChange={(e) => setId(e.target.value)}
-            />
-
-            <StyledLabel>Title:</StyledLabel>
-            <StyledInput
-                type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-            />
-
-            <StyledLabel>VideoUrl:</StyledLabel>
-            <StyledInput
-                type="text"
-                value={video}
-                onChange={(e) => setVideo(e.target.value)}
-            />
             <StyledLabel>View:</StyledLabel>
             <ViewContainer>
                 <ViewInput
@@ -162,6 +148,21 @@ function Upload() {
                     className="w-full md:w-20rem"
                 />
             </ViewContainer>
+
+            <StyledLabel>Title:</StyledLabel>
+            <StyledInput
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+            />
+
+            <StyledLabel>VideoUrl:</StyledLabel>
+            <StyledInput
+                type="text"
+                value={video}
+                onChange={(e) => setVideo(e.target.value)}
+            />
+
             <StyledLabel>subscribers:</StyledLabel>
             {selectChannel && (
                 <StyledInput

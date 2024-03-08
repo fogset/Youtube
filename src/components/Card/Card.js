@@ -5,7 +5,9 @@ import ReactPlayer from "react-player";
 function Card({ type, currentVideoDetail }) {
     const videoId = `/video/${currentVideoDetail.id}`;
     const channelId = `/channel/${currentVideoDetail.channelId}`;
-    function onMouseDown() {}
+    function onMouseDown() {
+        alert(currentVideoDetail.title);
+    }
 
     return (
         <Link to={videoId} style={{ textDecoration: "none" }}>
@@ -24,7 +26,9 @@ function Card({ type, currentVideoDetail }) {
                             src={currentVideoDetail.channelImg}
                         />
                         <Texts>
-                            <Title>{currentVideoDetail.title}</Title>
+                            <Title>
+                                {currentVideoDetail.title.substring(0, 39)}...
+                            </Title>
                             <ChannelName>
                                 {currentVideoDetail.channelId}
                             </ChannelName>
@@ -61,7 +65,7 @@ const ChannelImage = styled.img`
     border-radius: 50%;
 `;
 const Texts = styled.div`
-    margin-left: 50px;
+    margin-left: 15px;
 `;
 const Title = styled.h1`
     font-size: 16px;
