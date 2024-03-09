@@ -48,3 +48,15 @@ export const HomePageVideoRecoil = atom({
     key: "HomePageVideoRecoil",
     default: null,
 });
+export const RecommendVideoRecoil1 = atom({
+    key: "RecommendVideoRecoil1",
+    default: [],
+});
+export const RecommendVideoRecoil2 = atom({
+    key: "RecommendVideoRecoil2",
+    default: [],
+});
+export const RecommendVideoRecoil3 = atom({
+    key: "RecommendVideoRecoil3",
+    default: [],
+});

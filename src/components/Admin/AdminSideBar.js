@@ -42,6 +42,14 @@ function AdminSideBar() {
                             <LinkText>Main Page</LinkText>
                         </SidebarLink>
                     </Item>
+                    <Item>
+                        <SidebarLink to="/recommendVideo">
+                            <LinkIcon>
+                                <GrDomain />
+                            </LinkIcon>
+                            <LinkText>Recommend</LinkText>
+                        </SidebarLink>
+                    </Item>
                 </Menu1>
                 <Menu2>
                     <Item>

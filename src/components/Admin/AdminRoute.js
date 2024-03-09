@@ -7,6 +7,7 @@ import AdminSideBar from "./AdminSideBar";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { currentUrlRecoil } from "../../state";
+import RecommendVideo from "./RecommendVideo";
 
 function AdminRoute({ page1, page2, page3 }) {
     const [currentUrl, setCurrentUrl] = useRecoilState(currentUrlRecoil);
@@ -34,6 +35,10 @@ function AdminRoute({ page1, page2, page3 }) {
                     element={
                         <Admin page1={page1} page2={page2} page3={page3} />
                     }
+                ></Route>
+                <Route
+                    path="/recommendVideo"
+                    element={<RecommendVideo />}
                 ></Route>
             </Routes>
         </div>

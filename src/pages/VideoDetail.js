@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Comments from "../components/Comments/Comments";
 import VideoPlayer from "./VideoPlayer";
 import { useRecoilState } from "recoil";
-import { page1Recoil, totalVideoRecoil } from "../state";
+import { page1Recoil, totalVideoRecoil, RecommendVideoRecoil1 } from "../state";
 import RecommendCard from "../components/Card/RecommendCard";
 import { RiShareForwardLine } from "react-icons/ri";
 import { IoEllipsisHorizontal } from "react-icons/io5";
@@ -14,6 +14,9 @@ function VideoDetail() {
     const [page1, setPage1] = useRecoilState(page1Recoil);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const [shaowMoreDecription, setShowMoreDecription] = useState(false);
+    const [recommendVideo1, setRecommendVideo1] = useRecoilState(
+        RecommendVideoRecoil1
+    );
     const params = useParams();
     const videoId = params.videoId;
     useEffect(() => {
@@ -25,6 +28,11 @@ function VideoDetail() {
             }
         }
     }, [totalVideo]);
+    useEffect(() => {
+        console.log("recommendVideo1");
+        console.log(recommendVideo1);
+        alert("recommendVideo1 videodetail");
+    }, [recommendVideo1]);
     function moreDescription() {
         setShowMoreDecription(!shaowMoreDecription);
     }
@@ -77,7 +85,7 @@ function VideoDetail() {
 
                         {shaowMoreDecription === false ? (
                             <div>
-                                {currentVideo.description.substring(0, 320)}
+                                {currentVideo.title.substring(0, 320)}
                                 ...<Button>more</Button>
                             </div>
                         ) : (
@@ -93,7 +101,7 @@ function VideoDetail() {
                 </LeftContainer>
             )}
             <Recommendation>
-                {page1.map((currentVideoDetail) => (
+                {recommendVideo1.map((currentVideoDetail) => (
                     <RecommendCard currentVideoDetail={currentVideoDetail} />
                 ))}
             </Recommendation>
