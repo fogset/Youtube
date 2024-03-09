@@ -62,6 +62,7 @@ function Admin({ page1, page2, page3 }) {
                 comments: addedModalVideo[i].comments,
                 channelImg: addedModalVideo[i].channelImg,
                 subscribers: addedModalVideo[i].subscribers,
+                description: addedModalVideo[i].description,
             });
         }
         alert("added");

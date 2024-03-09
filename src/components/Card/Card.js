@@ -8,7 +8,7 @@ function Card({ type, currentVideoDetail }) {
     function onMouseDown() {
         //alert(currentVideoDetail.title);
     }
-
+    const titleStringLength = currentVideoDetail.title.length;
     return (
         <Link to={videoId} style={{ textDecoration: "none" }}>
             <Container type={type} onMouseDown={onMouseDown}>
@@ -27,7 +27,8 @@ function Card({ type, currentVideoDetail }) {
                         />
                         <Texts>
                             <Title>
-                                {currentVideoDetail.title.substring(0, 39)}...
+                                {currentVideoDetail.title.substring(0, 32)}
+                                {titleStringLength > 32 && "..."}
                             </Title>
                             <ChannelName>
                                 {currentVideoDetail.channelId}

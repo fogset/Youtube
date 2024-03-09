@@ -28,6 +28,7 @@ function Upload() {
     const [selectChannel, setSelectChannel] = useState(null);
     const [subscribers, setSubscribers] = useState("");
     const videoId = uuidv4().slice(0, 8);
+    const [description, setDescription] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,6 +44,7 @@ function Upload() {
                 channelImg: selectChannel.profileImg,
                 subscribers: selectChannel.subscribers,
                 comments: commentArray,
+                description: description,
             });
             alert("added");
         } catch (error) {
@@ -92,6 +94,7 @@ function Upload() {
     //     console.log(date);
     //     console.log(selectDateUnit);
     // }, [selectDateUnit]);
+
     return (
         <StyledForm onSubmit={handleSubmit}>
             <DropdownSelect>
@@ -148,21 +151,18 @@ function Upload() {
                     className="w-full md:w-20rem"
                 />
             </ViewContainer>
-
             <StyledLabel>Title:</StyledLabel>
             <StyledInput
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
             />
-
             <StyledLabel>VideoUrl:</StyledLabel>
             <StyledInput
                 type="text"
                 value={video}
                 onChange={(e) => setVideo(e.target.value)}
             />
-
             <StyledLabel>subscribers:</StyledLabel>
             {selectChannel && (
                 <StyledInput
@@ -184,6 +184,13 @@ function Upload() {
                 type="number"
                 value={commentRandom}
                 onChange={(e) => setCommentRandom(e.target.value)}
+            />
+            <StyledLabel>Descriptions:</StyledLabel>
+            <StyledTextarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                rows={10}
+                cols={10}
             />
             <StyledButton type="submit" disabled={!title || !date}>
                 Upload
@@ -280,4 +287,7 @@ const StyledAlert = styled.div`
     color: white;
     margin-top: 10px;
     border-radius: 5px;
+`;
+const StyledTextarea = styled.textarea`
+    width: 100%;
 `;

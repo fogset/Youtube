@@ -13,6 +13,7 @@ function VideoDetail() {
     const [currentVideo, setCurrentVideo] = useState(null);
     const [page1, setPage1] = useRecoilState(page1Recoil);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
+    const [shaowMoreDecription, setShowMoreDecription] = useState(false);
     const params = useParams();
     const videoId = params.videoId;
     useEffect(() => {
@@ -24,6 +25,12 @@ function VideoDetail() {
             }
         }
     }, [totalVideo]);
+    function moreDescription() {
+        setShowMoreDecription(!shaowMoreDecription);
+    }
+    function LessDecription() {
+        setShowMoreDecription(false);
+    }
     return (
         <Container>
             {currentVideo && (
@@ -63,16 +70,24 @@ function VideoDetail() {
                         </DotContainer>
                     </TopPart>
 
-                    <Description>
+                    <Description onClick={moreDescription}>
                         <Info>
                             {currentVideo.view} views . {currentVideo.date} ago
                         </Info>
-                        sum dolor sit amet, consectetuer adipiscing elit. Aenean
-                        commodo ligula eget dolor. Aenean massa. Cum sociis
-                        natoque penatibus et magnis dis parturient montes,
-                        nascetur ridiculus mus. Donec quam felis, ultricies nec,
-                        pellentesque eu, pretium quis, sem. Nulla consequat
-                        massa quis enim. Donec pede justo,
+
+                        {shaowMoreDecription === false ? (
+                            <div>
+                                {currentVideo.description.substring(0, 320)}
+                                ...<Button>more</Button>
+                            </div>
+                        ) : (
+                            <div>
+                                {currentVideo.description}
+                                <Button onClick={LessDecription}>
+                                    show less
+                                </Button>
+                            </div>
+                        )}
                     </Description>
                     <Comments currentVideo={currentVideo} />
                 </LeftContainer>
@@ -184,7 +199,7 @@ const Dot = styled.div`
 `;
 
 const Title = styled.h1`
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 400;
     margin-top: 20px;
     margin-bottom: 10px;
@@ -197,10 +212,6 @@ const Details = styled.div`
     justify-content: space-between;
     margin-bottom: 1%;
     margin-top: 3%;
-`;
-const Info = styled.span`
-    font-weight: bold;
-    margin-right: 10px;
 `;
 
 const Channel = styled.div`
@@ -230,12 +241,17 @@ const ChannelCounter = styled.span`
 `;
 const Description = styled.p`
     font-size: 18px;
-    padding-left: 60px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
     background-color: #e8eaed;
-    height: 100px;
     border-radius: 15px;
 `;
-
+const Info = styled.span`
+    //font-weight: bold;
+    margin-right: 10px;
+`;
 // const Subscribe = styled.button`
 //     background-color: #cc1a00;
 //     font-weight: 500;
@@ -246,3 +262,6 @@ const Description = styled.p`
 //     padding: 10px 20px;
 //     cursor: pointer;
 // `;
+const Button = styled.button`
+    font-weight: bold;
+`;
