@@ -6,7 +6,7 @@ function Card({ type, currentVideoDetail }) {
     const videoId = `/video/${currentVideoDetail.id}`;
     const channelId = `/channel/${currentVideoDetail.channelId}`;
     function onMouseDown() {
-        alert(currentVideoDetail.title);
+        //alert(currentVideoDetail.title);
     }
 
     return (

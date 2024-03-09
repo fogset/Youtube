@@ -45,12 +45,13 @@ function Admin({ page1, page2, page3 }) {
     }
     function pageTest() {
         alert("admin");
+        window.location.href = "/";
     }
 
     function SetCurrentPage() {
         for (let i = 0; i < addedModalVideo.length; i++) {
-            console.log("view");
-            console.log(addedModalVideo[i].view);
+            console.log("addedModalVideo");
+            console.log(addedModalVideo[i]);
             const docRef = addDoc(collection(db, currentPage), {
                 date: addedModalVideo[i].date,
                 id: addedModalVideo[i].id,

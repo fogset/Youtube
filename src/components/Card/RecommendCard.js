@@ -10,6 +10,7 @@ function RecommendCard({ currentVideoDetail }) {
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const params = useParams();
     const videoUrl = `/video/${currentVideoDetail.id}`;
+    const titleStringLength = currentVideoDetail.title.length;
 
     return (
         <Link to={videoUrl} style={{ textDecoration: "none" }}>
@@ -23,7 +24,10 @@ function RecommendCard({ currentVideoDetail }) {
                 />
                 <Details>
                     <Texts>
-                        <Title>{currentVideoDetail.title}</Title>
+                        <Title>
+                            {currentVideoDetail.title.substring(0, 32)}
+                            {titleStringLength > 32 && "..."}
+                        </Title>
                         <ChannelName>
                             {currentVideoDetail.channelId}
                         </ChannelName>
@@ -55,15 +59,15 @@ const Texts = styled.div`
 `;
 const Title = styled.h1`
     position: absolute;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
     top: -10px;
 `;
 const ChannelName = styled.h2`
     position: absolute;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    top: 20px;
+    top: 35px;
     color: grey;
 `;
 const Info = styled.div`
