@@ -14,7 +14,7 @@ function VideoDetail() {
     const [page1, setPage1] = useRecoilState(page1Recoil);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const [shaowMoreDecription, setShowMoreDecription] = useState(false);
-    const [recommendVideo1, setRecommendVideo1] = useRecoilState(
+    const [currentRecommendVideo, setcurrentRecommendVideo] = useRecoilState(
         RecommendVideoRecoil1
     );
     const params = useParams();
@@ -29,10 +29,9 @@ function VideoDetail() {
         }
     }, [totalVideo]);
     useEffect(() => {
-        console.log("recommendVideo1");
-        console.log(recommendVideo1);
-        alert("recommendVideo1 videodetail");
-    }, [recommendVideo1]);
+        //alert("currentRecommendVideo videodetail");
+        setcurrentRecommendVideo(localStorage.getItem("RecommendVideo"));
+    }, [videoId]);
     function moreDescription() {
         setShowMoreDecription(!shaowMoreDecription);
     }
@@ -100,11 +99,15 @@ function VideoDetail() {
                     <Comments currentVideo={currentVideo} />
                 </LeftContainer>
             )}
-            <Recommendation>
-                {recommendVideo1.map((currentVideoDetail) => (
-                    <RecommendCard currentVideoDetail={currentVideoDetail} />
-                ))}
-            </Recommendation>
+            {currentRecommendVideo !== null && (
+                <Recommendation>
+                    {currentRecommendVideo.map((currentVideoDetail) => (
+                        <RecommendCard
+                            currentVideoDetail={currentVideoDetail}
+                        />
+                    ))}
+                </Recommendation>
+            )}
         </Container>
     );
 }

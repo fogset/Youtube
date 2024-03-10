@@ -60,3 +60,8 @@ export const RecommendVideoRecoil3 = atom({
     key: "RecommendVideoRecoil3",
     default: [],
 });
+
+export const RecommendVideoRecoilTotal = atom({
+    key: "RecommendVideoRecoilTotal",
+    default: [],
+});

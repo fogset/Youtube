@@ -17,7 +17,7 @@ import {
     page2Recoil,
     page3Recoil,
     HomePageVideoRecoil,
-    RecommendVideoRecoil1,
+    RecommendVideoRecoilTotal,
 } from "./state";
 import Main from "./pages/Main";
 import AdminRoute from "./components/Admin/AdminRoute";
@@ -30,8 +30,8 @@ function App() {
     const [page2, setPage2] = useRecoilState(page2Recoil);
     const [page3, setPage3] = useRecoilState(page3Recoil);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
-    const [recommendVideo1, setRecommendVideo1] = useRecoilState(
-        RecommendVideoRecoil1
+    const [currentRecommendVideo, setCurrentRecommendVideo] = useRecoilState(
+        RecommendVideoRecoilTotal
     );
 
     const getCurrentPage = async (setData, currentPage) => {
@@ -48,7 +48,7 @@ function App() {
         getCurrentPage(setPage3, "page3");
         getCurrentPage(setChannels, "channels");
         getCurrentPage(setTotalVideo, "videos");
-        getCurrentPage(setRecommendVideo1, "recommendVideo");
+        getCurrentPage(setCurrentRecommendVideo, "recommendVideo");
     }
     function SwitchHomePageVideo() {
         if (localStorage.getItem("currentPage") === null) {
@@ -79,20 +79,6 @@ function App() {
     useEffect(() => {
         SetHomeVideoToPage();
     });
-    useEffect(() => {
-        console.log("page1");
-        console.log(page1);
-        console.log("page2");
-        console.log(page2);
-        console.log("page3");
-        console.log(page3);
-        console.log("channel");
-        console.log(channels);
-        console.log("totalvideo");
-        console.log(totalVideo);
-        console.log("recommendVideo1");
-        console.log(recommendVideo1);
-    }, [page3, page1, page2, channels, totalVideo, recommendVideo1]);
 
     return (
         <Container>
@@ -115,3 +101,17 @@ const Test = styled.div`
     font-size: 40px;
 `;
 const Container = styled.div``;
+// useEffect(() => {
+//     console.log("page1");
+//     console.log(page1);
+//     console.log("page2");
+//     console.log(page2);
+//     console.log("page3");
+//     console.log(page3);
+//     console.log("channel");
+//     console.log(channels);
+//     console.log("totalvideo");
+//     console.log(totalVideo);
+//     console.log("currentRecommendVideo");
+//     console.log(currentRecommendVideo);
+// }, [page3, page1, page2, channels, totalVideo, currentRecommendVideo]);

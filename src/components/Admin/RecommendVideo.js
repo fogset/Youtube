@@ -8,22 +8,37 @@ import {
     RecommendVideoRecoil1,
     RecommendVideoRecoil2,
     RecommendVideoRecoil3,
+    RecommendVideoRecoilTotal,
     page1Recoil,
 } from "../../state";
 import VideoPlayer from "../../pages/VideoPlayer";
 import Modal from "../Modal/Modal";
 function RecommendVideo() {
-    const [recommendVideo1, setRecommendVideo1] = useRecoilState(
-        RecommendVideoRecoil1
+    const [currentRecommendVideo, setCurrentRecommendVideo] = useRecoilState(
+        RecommendVideoRecoilTotal
     );
-    const [recommendVideo2, setRecommendVideo2] = useRecoilState(
-        RecommendVideoRecoil2
-    );
-    const [recommendVideo3, setRecommendVideo3] = useRecoilState(
-        RecommendVideoRecoil3
-    );
+    const [recommendVideo1, setRecommendVideo1] = useState(null);
+    const [recommendVideo2, setRecommendVideo2] = useState(null);
+    const [recommendVideo3, setRecommendVideo3] = useState(null);
     const [openModal, setOpenModal] = useState(false);
     const [currentRecommend, setCurrentRecommend] = useState(null);
+
+    useEffect(() => {
+        if (currentRecommendVideo.length > 0) {
+            AddToRecommend(setRecommendVideo1, 0);
+            AddToRecommend(setRecommendVideo2, 3);
+            AddToRecommend(setRecommendVideo3, 6);
+        }
+    }, [currentRecommendVideo]);
+
+    function AddToRecommend(setData, startIdx) {
+        var temp = [];
+        temp.push(currentRecommendVideo[startIdx]);
+        temp.push(currentRecommendVideo[startIdx + 1]);
+        temp.push(currentRecommendVideo[startIdx + 2]);
+        setData(temp);
+    }
+
     function button1Clicked() {
         setCurrentRecommend(recommendVideo1);
     }
@@ -41,11 +56,19 @@ function RecommendVideo() {
     function openModalButton() {
         setOpenModal(true);
     }
+    useEffect(() => {
+        console.log("recommendVideo1");
+        console.log(recommendVideo1);
+        console.log("recommendVideo2");
+        console.log(recommendVideo2);
+        console.log("recommendVideo3");
+        console.log(recommendVideo3);
+    }, [recommendVideo1, recommendVideo2, recommendVideo3]);
 
     return (
         <Container>
             <ButtonContainer>
-                {recommendVideo1.length !== 0 && (
+                {recommendVideo1 !== null && (
                     <RecommendContainer>
                         <Button onClick={button1Clicked}>Recommend 1</Button>
                         <VideoWrapper>
@@ -59,30 +82,34 @@ function RecommendVideo() {
                         </VideoWrapper>
                     </RecommendContainer>
                 )}
-                <RecommendContainer>
-                    <Button onClick={button2Clicked}>Recommend 2</Button>
-                    <VideoWrapper>
-                        <VideoPlayer video="https://www.youtube.com/watch?v=n-rMynl-PYs&ab_channel=MISSMAXIMCONTEST" />
-                    </VideoWrapper>
-                    <VideoWrapper>
-                        <VideoPlayer video="https://www.youtube.com/watch?v=n-rMynl-PYs&ab_channel=MISSMAXIMCONTEST" />
-                    </VideoWrapper>
-                    <VideoWrapper>
-                        <VideoPlayer video="https://www.youtube.com/watch?v=n-rMynl-PYs&ab_channel=MISSMAXIMCONTEST" />
-                    </VideoWrapper>
-                </RecommendContainer>
-                <RecommendContainer>
-                    <Button onClick={button3Clicked}>Recommend 3</Button>
-                    <VideoWrapper>
-                        <VideoPlayer video="https://www.youtube.com/watch?v=n-rMynl-PYs&ab_channel=MISSMAXIMCONTEST" />
-                    </VideoWrapper>
-                    <VideoWrapper>
-                        <VideoPlayer video="https://www.youtube.com/watch?v=n-rMynl-PYs&ab_channel=MISSMAXIMCONTEST" />
-                    </VideoWrapper>
-                    <VideoWrapper>
-                        <VideoPlayer video="https://www.youtube.com/watch?v=n-rMynl-PYs&ab_channel=MISSMAXIMCONTEST" />
-                    </VideoWrapper>
-                </RecommendContainer>
+                {recommendVideo2 !== null && (
+                    <RecommendContainer>
+                        <Button onClick={button2Clicked}>Recommend 2</Button>
+                        <VideoWrapper>
+                            <VideoPlayer video={recommendVideo2[0].video} />
+                        </VideoWrapper>
+                        <VideoWrapper>
+                            <VideoPlayer video={recommendVideo2[1].video} />
+                        </VideoWrapper>
+                        <VideoWrapper>
+                            <VideoPlayer video={recommendVideo2[2].video} />
+                        </VideoWrapper>
+                    </RecommendContainer>
+                )}
+                {recommendVideo3 !== null && (
+                    <RecommendContainer>
+                        <Button onClick={button2Clicked}>Recommend 2</Button>
+                        <VideoWrapper>
+                            <VideoPlayer video={recommendVideo3[0].video} />
+                        </VideoWrapper>
+                        <VideoWrapper>
+                            <VideoPlayer video={recommendVideo3[1].video} />
+                        </VideoWrapper>
+                        <VideoWrapper>
+                            <VideoPlayer video={recommendVideo3[2].video} />
+                        </VideoWrapper>
+                    </RecommendContainer>
+                )}
             </ButtonContainer>
 
             <SetPageButton onClick={SetCurrentPage}>
