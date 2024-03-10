@@ -22,6 +22,7 @@ function RecommendVideo() {
     const [recommendVideo3, setRecommendVideo3] = useState(null);
     const [openModal, setOpenModal] = useState(false);
     const [currentRecommend, setCurrentRecommend] = useState(null);
+    const [displayRecommend, setDisplayRecommend] = useState(null);
 
     useEffect(() => {
         if (currentRecommendVideo.length > 0) {
@@ -41,29 +42,27 @@ function RecommendVideo() {
 
     function button1Clicked() {
         setCurrentRecommend(recommendVideo1);
+        setDisplayRecommend("Recommend 1");
     }
     function button2Clicked() {
         setCurrentRecommend(recommendVideo2);
+        setDisplayRecommend("Recommend 2");
     }
     function button3Clicked() {
-        setCurrentRecommend(recommendVideo2);
+        setCurrentRecommend(recommendVideo3);
+        setDisplayRecommend("Recommend 3");
     }
 
     function SetRecommendNow() {
-        localStorage.setItem("RecommendVideo", currentRecommend);
+        localStorage.setItem(
+            "RecommendVideo",
+            JSON.stringify(currentRecommend)
+        );
     }
     function SetCurrentPage() {}
     function openModalButton() {
         setOpenModal(true);
     }
-    useEffect(() => {
-        console.log("recommendVideo1");
-        console.log(recommendVideo1);
-        console.log("recommendVideo2");
-        console.log(recommendVideo2);
-        console.log("recommendVideo3");
-        console.log(recommendVideo3);
-    }, [recommendVideo1, recommendVideo2, recommendVideo3]);
 
     return (
         <Container>
@@ -98,7 +97,7 @@ function RecommendVideo() {
                 )}
                 {recommendVideo3 !== null && (
                     <RecommendContainer>
-                        <Button onClick={button2Clicked}>Recommend 2</Button>
+                        <Button onClick={button3Clicked}>Recommend 3</Button>
                         <VideoWrapper>
                             <VideoPlayer video={recommendVideo3[0].video} />
                         </VideoWrapper>
@@ -111,10 +110,7 @@ function RecommendVideo() {
                     </RecommendContainer>
                 )}
             </ButtonContainer>
-
-            <SetPageButton onClick={SetCurrentPage}>
-                Add to DataBase
-            </SetPageButton>
+            <CurrentRecommend>{displayRecommend}</CurrentRecommend>
             <SetPageButton onClick={SetRecommendNow}>
                 set current page to recommend Video
             </SetPageButton>
@@ -123,7 +119,7 @@ function RecommendVideo() {
         </Container>
     );
 }
-
+// <SetPageButton onClick={SetCurrentPage}>Add to DataBase</SetPageButton>;
 export default RecommendVideo;
 const Container = styled.div`
     color: black;
@@ -144,8 +140,8 @@ const ButtonContainer = styled.div`
 `;
 const RecommendContainer = styled.div`
     height: 100%;
-    width: 600px;
-    margin-right: 100px;
+    width: 410px;
+    margin-right: 10px;
 `;
 const Button = styled.div`
     height: 30px;
@@ -189,7 +185,24 @@ const SetButton = styled.div`
     }
 `;
 const VideoWrapper = styled.div`
-    width: auto;
-    height: 400px;
+    width: 100%;
+    height: 230px;
     margin-bottom: 15px;
+`;
+
+const CurrentRecommend = styled.div`
+    position: fixed;
+    bottom: 2%;
+    left: 2%;
+    height: 30px;
+    width: 150px;
+    background-color: yellow;
+    color: black;
+    text-align: center;
+    font-size: larger;
+    &:hover {
+        background-color: blue;
+        color: white;
+    }
+    z-index: 10;
 `;

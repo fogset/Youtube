@@ -29,9 +29,14 @@ function VideoDetail() {
         }
     }, [totalVideo]);
     useEffect(() => {
-        //alert("currentRecommendVideo videodetail");
-        setcurrentRecommendVideo(localStorage.getItem("RecommendVideo"));
+        var RecommendVideoLocal = JSON.parse(
+            localStorage.getItem("RecommendVideo")
+        );
+        // console.log("localstorage");
+        // console.log(RecommendVideoLocal);
+        setcurrentRecommendVideo(RecommendVideoLocal);
     }, [videoId]);
+
     function moreDescription() {
         setShowMoreDecription(!shaowMoreDecription);
     }
