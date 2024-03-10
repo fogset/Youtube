@@ -70,7 +70,7 @@ const ModalContainer = styled.div`
     position: fixed;
     height: 95%;
     width: 95%;
-    display: flex;
+
     overflow-x: hidden;
     overflow-y: auto;
     flex-direction: column;
@@ -86,16 +86,12 @@ const CloseButton = styled.div`
     right: 8px;
 `;
 const Container = styled.div`
-    /* background-color: lightblue;
-    font-size: larger;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    overflow-x: hidden;
-    overflow-y: auto;
     height: 100%;
     width: 100%;
-    margin-bottom: 100px;
-    padding-right: 1%;
-    z-index: 0; */
+    padding-bottom: 100px;
+    margin-top: 30px;
+    position: relative;
 `;

@@ -23,46 +23,42 @@ function RecommendVideo() {
         RecommendVideoRecoil3
     );
     const [openModal, setOpenModal] = useState(false);
-    const [page1, setPage1] = useRecoilState(page1Recoil);
+    const [currentRecommend, setCurrentRecommend] = useState(null);
     function button1Clicked() {
-        var temp = [];
-        temp.push(page1[0]);
-        temp.push(page1[1]);
-        temp.push(page1[2]);
-        setRecommendVideo1(temp);
-        alert("recommendVideo1");
+        setCurrentRecommend(recommendVideo1);
     }
-    function button2Clicked() {}
-    function button3Clicked() {}
-    function SetCurrentPage() {
-        alert("added");
+    function button2Clicked() {
+        setCurrentRecommend(recommendVideo2);
     }
+    function button3Clicked() {
+        setCurrentRecommend(recommendVideo2);
+    }
+
+    function SetRecommendNow() {
+        localStorage.setItem("RecommendVideo", currentRecommend);
+    }
+    function SetCurrentPage() {}
     function openModalButton() {
         setOpenModal(true);
     }
-    useEffect(() => {
-        var temp = [];
-        temp.push(page1[0]);
-        temp.push(page1[1]);
-        temp.push(page1[2]);
-        setRecommendVideo1(temp);
-    }, [page1]);
 
     return (
         <Container>
             <ButtonContainer>
-                <RecommendContainer>
-                    <Button onClick={button1Clicked}>Recommend 1</Button>
-                    <VideoWrapper>
-                        <VideoPlayer video={recommendVideo1[0].video} />
-                    </VideoWrapper>
-                    <VideoWrapper>
-                        <VideoPlayer video={recommendVideo1[1].video} />
-                    </VideoWrapper>
-                    <VideoWrapper>
-                        <VideoPlayer video={recommendVideo1[2].video} />
-                    </VideoWrapper>
-                </RecommendContainer>
+                {recommendVideo1.length !== 0 && (
+                    <RecommendContainer>
+                        <Button onClick={button1Clicked}>Recommend 1</Button>
+                        <VideoWrapper>
+                            <VideoPlayer video={recommendVideo1[0].video} />
+                        </VideoWrapper>
+                        <VideoWrapper>
+                            <VideoPlayer video={recommendVideo1[1].video} />
+                        </VideoWrapper>
+                        <VideoWrapper>
+                            <VideoPlayer video={recommendVideo1[2].video} />
+                        </VideoWrapper>
+                    </RecommendContainer>
+                )}
                 <RecommendContainer>
                     <Button onClick={button2Clicked}>Recommend 2</Button>
                     <VideoWrapper>
@@ -92,6 +88,9 @@ function RecommendVideo() {
             <SetPageButton onClick={SetCurrentPage}>
                 Add to DataBase
             </SetPageButton>
+            <SetPageButton onClick={SetRecommendNow}>
+                set current page to recommend Video
+            </SetPageButton>
             <SetButton onClick={openModalButton}>openModal</SetButton>
             {openModal === true && <Modal setOpenModal={setOpenModal} />}
         </Container>
@@ -118,8 +117,8 @@ const ButtonContainer = styled.div`
 `;
 const RecommendContainer = styled.div`
     height: 100%;
-    width: 400px;
-    margin-right: 2%;
+    width: 600px;
+    margin-right: 100px;
 `;
 const Button = styled.div`
     height: 30px;
@@ -164,5 +163,6 @@ const SetButton = styled.div`
 `;
 const VideoWrapper = styled.div`
     width: auto;
-    height: 32%;
+    height: 400px;
+    margin-bottom: 15px;
 `;
