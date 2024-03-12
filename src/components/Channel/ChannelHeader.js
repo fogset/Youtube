@@ -1,17 +1,15 @@
 import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import { recoilChannelList, totalVideoRecoil } from "../state";
-import Card from "../components/Card/Card";
+import { recoilChannelList, totalVideoRecoil } from "../../state";
+import Card from "../Card/Card";
 import { Link, useParams } from "react-router-dom";
-function Channel() {
+
+function ChannelHeader() {
     const [channelList, setChannelList] = useRecoilState(recoilChannelList);
     const [currentChannel, setCurrentChannel] = useState(null);
-    const [currentChannelVideo, setCurrentChannelVideo] = useState(null);
-    const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const params = useParams();
     const currentChannelId = params.channelId;
-
     useEffect(() => {
         let i = 0;
         if (channelList !== null) {
@@ -23,17 +21,6 @@ function Channel() {
             }
         }
     }, [channelList]);
-    useEffect(() => {
-        let filterChannel = [];
-        if (totalVideo !== null) {
-            for (let i = 0; i < totalVideo.length; i++) {
-                if (totalVideo[i].channelId === currentChannelId) {
-                    filterChannel.push(totalVideo[i]);
-                }
-            }
-        }
-        setCurrentChannelVideo(filterChannel);
-    }, [totalVideo]);
 
     return (
         <div>
@@ -63,39 +50,11 @@ function Channel() {
                 <ButtonList>Playlists</ButtonList>
                 <ButtonList>Community</ButtonList>
             </ProfileList>
-            <ChannelVideo>
-                {currentChannelVideo !== null && (
-                    <Container>
-                        {currentChannelVideo.map((currentVideoDetail) => (
-                            <Card currentVideoDetail={currentVideoDetail} />
-                        ))}
-                    </Container>
-                )}
-            </ChannelVideo>
         </div>
     );
 }
 
-export default Channel;
-
-const ChannelVideo = styled.div`
-    /* overflow-x: hidden;
-    overflow-y: auto;
-    height: 100%;
-    width: 100%;
-    background-color: antiquewhite; */
-`;
-const Container = styled.div`
-    font-size: larger;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    overflow-x: hidden;
-    overflow-y: auto;
-    height: 100%;
-    width: 100%;
-    margin-bottom: 100px;
-`;
+export default ChannelHeader;
 
 const BannerImg = styled.img`
     width: 90%;
