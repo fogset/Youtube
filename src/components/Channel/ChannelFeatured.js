@@ -29,7 +29,7 @@ function ChannelFeatured() {
         console.log(currentChannelVideo);
     }, [totalVideo]);
     function goToNext() {
-        if (currentSlideIndex < currentChannelVideo.length) {
+        if (currentSlideIndex < currentChannelVideo.length - 2) {
             setCurrentSlideIndex(currentSlideIndex + 1);
         }
     }
@@ -45,13 +45,14 @@ function ChannelFeatured() {
                 <ChannelHeader />
                 <HorizontalLine />
                 <Title>For You</Title>
-                <GoLeft onClick={goToPrevious}>
-                    <ArrowContainer>
-                        <FaChevronLeft />
-                    </ArrowContainer>
-                </GoLeft>
+
                 {totalVideo !== null && (
                     <Container>
+                        <GoLeft onClick={goToPrevious}>
+                            <ArrowContainer>
+                                <FaChevronLeft />
+                            </ArrowContainer>
+                        </GoLeft>
                         <ChannelVideo
                             currentVideoDetail={totalVideo[currentSlideIndex]}
                         />
@@ -65,13 +66,13 @@ function ChannelFeatured() {
                                 totalVideo[currentSlideIndex + 2]
                             }
                         />
+                        <GoRight onClick={goToNext}>
+                            <ArrowContainer>
+                                <FaChevronRight />
+                            </ArrowContainer>
+                        </GoRight>
                     </Container>
                 )}
-                <GoRight onClick={goToNext}>
-                    <ArrowContainer>
-                        <FaChevronRight />
-                    </ArrowContainer>
-                </GoRight>
             </Feature>
         </div>
     );
@@ -105,14 +106,15 @@ const Container = styled.div`
     height: 100%;
     width: 95%;
     margin-bottom: 300px;
+    position: relative;
 `;
 const GoLeft = styled.div`
     position: absolute;
     height: 50px;
     width: 50px;
     background-color: #f3f5f2;
-    top: 700px;
-    left: 0px;
+    left: -24px;
+    top: 40%;
     border-radius: 50%;
     z-index: 100;
 `;
@@ -122,10 +124,10 @@ const GoRight = styled.div`
     height: 50px;
     width: 50px;
     background-color: #f3f5f2;
-    top: 700px;
-    right: 40px;
+    right: -24px;
+    top: 40%;
     border-radius: 50%;
-    z-index: 100;
+    z-index: 110;
 `;
 const ArrowContainer = styled.div`
     text-align: center;
