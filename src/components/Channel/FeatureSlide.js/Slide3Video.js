@@ -49,7 +49,8 @@ const Container = styled.div`
     justify-content: space-between;
     height: 100%;
     width: 95%;
-    margin-bottom: 300px;
+    margin-top: 20px;
+    margin-bottom: 7%;
     position: relative;
 `;
 const GoLeft = styled.div`

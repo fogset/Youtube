@@ -38,7 +38,9 @@ function ChannelFeatured() {
                 {totalVideo !== null && (
                     <div>
                         <Slide3Video currentVideoList={totalVideo} />
+                        <HorizontalLine />
                         <Slide5Video currentVideoList={totalVideo} />
+                        <HorizontalLine />
                     </div>
                 )}
             </Feature>
@@ -62,7 +64,7 @@ const HorizontalLine = styled.div`
 `;
 const Title = styled.div`
     margin-top: 20px;
-    margin-bottom: 20px;
+
     margin-left: 15px;
     font-size: 22px;
     font-weight: 600;
