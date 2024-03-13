@@ -4,15 +4,14 @@ import { useRecoilState } from "recoil";
 import { totalVideoRecoil } from "../../state";
 import React, { Fragment, useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ChannelVideo from "./ChannelVideo";
-import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import ChannelSidebar from "./ChannelSidebar";
+import Slide3Video from "./FeatureSlide.js/Slide3Video";
+import Slide5Video from "./FeatureSlide.js/Slide5Video";
 
 function ChannelFeatured() {
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const [currentChannelVideo, setCurrentChannelVideo] = useState(null);
     const currentChannelId = useParams().channelId;
-    const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
     useEffect(() => {
         let filterChannel = [];
         if (totalVideo !== null) {
@@ -25,19 +24,10 @@ function ChannelFeatured() {
             console.log(totalVideo);
         }
         setCurrentChannelVideo(filterChannel);
-        console.log("currentChannelVideo");
-        console.log(currentChannelVideo);
+        //console.log("currentChannelVideo");
+        //console.log(currentChannelVideo);
     }, [totalVideo]);
-    function goToNext() {
-        if (currentSlideIndex < currentChannelVideo.length - 2) {
-            setCurrentSlideIndex(currentSlideIndex + 1);
-        }
-    }
-    function goToPrevious() {
-        if (currentSlideIndex > 0) {
-            setCurrentSlideIndex(currentSlideIndex - 1);
-        }
-    }
+
     return (
         <div>
             <ChannelSidebar />
@@ -45,33 +35,11 @@ function ChannelFeatured() {
                 <ChannelHeader />
                 <HorizontalLine />
                 <Title>For You</Title>
-
                 {totalVideo !== null && (
-                    <Container>
-                        <GoLeft onClick={goToPrevious}>
-                            <ArrowContainer>
-                                <FaChevronLeft />
-                            </ArrowContainer>
-                        </GoLeft>
-                        <ChannelVideo
-                            currentVideoDetail={totalVideo[currentSlideIndex]}
-                        />
-                        <ChannelVideo
-                            currentVideoDetail={
-                                totalVideo[currentSlideIndex + 1]
-                            }
-                        />
-                        <ChannelVideo
-                            currentVideoDetail={
-                                totalVideo[currentSlideIndex + 2]
-                            }
-                        />
-                        <GoRight onClick={goToNext}>
-                            <ArrowContainer>
-                                <FaChevronRight />
-                            </ArrowContainer>
-                        </GoRight>
-                    </Container>
+                    <div>
+                        <Slide3Video currentVideoList={totalVideo} />
+                        <Slide5Video currentVideoList={totalVideo} />
+                    </div>
                 )}
             </Feature>
         </div>
@@ -98,38 +66,4 @@ const Title = styled.div`
     margin-left: 15px;
     font-size: 22px;
     font-weight: 600;
-`;
-const Container = styled.div`
-    font-size: larger;
-    display: flex;
-    justify-content: space-between;
-    height: 100%;
-    width: 95%;
-    margin-bottom: 300px;
-    position: relative;
-`;
-const GoLeft = styled.div`
-    position: absolute;
-    height: 50px;
-    width: 50px;
-    background-color: #f3f5f2;
-    left: -24px;
-    top: 40%;
-    border-radius: 50%;
-    z-index: 100;
-`;
-
-const GoRight = styled.div`
-    position: absolute;
-    height: 50px;
-    width: 50px;
-    background-color: #f3f5f2;
-    right: -24px;
-    top: 40%;
-    border-radius: 50%;
-    z-index: 110;
-`;
-const ArrowContainer = styled.div`
-    text-align: center;
-    margin-top: 35%;
 `;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-function ChannelVideo({ currentVideoDetail }) {
+function Slide3VideoContainer({ currentVideoDetail }) {
     console.log("currentVideoDetail");
     console.log(currentVideoDetail);
     const videoId = `/video/${currentVideoDetail.id}`;
@@ -19,11 +19,11 @@ function ChannelVideo({ currentVideoDetail }) {
                 <Details>
                     <Texts>
                         <Title>
-                            {currentVideoDetail.title.substring(0, 32)}
+                            {currentVideoDetail.title.substring(0, 30)}
                         </Title>
                         <Info>
                             {currentVideoDetail.view} views .{" "}
-                            {currentVideoDetail.date} ago
+                            {currentVideoDetail.date} agosdf
                         </Info>
                     </Texts>
                 </Details>
@@ -31,12 +31,11 @@ function ChannelVideo({ currentVideoDetail }) {
         </Link>
     );
 }
-
-export default ChannelVideo;
+export default Slide3VideoContainer;
 const Container = styled.div`
-    width: 435px;
+    width: 210px;
     cursor: pointer;
-    height: 220px;
+    height: 150px;
     position: relative;
 `;
 
@@ -45,12 +44,12 @@ const Details = styled.div`
 `;
 
 const Texts = styled.div`
-    margin-left: 15px;
+    margin-left: 5px;
 `;
 const Title = styled.h1`
-    font-size: 16px;
-    font-weight: 500;
-    color: ${({ theme }) => theme.text};
+    font-size: 13px;
+    font-weight: bold;
+    color: black;
 `;
 
 const Info = styled.div`
