@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 function Card({ type, currentVideoDetail }) {
     const videoId = `/video/${currentVideoDetail.id}`;
-    const channelId = `/channel/${currentVideoDetail.channelId}`;
+    const channelId = `/${currentVideoDetail.channelId}/featured`;
     function onMouseDown() {
         //alert(currentVideoDetail.title);
     }

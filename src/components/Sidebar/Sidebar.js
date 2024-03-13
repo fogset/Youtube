@@ -5,18 +5,8 @@ import {
     faHouse,
     faMagnifyingGlass,
     faList,
-    faBook,
     faClockRotateLeft,
-    faMusic,
-    faBaseball,
-    faFilm,
-    faNewspaper,
-    faVideo,
-    faGear,
-    faFlag,
     faQuestion,
-    faArrowsRotate,
-    faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { IoIosArrowForward } from "react-icons/io";
 import { MdOutlineWatchLater, MdOutlineMovieFilter } from "react-icons/md";
@@ -24,7 +14,6 @@ import { AiOutlineLike } from "react-icons/ai";
 import { IoMusicalNoteOutline, IoGameControllerOutline } from "react-icons/io5";
 import { CgMediaLive } from "react-icons/cg";
 import { ImFire } from "react-icons/im";
-import { FaRegNewspaper } from "react-icons/fa6";
 import { TfiCup } from "react-icons/tfi";
 function Sidebar() {
     return (
@@ -93,7 +82,6 @@ function Sidebar() {
                 <FontAwesomeIcon icon={faQuestion} />
                 <Item_text>Help</Item_text>
             </Item>
-
             <Page>page {localStorage.getItem("currentPage")}</Page>
         </Container>
     );
