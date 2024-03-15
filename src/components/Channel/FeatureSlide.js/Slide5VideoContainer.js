@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
-function Slide3VideoContainer({ currentVideoDetail }) {
+function Slide5VideoContainer({ currentVideoDetail }) {
     console.log("currentVideoDetail");
     console.log(currentVideoDetail);
     const videoId = `/video/${currentVideoDetail.id}`;
@@ -31,7 +31,7 @@ function Slide3VideoContainer({ currentVideoDetail }) {
         </Link>
     );
 }
-export default Slide3VideoContainer;
+export default Slide5VideoContainer;
 const Container = styled.div`
     width: 210px;
     cursor: pointer;

@@ -86,7 +86,6 @@ function VideoDetail() {
                         <Info>
                             {currentVideo.view} views . {currentVideo.date} ago
                         </Info>
-
                         {shaowMoreDecription === false ? (
                             <div>
                                 {currentVideo.title.substring(0, 320)}

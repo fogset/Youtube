@@ -14,7 +14,7 @@ import ChannelFeatured from "../components/Channel/ChannelFeatured";
 import ChannelShorts from "../components/Channel/ChannelShorts";
 import ChannelPlaylists from "./../components/Channel/ChannelPlaylists";
 import ChannelCommunity from "../components/Channel/ChannelCommunity";
-import ChannelHeader from "../components/Channel/ChannelHeader";
+import Playlist from "../components/Channel/Playlist/Playlist";
 
 function Main() {
     const [currentUrl, setCurrentUrl] = useRecoilState(currentUrlRecoil);
@@ -35,7 +35,6 @@ function Main() {
             <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/video/:videoId" element={<VideoDetail />}></Route>
-
                 <Route
                     path="/:channelId/featured"
                     element={<ChannelFeatured />}
@@ -51,6 +50,7 @@ function Main() {
                     element={<ChannelCommunity />}
                 />
 
+                <Route path="/playlist" element={<Playlist />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/about2" element={<About2 />}></Route>
                 <Route path="/test" element={<Test />}></Route>
