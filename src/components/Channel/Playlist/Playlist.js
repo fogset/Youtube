@@ -9,6 +9,20 @@ import { useRecoilState } from "recoil";
 
 function Playlist() {
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
+    const [currentPlaylist, setCurrentPlaylist] = useState(null);
+    useEffect(() => {
+        let ChannelPlaylist = [];
+        if (totalVideo !== null) {
+            for (let i = 0; i < totalVideo.length; i++) {
+                if (totalVideo[i].playlist === "1") {
+                    ChannelPlaylist.push(totalVideo[i]);
+                }
+            }
+            //console.log("ChannelPlaylist");
+            //onsole.log(ChannelPlaylist);
+            setCurrentPlaylist(ChannelPlaylist);
+        }
+    }, [totalVideo]);
     return (
         <Container>
             <Title>最新の動画 / Latest Video</Title>
@@ -25,10 +39,11 @@ function Playlist() {
                 <TfiClose size={22} />
             </CloseIcon>
 
-            {totalVideo !== null && (
+            {currentPlaylist !== null && (
                 <PlayListVideo>
-                    {totalVideo.map((currentVideoDetail) => (
+                    {currentPlaylist.map((currentVideoDetail, index) => (
                         <PlaylistVideo
+                            index={index}
                             currentVideoDetail={currentVideoDetail}
                         />
                     ))}
@@ -42,7 +57,7 @@ export default Playlist;
 const Container = styled.div`
     width: 460px;
     cursor: pointer;
-    height: 500px;
+    height: 530px;
     position: relative;
     background-color: lightcyan;
 `;
@@ -71,6 +86,7 @@ const ListName = styled.div`
     font-size: 13px;
 `;
 const PlayListVideo = styled.div`
+    margin-top: 20px;
     position: relative;
     width: 460px;
     height: 400px;

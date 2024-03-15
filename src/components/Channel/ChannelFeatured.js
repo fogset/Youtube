@@ -20,8 +20,6 @@ function ChannelFeatured() {
                     filterChannel.push(totalVideo[i]);
                 }
             }
-            console.log("totalvideo");
-            console.log(totalVideo);
         }
         setCurrentChannelVideo(filterChannel);
         //console.log("currentChannelVideo");
