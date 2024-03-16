@@ -6,26 +6,51 @@ import PlaylistVideo from "./PlaylistVideo";
 import { TfiClose } from "react-icons/tfi";
 import { totalVideoRecoil } from "./../../../state";
 import { useRecoilState } from "recoil";
-
+import { useParams } from "react-router-dom";
 function Playlist() {
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
+    const [currentChannelVideoList, setCurrentChannelVideoList] =
+        useState(null);
     const [currentPlaylist, setCurrentPlaylist] = useState(null);
+    const currentPlayListName = useParams().playlistName;
+    const currentChannelId = useParams().channelId;
+    // console.log("useParams");
+    // console.log(useParams());
+
     useEffect(() => {
-        let ChannelPlaylist = [];
+        getVideoListFromThisChannelId();
+    }, [totalVideo]);
+    useEffect(() => {
+        getVideoListWithThisPlayListNameInCurrentChannel();
+    }, [currentChannelVideoList]);
+
+    function getVideoListFromThisChannelId() {
+        let filterChannelVideo = [];
         if (totalVideo !== null) {
             for (let i = 0; i < totalVideo.length; i++) {
-                if (totalVideo[i].playlist === "1") {
-                    ChannelPlaylist.push(totalVideo[i]);
+                if (totalVideo[i].channelId === currentChannelId) {
+                    filterChannelVideo.push(totalVideo[i]);
                 }
             }
-            //console.log("ChannelPlaylist");
-            //onsole.log(ChannelPlaylist);
-            setCurrentPlaylist(ChannelPlaylist);
         }
-    }, [totalVideo]);
+        setCurrentChannelVideoList(filterChannelVideo);
+    }
+    function getVideoListWithThisPlayListNameInCurrentChannel() {
+        let TempPlayList = [];
+        if (currentChannelVideoList !== null) {
+            for (let i = 0; i < currentChannelVideoList.length; i++) {
+                if (
+                    currentChannelVideoList[i].playlist === currentPlayListName
+                ) {
+                    TempPlayList.push(currentChannelVideoList[i]);
+                }
+            }
+            setCurrentPlaylist(TempPlayList);
+        }
+    }
     return (
         <Container>
-            <Title>最新の動画 / Latest Video</Title>
+            <Title>{currentPlayListName}最新の動画 / Latest Video</Title>
             <ListName>CYBERJAPAN DANCERS Official - 1 / 6</ListName>
             <IconContainer>
                 <LoopIcon>
