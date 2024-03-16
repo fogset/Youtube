@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { LuListVideo } from "react-icons/lu";
-function PlaylistCard({ currentPlaylist, channelId }) {
-    const playlistUrl = `/${channelId}/playlists/${currentPlaylist.name}`;
+function ChannelPlayListCard({ currentPlaylist, channelId }) {
+    const playlistUrl = `/${channelId}/playlists/${currentPlaylist.name}/${currentPlaylist.videoId}`;
     return (
         <Link to={playlistUrl} style={{ textDecoration: "none" }}>
             <Container>
@@ -29,7 +29,7 @@ function PlaylistCard({ currentPlaylist, channelId }) {
     );
 }
 
-export default PlaylistCard;
+export default ChannelPlayListCard;
 const Container = styled.div`
     width: 300px;
     cursor: pointer;

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { ImLoop } from "react-icons/im";
 import React, { useEffect, useState } from "react";
 import { TfiControlShuffle } from "react-icons/tfi";
-import PlaylistVideo from "./PlaylistVideo";
+import PlaylistVideoSidebar from "./PlaylistVideoListSidebar";
 import { TfiClose } from "react-icons/tfi";
 import { totalVideoRecoil } from "./../../../state";
 import { useRecoilState } from "recoil";
@@ -14,9 +14,6 @@ function Playlist() {
     const [currentPlaylist, setCurrentPlaylist] = useState(null);
     const currentPlayListName = useParams().playlistName;
     const currentChannelId = useParams().channelId;
-    // console.log("useParams");
-    // console.log(useParams());
-
     useEffect(() => {
         getVideoListFromThisChannelId();
     }, [totalVideo]);
@@ -67,7 +64,7 @@ function Playlist() {
             {currentPlaylist !== null && (
                 <PlayListVideo>
                     {currentPlaylist.map((currentVideoDetail, index) => (
-                        <PlaylistVideo
+                        <PlaylistVideoSidebar
                             index={index}
                             currentVideoDetail={currentVideoDetail}
                         />

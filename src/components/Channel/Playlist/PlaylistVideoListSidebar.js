@@ -3,16 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
-function PlaylistVideo({ currentVideoDetail, index }) {
+function PlaylistVideoListSidebar({ currentVideoDetail, index }) {
     const params = useParams();
-    const videoUrl = `/video/${currentVideoDetail.id}`;
+    const playListUrl = `/${currentVideoDetail.channelId}/playlists/${currentVideoDetail.playlist}/${currentVideoDetail.id}`;
     const titleStringLength = currentVideoDetail.title.length;
+
     useEffect(() => {
         console.log("key");
         console.log(index);
     }, [index]);
     return (
-        <Link to={videoUrl} style={{ textDecoration: "none" }}>
+        <Link to={playListUrl} style={{ textDecoration: "none" }}>
             <Container>
                 <VideoIndex>{index + 1}</VideoIndex>
                 <ReactPlayer
@@ -38,7 +39,7 @@ function PlaylistVideo({ currentVideoDetail, index }) {
     );
 }
 
-export default PlaylistVideo;
+export default PlaylistVideoListSidebar;
 const Container = styled.div`
     margin-bottom: 10px;
     cursor: pointer;

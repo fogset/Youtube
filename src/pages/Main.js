@@ -51,7 +51,7 @@ function Main() {
                 />
 
                 <Route
-                    path="/:channelId/playlists/:playlistName"
+                    path="/:channelId/playlists/:playlistName/:videoId"
                     element={<Playlist />}
                 ></Route>
                 <Route path="/about" element={<About />}></Route>

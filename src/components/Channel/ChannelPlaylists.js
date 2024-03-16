@@ -5,7 +5,7 @@ import ChannelSidebar from "./ChannelSidebar";
 import Playlist from "./Playlist/Playlist";
 import styled from "styled-components";
 import { MdOutlineSort } from "react-icons/md";
-import PlaylistCard from "./Playlist/PlaylistCard";
+import ChannelPlayListCard from "./Playlist/ChannelPlayListCard";
 import { useParams } from "react-router-dom";
 import React, { Fragment, useState, useEffect } from "react";
 function ChannelPlaylists() {
@@ -40,7 +40,7 @@ function ChannelPlaylists() {
                 {currentChannelPlaylist !== null && (
                     <PlayListUrlContainer>
                         {currentChannelPlaylist.map((currentPlaylist) => (
-                            <PlaylistCard
+                            <ChannelPlayListCard
                                 currentPlaylist={currentPlaylist}
                                 channelId={currentChannelId}
                             />
