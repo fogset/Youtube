@@ -1,16 +1,48 @@
-import React from "react";
+import { recoilChannelList } from "./../../state";
+import { useRecoilState } from "recoil";
 import ChannelHeader from "./ChannelHeader";
 import ChannelSidebar from "./ChannelSidebar";
 import Playlist from "./Playlist/Playlist";
 import styled from "styled-components";
+import { MdOutlineSort } from "react-icons/md";
+import PlaylistCard from "./Playlist/PlaylistCard";
+import { useParams } from "react-router-dom";
+import React, { Fragment, useState, useEffect } from "react";
 function ChannelPlaylists() {
+    const [channelsTotal, setChannelsTotal] = useRecoilState(recoilChannelList);
+    const [currentChannelPlaylist, setCurrentChannelPlaylist] = useState(null);
+    const currentChannelId = useParams().channelId;
+    useEffect(() => {
+        if (channelsTotal !== null) {
+            for (let i = 0; i < channelsTotal.length; i++) {
+                if (channelsTotal[i].channelId === currentChannelId) {
+                    setCurrentChannelPlaylist(channelsTotal[i].playlist);
+                }
+            }
+        }
+    }, [channelsTotal]);
     return (
         <div>
             <ChannelSidebar />
             <PlaylistContainer>
                 <ChannelHeader />
                 <HorizontalLine />
-                <Title>For You</Title>
+                <TitleContainer>
+                    <Title>Created playlists</Title>
+                    <SortContainer>
+                        <SortIcon>
+                            <MdOutlineSort size={32} />
+                        </SortIcon>
+                        <SortText>Sort by</SortText>
+                    </SortContainer>
+                </TitleContainer>
+                {currentChannelPlaylist !== null && (
+                    <PlayListUrlContainer>
+                        {currentChannelPlaylist.map((currentPlaylist) => (
+                            <PlaylistCard currentPlaylist={currentPlaylist} />
+                        ))}
+                    </PlayListUrlContainer>
+                )}
             </PlaylistContainer>
         </div>
     );
@@ -22,7 +54,7 @@ const PlaylistContainer = styled.div`
     position: relative;
     left: 120px;
     top: 50px;
-    width: 93%;
+    width: 92%;
 `;
 const HorizontalLine = styled.div`
     height: 1px;
@@ -30,8 +62,25 @@ const HorizontalLine = styled.div`
     border: none;
 `;
 const Title = styled.div`
-    margin-top: 20px;
-    margin-left: 15px;
     font-size: 22px;
-    font-weight: 600;
+`;
+const TitleContainer = styled.div`
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+`;
+const SortContainer = styled.div`
+    display: flex;
+`;
+const SortText = styled.div`
+    padding-top: 5px;
+    font-size: 20px;
+    padding-left: 10px;
+`;
+const SortIcon = styled.div`
+    font-size: 20px;
+`;
+const PlayListUrlContainer = styled.div`
+    display: flex;
 `;
