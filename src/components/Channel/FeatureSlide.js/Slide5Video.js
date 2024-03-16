@@ -71,7 +71,7 @@ const Container = styled.div`
     margin-bottom: 7%;
     font-size: larger;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     height: 100%;
     width: 95%;
     position: relative;

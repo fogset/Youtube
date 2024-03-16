@@ -52,7 +52,7 @@ const Feature = styled.div`
     position: relative;
     left: 120px;
     top: 50px;
-    width: 93%;
+    width: 92%;
 `;
 
 const HorizontalLine = styled.div`

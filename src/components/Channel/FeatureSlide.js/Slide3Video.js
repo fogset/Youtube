@@ -46,7 +46,7 @@ export default Slide3Video;
 const Container = styled.div`
     font-size: larger;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     height: 100%;
     width: 95%;
     margin-top: 20px;

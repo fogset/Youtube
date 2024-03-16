@@ -38,6 +38,7 @@ const Container = styled.div`
     cursor: pointer;
     height: 220px;
     position: relative;
+    padding-left: 10px;
 `;
 
 const Details = styled.div`
