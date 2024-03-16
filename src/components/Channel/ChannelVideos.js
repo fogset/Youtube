@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Card from "../Card/Card";
 import ChannelHeader from "./ChannelHeader";
+import ChannelSidebar from "./ChannelSidebar";
 function ChannelVideos() {
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const [currentChannelVideo, setCurrentChannelVideo] = useState(null);

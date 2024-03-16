@@ -22,6 +22,12 @@ function ChannelHeader() {
         }
     }, [channelList]);
 
+    const featureUrl = `/${currentChannelId}/featured`;
+    const videoUrl = `/${currentChannelId}/videos`;
+    const shortsUrl = `/${currentChannelId}/shorts`;
+    const liveUrl = `/${currentChannelId}/playlists`;
+    const playlistUrl = `/${currentChannelId}/playlists`;
+    const communityUrl = `/${currentChannelId}/community`;
     return (
         <div>
             {currentChannel !== null && (
@@ -43,19 +49,38 @@ function ChannelHeader() {
                 </div>
             )}
             <ProfileList>
-                <ButtonList>Home</ButtonList>
-                <ButtonList>Videos</ButtonList>
-                <ButtonList>Shorts</ButtonList>
-                <ButtonList>Live</ButtonList>
-                <ButtonList>Playlists</ButtonList>
-                <ButtonList>Community</ButtonList>
+                <ButtonList>
+                    <LinkTitle to={featureUrl}>Home</LinkTitle>
+                </ButtonList>
+
+                <ButtonList>
+                    <LinkTitle to={videoUrl}>Videos</LinkTitle>
+                </ButtonList>
+
+                <ButtonList>
+                    <LinkTitle to={shortsUrl}>Shorts</LinkTitle>
+                </ButtonList>
+
+                <ButtonList>
+                    <LinkTitle to={liveUrl}>Live</LinkTitle>
+                </ButtonList>
+
+                <ButtonList>
+                    <LinkTitle to={playlistUrl}>Playlists</LinkTitle>
+                </ButtonList>
+
+                <ButtonList>
+                    <LinkTitle to={communityUrl}>Community</LinkTitle>
+                </ButtonList>
             </ProfileList>
         </div>
     );
 }
 
 export default ChannelHeader;
-
+const LinkTitle = styled(Link)`
+    text-decoration: none;
+`;
 const BannerImg = styled.img`
     width: 90%;
     height: 220px;

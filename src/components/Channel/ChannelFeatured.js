@@ -62,7 +62,6 @@ const HorizontalLine = styled.div`
 `;
 const Title = styled.div`
     margin-top: 20px;
-
     margin-left: 15px;
     font-size: 22px;
     font-weight: 600;

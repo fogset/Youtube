@@ -1,7 +1,12 @@
 import React from "react";
-
+import ChannelHeader from "./ChannelHeader";
+import ChannelSidebar from "./ChannelSidebar";
 function ChannelCommunity() {
-    return <div>ChannelCommunity</div>;
+    return (
+        <div>
+            <ChannelHeader />
+        </div>
+    );
 }
 
 export default ChannelCommunity;

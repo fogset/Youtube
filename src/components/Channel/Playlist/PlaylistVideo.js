@@ -24,7 +24,7 @@ function PlaylistVideo({ currentVideoDetail, index }) {
                 />
                 <Details>
                     <Title>
-                        {currentVideoDetail.title.substring(0, 45)}
+                        {currentVideoDetail.title.substring(0, 30)}
                         {titleStringLength > 32 && "..."}
                     </Title>
                     <ChannelName>{currentVideoDetail.channelId}</ChannelName>

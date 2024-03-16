@@ -3,6 +3,7 @@ import Slide5VideoContainer from "./Slide5VideoContainer";
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa6";
 import React, { Fragment, useState, useEffect } from "react";
 import { FaCaretRight } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function Slide5Video({ currentVideoList }) {
     const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
@@ -17,14 +18,17 @@ function Slide5Video({ currentVideoList }) {
             setCurrentSlideIndex(currentSlideIndex - 1);
         }
     }
+    const playlistId = `/playlist`;
     return (
         <div>
             <TitleContainer>
                 <Title>Videos</Title>
-                <PlayButton>
-                    <FaCaretRight size={30} />
-                    <PlayButton_text>Play all</PlayButton_text>
-                </PlayButton>
+                <LinkPlaylist to={playlistId}>
+                    <PlayButton>
+                        <FaCaretRight size={30} />
+                        <PlayButton_text>Play all</PlayButton_text>
+                    </PlayButton>
+                </LinkPlaylist>
             </TitleContainer>
 
             <Container>
@@ -124,4 +128,7 @@ const PlayButton = styled.div`
 const PlayButton_text = styled.div`
     font-size: 18px;
     margin-left: 5px;
+`;
+const LinkPlaylist = styled(Link)`
+    text-decoration: none;
 `;
