@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 import { LuListVideo } from "react-icons/lu";
-function PlaylistCard({ currentPlaylist }) {
+function PlaylistCard({ currentPlaylist, channelId }) {
+    const playlistUrl = `/${channelId}/playlists/${currentPlaylist.name}`;
     return (
-        <Link style={{ textDecoration: "none" }}>
+        <Link to={playlistUrl} style={{ textDecoration: "none" }}>
             <Container>
                 <VideoCountContainer>
                     <IconContainer>

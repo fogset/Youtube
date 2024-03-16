@@ -50,7 +50,10 @@ function Main() {
                     element={<ChannelCommunity />}
                 />
 
-                <Route path="/playlist" element={<Playlist />}></Route>
+                <Route
+                    path="/:channelId/playlists/:playlistName"
+                    element={<Playlist />}
+                ></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/about2" element={<About2 />}></Route>
                 <Route path="/test" element={<Test />}></Route>

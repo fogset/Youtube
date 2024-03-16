@@ -12,6 +12,7 @@ function ChannelPlaylists() {
     const [channelsTotal, setChannelsTotal] = useRecoilState(recoilChannelList);
     const [currentChannelPlaylist, setCurrentChannelPlaylist] = useState(null);
     const currentChannelId = useParams().channelId;
+
     useEffect(() => {
         if (channelsTotal !== null) {
             for (let i = 0; i < channelsTotal.length; i++) {
@@ -39,7 +40,10 @@ function ChannelPlaylists() {
                 {currentChannelPlaylist !== null && (
                     <PlayListUrlContainer>
                         {currentChannelPlaylist.map((currentPlaylist) => (
-                            <PlaylistCard currentPlaylist={currentPlaylist} />
+                            <PlaylistCard
+                                currentPlaylist={currentPlaylist}
+                                channelId={currentChannelId}
+                            />
                         ))}
                     </PlayListUrlContainer>
                 )}
