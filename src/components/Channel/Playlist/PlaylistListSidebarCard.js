@@ -3,7 +3,11 @@ import { Link, useParams } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import ReactPlayer from "react-player";
 
-function PlaylistVideoListSidebar({ currentVideoDetail, index }) {
+function PlaylistListSidebarCard({
+    currentVideoDetail,
+    index,
+    setCurrentVideo,
+}) {
     const params = useParams();
     const playListUrl = `/${currentVideoDetail.channelId}/playlists/${currentVideoDetail.playlist}/${currentVideoDetail.id}`;
     const titleStringLength = currentVideoDetail.title.length;
@@ -12,8 +16,15 @@ function PlaylistVideoListSidebar({ currentVideoDetail, index }) {
         console.log("key");
         console.log(index);
     }, [index]);
+    function selectCurrentVideo() {
+        setCurrentVideo(currentVideoDetail);
+    }
     return (
-        <Link to={playListUrl} style={{ textDecoration: "none" }}>
+        <Link
+            to={playListUrl}
+            onClick={selectCurrentVideo}
+            style={{ textDecoration: "none" }}
+        >
             <Container>
                 <VideoIndex>{index + 1}</VideoIndex>
                 <ReactPlayer
@@ -39,7 +50,7 @@ function PlaylistVideoListSidebar({ currentVideoDetail, index }) {
     );
 }
 
-export default PlaylistVideoListSidebar;
+export default PlaylistListSidebarCard;
 const Container = styled.div`
     margin-bottom: 10px;
     cursor: pointer;

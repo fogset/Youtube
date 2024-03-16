@@ -1,117 +1,47 @@
+import React, { useState, useEffect } from "react";
+import PlaylistVideoDetail from "./PlaylistVideoDetail";
+import PlaylistSidebar from "./PlaylistSidebar";
 import styled from "styled-components";
-import { ImLoop } from "react-icons/im";
-import React, { useEffect, useState } from "react";
-import { TfiControlShuffle } from "react-icons/tfi";
-import PlaylistVideoSidebar from "./PlaylistVideoListSidebar";
-import { TfiClose } from "react-icons/tfi";
-import { totalVideoRecoil } from "./../../../state";
+import { Link, useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { useParams } from "react-router-dom";
+import { totalVideoRecoil } from "./../../../state";
 function Playlist() {
+    const [currentVideo, setCurrentVideo] = useState(null);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
-    const [currentChannelVideoList, setCurrentChannelVideoList] =
-        useState(null);
-    const [currentPlaylist, setCurrentPlaylist] = useState(null);
-    const currentPlayListName = useParams().playlistName;
-    const currentChannelId = useParams().channelId;
+    const params = useParams();
+    const videoId = params.videoId;
     useEffect(() => {
-        getVideoListFromThisChannelId();
-    }, [totalVideo]);
-    useEffect(() => {
-        getVideoListWithThisPlayListNameInCurrentChannel();
-    }, [currentChannelVideoList]);
-
-    function getVideoListFromThisChannelId() {
-        let filterChannelVideo = [];
         if (totalVideo !== null) {
             for (let i = 0; i < totalVideo.length; i++) {
-                if (totalVideo[i].channelId === currentChannelId) {
-                    filterChannelVideo.push(totalVideo[i]);
+                if (totalVideo[i].id === videoId) {
+                    setCurrentVideo(totalVideo[i]);
                 }
             }
         }
-        setCurrentChannelVideoList(filterChannelVideo);
-    }
-    function getVideoListWithThisPlayListNameInCurrentChannel() {
-        let TempPlayList = [];
-        if (currentChannelVideoList !== null) {
-            for (let i = 0; i < currentChannelVideoList.length; i++) {
-                if (
-                    currentChannelVideoList[i].playlist === currentPlayListName
-                ) {
-                    TempPlayList.push(currentChannelVideoList[i]);
-                }
-            }
-            setCurrentPlaylist(TempPlayList);
-        }
-    }
+    }, [totalVideo]);
     return (
-        <Container>
-            <Title>{currentPlayListName}最新の動画 / Latest Video</Title>
-            <ListName>CYBERJAPAN DANCERS Official - 1 / 6</ListName>
-            <IconContainer>
-                <LoopIcon>
-                    <ImLoop size={22} />
-                </LoopIcon>
-                <ShuttleIcon>
-                    <TfiControlShuffle size={22} />
-                </ShuttleIcon>
-            </IconContainer>
-            <CloseIcon>
-                <TfiClose size={22} />
-            </CloseIcon>
-
-            {currentPlaylist !== null && (
-                <PlayListVideo>
-                    {currentPlaylist.map((currentVideoDetail, index) => (
-                        <PlaylistVideoSidebar
-                            index={index}
-                            currentVideoDetail={currentVideoDetail}
-                        />
-                    ))}
-                </PlayListVideo>
-            )}
-        </Container>
+        <Cotainer>
+            <PlayListVideoDetailContainer>
+                <PlaylistVideoDetail currentVideo={currentVideo} />
+            </PlayListVideoDetailContainer>
+            <SidebarContainer>
+                <PlaylistSidebar setCurrentVideo={setCurrentVideo} />
+            </SidebarContainer>
+        </Cotainer>
     );
 }
 
 export default Playlist;
-const Container = styled.div`
-    width: 460px;
-    cursor: pointer;
-    height: 530px;
+const SidebarContainer = styled.div`
     position: relative;
-    background-color: lightcyan;
 `;
-const Title = styled.h1`
-    font-size: 23px;
-    font-weight: bold;
-    color: black;
+const PlayListVideoDetailContainer = styled.div`
+    position: relative;
+    height: 100%;
+    width: 100%;
 `;
-const IconContainer = styled.div`
-    margin-top: 10px;
+const Cotainer = styled.div`
     display: flex;
-`;
-const LoopIcon = styled.div`
-    margin-left: 10px;
-`;
-const ShuttleIcon = styled.div`
-    margin-left: 20px;
-`;
-const CloseIcon = styled.div`
-    position: absolute;
-    right: 15px;
-    top: 22px;
-`;
-
-const ListName = styled.div`
-    font-size: 13px;
-`;
-const PlayListVideo = styled.div`
-    margin-top: 20px;
-    position: relative;
-    width: 460px;
-    height: 400px;
-    overflow-x: hidden;
-    overflow-y: auto;
+    flex-direction: row;
+    justify-content: space-between;
 `;
