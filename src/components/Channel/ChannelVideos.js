@@ -22,21 +22,29 @@ function ChannelVideos() {
         setCurrentChannelVideo(filterChannel);
     }, [totalVideo]);
     return (
-        <ChannelVideo>
-            <ChannelHeader />
-            {currentChannelVideo !== null && (
-                <Container>
-                    {currentChannelVideo.map((currentVideoDetail) => (
-                        <Card currentVideoDetail={currentVideoDetail} />
-                    ))}
-                </Container>
-            )}
-        </ChannelVideo>
+        <div>
+            <ChannelSidebar />
+            <ChannelVideo>
+                <ChannelHeader />
+                {currentChannelVideo !== null && (
+                    <Container>
+                        {currentChannelVideo.map((currentVideoDetail) => (
+                            <Card currentVideoDetail={currentVideoDetail} />
+                        ))}
+                    </Container>
+                )}
+            </ChannelVideo>
+        </div>
     );
 }
 
 export default ChannelVideos;
-const ChannelVideo = styled.div``;
+const ChannelVideo = styled.div`
+    position: relative;
+    left: 120px;
+    top: 50px;
+    width: 92%;
+`;
 const Container = styled.div`
     font-size: larger;
     display: flex;

@@ -9,6 +9,8 @@ function Playlist() {
     const [currentVideo, setCurrentVideo] = useState(null);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const params = useParams();
+    console.log("params");
+    console.log(params);
     const videoId = params.videoId;
     useEffect(() => {
         if (totalVideo !== null) {
@@ -41,7 +43,8 @@ const PlayListVideoDetailContainer = styled.div`
     width: 100%;
 `;
 const Cotainer = styled.div`
+    margin-top: 6%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 `;

@@ -91,7 +91,6 @@ const Container = styled.div`
     height: 100%;
     width: 62%;
     font-size: large;
-    top: 60px;
     left: 1%;
 `;
 

@@ -8,7 +8,6 @@ function PlaylistListSidebarCard({
     index,
     setCurrentVideo,
 }) {
-    const params = useParams();
     const playListUrl = `/${currentVideoDetail.channelId}/playlists/${currentVideoDetail.playlist}/${currentVideoDetail.id}`;
     const titleStringLength = currentVideoDetail.title.length;
 
