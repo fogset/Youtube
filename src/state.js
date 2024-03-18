@@ -1,4 +1,5 @@
 import { atom, selector } from "recoil";
+import ChannelCommunity from "./components/Channel/ChannelCommunity";
 
 export const currentVideoRecoil = atom({
     key: "currentVideoRecoil",
@@ -63,5 +64,9 @@ export const RecommendVideoRecoil3 = atom({
 
 export const RecommendVideoRecoilTotal = atom({
     key: "RecommendVideoRecoilTotal",
+    default: [],
+});
+export const ChannelCommunityRecoil = atom({
+    key: "ChannelCommunityRecoil",
     default: [],
 });
