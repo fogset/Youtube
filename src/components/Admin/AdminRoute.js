@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { currentUrlRecoil } from "../../state";
 import RecommendVideo from "./RecommendVideo";
+import CommentsGengerator from "../Comments/CommentsGengerator";
 
 function AdminRoute({ page1, page2, page3 }) {
     const [currentUrl, setCurrentUrl] = useRecoilState(currentUrlRecoil);
@@ -39,6 +40,10 @@ function AdminRoute({ page1, page2, page3 }) {
                 <Route
                     path="/recommendVideo"
                     element={<RecommendVideo />}
+                ></Route>
+                <Route
+                    path="/commentsGenerator"
+                    element={<CommentsGengerator />}
                 ></Route>
             </Routes>
         </div>

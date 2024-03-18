@@ -5,6 +5,8 @@ import { FaCloudUploadAlt, FaGhost } from "react-icons/fa";
 import { RiWechatChannelsFill } from "react-icons/ri";
 import { GrDomain } from "react-icons/gr";
 import { CiSettings, CiLogout } from "react-icons/ci";
+import { LiaCommentSolid } from "react-icons/lia";
+import { MdOndemandVideo } from "react-icons/md";
 function AdminSideBar() {
     return (
         <Container>
@@ -45,9 +47,17 @@ function AdminSideBar() {
                     <Item>
                         <SidebarLink to="/recommendVideo">
                             <LinkIcon>
-                                <GrDomain />
+                                <MdOndemandVideo />
                             </LinkIcon>
                             <LinkText>Recommend</LinkText>
+                        </SidebarLink>
+                    </Item>
+                    <Item>
+                        <SidebarLink to="/commentsGenerator">
+                            <LinkIcon>
+                                <LiaCommentSolid />
+                            </LinkIcon>
+                            <LinkText>RandomComments</LinkText>
                         </SidebarLink>
                     </Item>
                 </Menu1>

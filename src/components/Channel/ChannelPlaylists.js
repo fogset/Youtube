@@ -2,7 +2,7 @@ import { recoilChannelList } from "./../../state";
 import { useRecoilState } from "recoil";
 import ChannelHeader from "./ChannelHeader";
 import ChannelSidebar from "./ChannelSidebar";
-import Playlist from "./Playlist/Playlist";
+import Comments from "../Comments/Comments";
 import styled from "styled-components";
 import { MdOutlineSort } from "react-icons/md";
 import ChannelPlayListCard from "./Playlist/ChannelPlayListCard";
