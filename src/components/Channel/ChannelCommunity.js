@@ -28,7 +28,7 @@ function ChannelCommunity() {
         let i = 0;
         if (community !== null) {
             while (i < community.length) {
-                if (community[i].channelId === currentChannelId) {
+                if (community[i].post_ID === currentChannel.communityPost) {
                     setCurrentChannelPost(community[i].post);
                 }
                 i++;
