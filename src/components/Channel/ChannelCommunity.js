@@ -26,7 +26,7 @@ function ChannelCommunity() {
     }, [channelList]);
     useEffect(() => {
         let i = 0;
-        if (community !== null) {
+        if (community !== null && currentChannel !== null) {
             while (i < community.length) {
                 if (community[i].post_ID === currentChannel.communityPost) {
                     setCurrentChannelPost(community[i].post);
@@ -34,7 +34,7 @@ function ChannelCommunity() {
                 i++;
             }
         }
-    }, [community]);
+    }, [community, currentChannel]);
     return (
         <div>
             <ChannelSidebar />
