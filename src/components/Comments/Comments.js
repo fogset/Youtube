@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Comment from "./Comment";
-import { useRecoilState } from "recoil";
-import { currentVideoRecoil } from "../../state";
 
 function Comments({ currentVideo }) {
-    //const [currentVideo, setCurrentVideo] = useRecoilState(currentVideoRecoil);
-
-    // useEffect(() => {
-    //     console.log("comment");
-    //     console.log(currentVideo.comments);
-    // }, [currentVideo]);
-
     return (
         <Container>
             <NewComment>

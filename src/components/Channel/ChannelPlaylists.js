@@ -2,9 +2,8 @@ import { recoilChannelList } from "./../../state";
 import { useRecoilState } from "recoil";
 import ChannelHeader from "./ChannelHeader";
 import ChannelSidebar from "./ChannelSidebar";
-import Comments from "../Comments/Comments";
+import SortByButton from "../Button/SortByButton";
 import styled from "styled-components";
-import { MdOutlineSort } from "react-icons/md";
 import ChannelPlayListCard from "./Playlist/ChannelPlayListCard";
 import { useParams } from "react-router-dom";
 import React, { Fragment, useState, useEffect } from "react";
@@ -30,12 +29,7 @@ function ChannelPlaylists() {
                 <HorizontalLine />
                 <TitleContainer>
                     <Title>Created playlists</Title>
-                    <SortContainer>
-                        <SortIcon>
-                            <MdOutlineSort size={32} />
-                        </SortIcon>
-                        <SortText>Sort by</SortText>
-                    </SortContainer>
+                    <SortByButton />
                 </TitleContainer>
                 {currentChannelPlaylist !== null && (
                     <PlayListUrlContainer>

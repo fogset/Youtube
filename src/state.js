@@ -71,3 +71,8 @@ export const Post_TotalRecoil = atom({
     key: "Post_TotalRecoil",
     default: [],
 });
+
+export const Comments_TotalRecoil = atom({
+    key: "Comments_TotalRecoil",
+    default: [],
+});
