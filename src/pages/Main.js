@@ -14,6 +14,7 @@ import ChannelShorts from "../components/Channel/ChannelShorts";
 import ChannelPlaylists from "./../components/Channel/ChannelPlaylists";
 import ChannelCommunity from "../components/Channel/ChannelCommunity";
 import Playlist from "../components/Channel/Playlist/Playlist";
+import Post from "../components/Channel/CommunityPost/Post";
 
 function Main() {
     const [currentUrl, setCurrentUrl] = useRecoilState(currentUrlRecoil);
@@ -48,11 +49,11 @@ function Main() {
                     path="/:channelId/community"
                     element={<ChannelCommunity />}
                 />
-
                 <Route
                     path="/:channelId/playlists/:playlistName/:videoId"
                     element={<Playlist />}
                 ></Route>
+                <Route path="/post/:postId" element={<Post />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/about2" element={<About2 />}></Route>
                 <Route path="/test" element={<Test />}></Route>

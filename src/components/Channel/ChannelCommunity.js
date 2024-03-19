@@ -4,16 +4,22 @@ import ChannelSidebar from "./ChannelSidebar";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { recoilChannelList, ChannelCommunityRecoil } from "./../../state";
+import { recoilChannelList, Post_TotalRecoil } from "./../../state";
 import Comment from "./../Comments/Comment";
-import Post from "./CommunityPost/Post";
+import ChannelCommunityPostCard from "./CommunityPost/ChannelCommunityPostCard";
 function ChannelCommunity() {
     const [channelList, setChannelList] = useRecoilState(recoilChannelList);
     const [currentChannel, setCurrentChannel] = useState(null);
-    const [community, setCommunity] = useRecoilState(ChannelCommunityRecoil);
+    const [total_Post, setTotal_Post] = useRecoilState(Post_TotalRecoil);
     const [currentChannelPost, setCurrentChannelPost] = useState(null);
     const currentChannelId = useParams().channelId;
     useEffect(() => {
+        GetChannelDetailFrom_Channel_ID();
+    }, [channelList]);
+    useEffect(() => {
+        GetPostListFrom_Channel_ID();
+    }, [total_Post]);
+    function GetChannelDetailFrom_Channel_ID() {
         let i = 0;
         if (channelList !== null) {
             while (i < channelList.length) {
@@ -23,18 +29,18 @@ function ChannelCommunity() {
                 i++;
             }
         }
-    }, [channelList]);
-    useEffect(() => {
-        let i = 0;
-        if (community !== null && currentChannel !== null) {
-            while (i < community.length) {
-                if (community[i].post_ID === currentChannel.communityPost) {
-                    setCurrentChannelPost(community[i].post);
+    }
+    function GetPostListFrom_Channel_ID() {
+        let filterdPost = [];
+        if (total_Post !== null) {
+            for (let i = 0; i < total_Post.length; i++) {
+                if (total_Post[i].channelId === currentChannelId) {
+                    filterdPost.push(total_Post[i]);
                 }
-                i++;
             }
         }
-    }, [community, currentChannel]);
+        setCurrentChannelPost(filterdPost);
+    }
     return (
         <div>
             <ChannelSidebar />
@@ -43,7 +49,7 @@ function ChannelCommunity() {
                 {currentChannelPost !== null && (
                     <div>
                         {currentChannelPost.map((currentPost) => (
-                            <Post
+                            <ChannelCommunityPostCard
                                 currentChannel={currentChannel}
                                 currentPost={currentPost}
                             />

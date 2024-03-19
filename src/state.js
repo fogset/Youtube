@@ -66,7 +66,8 @@ export const RecommendVideoRecoilTotal = atom({
     key: "RecommendVideoRecoilTotal",
     default: [],
 });
-export const ChannelCommunityRecoil = atom({
-    key: "ChannelCommunityRecoil",
+
+export const Post_TotalRecoil = atom({
+    key: "Post_TotalRecoil",
     default: [],
 });
