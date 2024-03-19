@@ -29,7 +29,7 @@ function Post() {
         }
     }
     function GetChannelFromChannel_ID() {
-        if (channelList !== null) {
+        if (channelList !== null && currentPost !== null) {
             for (let i = 0; i < channelList.length; i++) {
                 if (channelList[i].channelId === currentPost.channelId) {
                     setCurrentChannel(channelList[i]);

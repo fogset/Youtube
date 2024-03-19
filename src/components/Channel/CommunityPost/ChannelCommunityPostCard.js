@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import { HiOutlineHandThumbUp, HiOutlineHandThumbDown } from "react-icons/hi2";
 import { MdOutlineComment } from "react-icons/md";
+import { Link } from "react-router-dom";
 function ChannelCommunityPostCard({ currentChannel, currentPost }) {
+    const post_ID_url = `/post/${currentPost.post_ID}`;
     return (
         <PostContainer>
             <ChannelImage src={currentChannel.profileImg} />
@@ -14,10 +16,12 @@ function ChannelCommunityPostCard({ currentChannel, currentPost }) {
                     <HiOutlineHandThumbUp size={30} />
                     <ThumbUpText>{currentPost.thumbUp}</ThumbUpText>
                     <HiOutlineHandThumbDown size={30} />
-                    <CommentIcon>
-                        <MdOutlineComment size={25} />
-                        66
-                    </CommentIcon>
+                    <Link to={post_ID_url} style={{ textDecoration: "none" }}>
+                        <CommentIcon>
+                            <MdOutlineComment size={25} />
+                            66
+                        </CommentIcon>
+                    </Link>
                 </BottomIconContainer>
             </ContentContainer>
         </PostContainer>
