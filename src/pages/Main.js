@@ -23,6 +23,7 @@ function Main() {
         if (
             pathname.includes("video") ||
             pathname.includes("channel") ||
+            pathname.includes("post") ||
             pathname === "/"
         ) {
             setCurrentUrl("home");

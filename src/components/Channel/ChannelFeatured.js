@@ -22,8 +22,6 @@ function ChannelFeatured() {
             }
         }
         setCurrentChannelVideo(filterChannel);
-        //console.log("currentChannelVideo");
-        //console.log(currentChannelVideo);
     }, [totalVideo]);
 
     return (
