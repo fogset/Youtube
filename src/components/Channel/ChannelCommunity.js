@@ -5,7 +5,6 @@ import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { recoilChannelList, Post_TotalRecoil } from "./../../state";
-import Comment from "./../Comments/Comment";
 import ChannelCommunityPostCard from "./CommunityPost/ChannelCommunityPostCard";
 function ChannelCommunity() {
     const [channelList, setChannelList] = useRecoilState(recoilChannelList);

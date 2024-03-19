@@ -10,13 +10,11 @@ function PostComments(comment_ID) {
     const [currentComment, setCurrentComment] = useState(null);
     useEffect(() => {
         GetCommentFromComment_ID();
-        console.log("currentComment");
-        console.log(currentComment);
-    }, [CommentsTotal, currentComment]);
+    }, [CommentsTotal]);
     function GetCommentFromComment_ID() {
         if (CommentsTotal !== null) {
             for (let i = 0; i < CommentsTotal.length; i++) {
-                if (CommentsTotal[i].comments_Name === "Comments_40") {
+                if (CommentsTotal[i].comment_ID === comment_ID.comment_ID) {
                     setCurrentComment(CommentsTotal[i].comments_List);
                 }
             }
