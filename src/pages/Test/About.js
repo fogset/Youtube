@@ -5,6 +5,7 @@ import { useRecoilState } from "recoil";
 import { testRecoil } from "../../state";
 import { useId } from "react";
 import { v4 as uuidv4 } from "uuid";
+import ReactPlayer from "react-player";
 function About({ about }) {
     const [test, setTest] = useRecoilState(testRecoil);
     const passwordHintId = useId();
@@ -27,6 +28,11 @@ function About({ about }) {
             //     "https://www.twitch.tv/sodapoppin",
             //     "https://www.youtube.com/watch?v=eO4TEm3Fllo&list=PLKgRDYt8mDh8o_bTkbJqZvKlr9MTy5WyL&index=4&ab_channel=MISSMAXIMCONTEST",
             // ]}
+            />
+            <ReactPlayer
+                url="https://www.youtube.com/shorts/5YwH-LT0aHc"
+                width="280px"
+                height="510px"
             />
         </Container>
     );

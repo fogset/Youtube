@@ -18,9 +18,7 @@ function Slide5VideoContainer({ currentVideoDetail }) {
                 />
                 <Details>
                     <Texts>
-                        <Title>
-                            {currentVideoDetail.title.substring(0, 30)}
-                        </Title>
+                        <Title>{currentVideoDetail.title}</Title>
                         <Info>
                             {currentVideoDetail.view} views .{" "}
                             {currentVideoDetail.date} agosdf

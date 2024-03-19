@@ -88,7 +88,7 @@ function VideoDetail() {
                         </Info>
                         {shaowMoreDecription === false ? (
                             <div>
-                                {currentVideo.title.substring(0, 320)}
+                                {currentVideo.title}
                                 ...<Button>more</Button>
                             </div>
                         ) : (

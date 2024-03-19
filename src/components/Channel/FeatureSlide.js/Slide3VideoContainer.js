@@ -18,9 +18,7 @@ function Slide3VideoContainer({ currentVideoDetail }) {
                 />
                 <Details>
                     <Texts>
-                        <Title>
-                            {currentVideoDetail.title.substring(0, 32)}
-                        </Title>
+                        <Title>{currentVideoDetail.title}</Title>
                         <Info>
                             {currentVideoDetail.view} views .{" "}
                             {currentVideoDetail.date} ago
