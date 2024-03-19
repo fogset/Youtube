@@ -3,19 +3,21 @@ import styled from "styled-components";
 import SortByButton from "../../Button/SortByButton";
 import { useRecoilState } from "recoil";
 import { Comments_TotalRecoil } from "./../../../state";
-import Comment from "../../Comments/Comment";
+import PostComment from "./PostComment";
 function PostComments(comment_ID) {
     const [CommentsTotal, setCommentsTotal] =
         useRecoilState(Comments_TotalRecoil);
     const [currentComment, setCurrentComment] = useState(null);
     useEffect(() => {
         GetCommentFromComment_ID();
-    }, [CommentsTotal]);
+        console.log("currentComment");
+        console.log(currentComment);
+    }, [CommentsTotal, currentComment]);
     function GetCommentFromComment_ID() {
         if (CommentsTotal !== null) {
             for (let i = 0; i < CommentsTotal.length; i++) {
                 if (CommentsTotal[i].comments_Name === "Comments_40") {
-                    setCurrentComment(CommentsTotal[i]);
+                    setCurrentComment(CommentsTotal[i].comments_List);
                 }
             }
         }
@@ -23,25 +25,28 @@ function PostComments(comment_ID) {
     return (
         <Container>
             <TopContainer>
-                <CommentTitle>67 Comments</CommentTitle>
+                {currentComment !== null && (
+                    <CommentTitle>
+                        {currentComment.length} Comments
+                    </CommentTitle>
+                )}
                 <SortByButton />
             </TopContainer>
             <NewComment>
                 <Avatar src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg" />
                 <Input placeholder="Add a comment..." />
             </NewComment>
+            {currentComment !== null && (
+                <CommentListContainer>
+                    {currentComment.map((comment) => (
+                        <PostComment comment={comment} />
+                    ))}
+                </CommentListContainer>
+            )}
         </Container>
     );
 }
-// {
-//     currentComment !== null && (
-//         <CommentListContainer>
-//             {currentComment.map((comment) => (
-//                 <Comment comment={comment} />
-//             ))}
-//         </CommentListContainer>
-//     );
-// }
+
 export default PostComments;
 const Container = styled.div`
     margin-top: 2%;
