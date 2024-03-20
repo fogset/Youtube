@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import { MdOutlineSort } from "react-icons/md";
-function SortByButton() {
+function SortByButton({ hideText }) {
     return (
         <SortContainer>
             <SortIcon>
                 <MdOutlineSort size={32} />
             </SortIcon>
-            <SortText>Sort by</SortText>
+            {hideText === null && <SortText>Sort by</SortText>}
         </SortContainer>
     );
 }

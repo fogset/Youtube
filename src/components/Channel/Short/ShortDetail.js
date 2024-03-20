@@ -18,6 +18,7 @@ import {
     GetChannelFromChannel_ID,
     GetCommentFromComment_ID,
 } from "../../GetMethodFrom_ID/GetByID";
+import ShortComments from "./ShortComments";
 
 function ShortDetail() {
     const currentShort_ID = useParams().shortId;
@@ -29,6 +30,7 @@ function ShortDetail() {
     const [currentShort, setCurrentShort] = useState(null);
     const [currentComment, setCurrentComment] = useState(null);
     const [currentChannel, setCurrentChannel] = useState(null);
+    const [openCommentBox, setOpenCommentBox] = useState(false);
 
     useEffect(() => {
         GetShortFromShort_ID(currentShort_ID, totalShorts, setCurrentShort);
@@ -40,8 +42,16 @@ function ShortDetail() {
                 channelList,
                 setCurrentChannel
             );
+            GetCommentFromComment_ID(
+                currentShort.comment,
+                CommentsTotal,
+                setCurrentComment
+            );
         }
     }, [currentShort]);
+    function openComment() {
+        setOpenCommentBox(true);
+    }
 
     return (
         <Container>
@@ -72,13 +82,13 @@ function ShortDetail() {
                             </IconContainer>
                             <Text>Dislike</Text>
                         </IconAndTextContainer>
-                        <IconAndTextContainer>
+                        <IconAndTextContainer onClick={openComment}>
                             <IconContainer>
                                 <IconPosition>
                                     <MdComment size={28} />
                                 </IconPosition>
                             </IconContainer>
-                            <Text>9</Text>
+                            <Text>{currentComment.length}</Text>
                         </IconAndTextContainer>
                         <IconAndTextContainer>
                             <IconContainer>
@@ -109,6 +119,14 @@ function ShortDetail() {
                         </ChannelTop>
                         <ShortTitle>{currentShort.title}</ShortTitle>
                     </ChannelDetail>
+                    {openCommentBox && (
+                        <CommentContainer>
+                            <ShortComments
+                                ShortComments={currentComment}
+                                setOpenCommentBox={setOpenCommentBox}
+                            />
+                        </CommentContainer>
+                    )}
                 </Shorts>
             )}
         </Container>
@@ -194,4 +212,14 @@ const ShortTitle = styled.div`
     margin-top: 5px;
     font-size: 25px;
     font-weight: bold;
+`;
+const CommentContainer = styled.div`
+    position: absolute;
+    width: 400px;
+    height: 550px;
+    background-color: white;
+    top: 0px;
+    left: 500px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
 `;
