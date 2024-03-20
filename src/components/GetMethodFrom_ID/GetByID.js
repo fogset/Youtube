@@ -60,36 +60,26 @@ export function GetVideoListFromChannel_ID(
     setCurrentChannelVideo(filterChannel);
 }
 
-export function GetShortsListFromChannel_ID(
-    channel_ID,
-    totalShorts,
-    setCurrentChannelShorts
-) {
+export function GetShortsListFromChannel_ID(ID, totalShorts) {
     let filterShorts = [];
     if (totalShorts !== null) {
         for (let i = 0; i < totalShorts.length; i++) {
-            if (totalShorts[i].channelId === channel_ID) {
+            if (totalShorts[i].channel_ID === ID) {
                 filterShorts.push(totalShorts[i]);
             }
         }
     }
-    setCurrentChannelShorts(filterShorts);
+    return filterShorts;
 }
 
-export function GetPlayListByChannel_ID(
-    channel_ID,
-    channelsTotal,
-    setCurrentChannelPlaylist
-) {
-    let FilterPlayList = [];
+export function GetPlayListByChannel_ID(channel_ID, channelsTotal) {
     if (channelsTotal !== null) {
         for (let i = 0; i < channelsTotal.length; i++) {
             if (channelsTotal[i].channelId === channel_ID) {
-                setCurrentChannelPlaylist(channelsTotal[i].playlist);
+                return channelsTotal[i].playlist;
             }
         }
     }
-    setCurrentChannelPlaylist(FilterPlayList);
 }
 export function GetPostListFrom_Channel_ID(
     channel_ID,

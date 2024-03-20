@@ -6,22 +6,15 @@ import { useRecoilState } from "recoil";
 import { Shorts_TotalRecoil } from "./../../state";
 import { useParams } from "react-router-dom";
 import ShortCard from "./Short/ShortCard";
+import { GetShortsListFromChannel_ID } from "../GetMethodFrom_ID/GetByID";
 function ChannelShorts() {
     const [totalShorts, setTotalShorts] = useRecoilState(Shorts_TotalRecoil);
     const [currentChannelShorts, setCurrentChannelShorts] = useState(null);
-    const currentChannelId = useParams().channelId;
+    const ID = useParams().channelId;
     useEffect(() => {
-        let filterChannel = [];
-        if (totalShorts !== null) {
-            for (let i = 0; i < totalShorts.length; i++) {
-                if (totalShorts[i].channel_ID === currentChannelId) {
-                    filterChannel.push(totalShorts[i]);
-                }
-            }
-        }
-        setCurrentChannelShorts(filterChannel);
+        var FilterShort = GetShortsListFromChannel_ID(ID, totalShorts);
+        setCurrentChannelShorts(FilterShort);
     }, [totalShorts]);
-
     return (
         <div>
             <ChannelSidebar />

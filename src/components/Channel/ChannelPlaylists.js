@@ -7,19 +7,15 @@ import styled from "styled-components";
 import ChannelPlayListCard from "./Playlist/ChannelPlayListCard";
 import { useParams } from "react-router-dom";
 import React, { Fragment, useState, useEffect } from "react";
+import { GetPlayListByChannel_ID } from "../GetMethodFrom_ID/GetByID";
 function ChannelPlaylists() {
     const [channelsTotal, setChannelsTotal] = useRecoilState(recoilChannelList);
     const [currentChannelPlaylist, setCurrentChannelPlaylist] = useState(null);
-    const currentChannelId = useParams().channelId;
+    const Id = useParams().channelId;
 
     useEffect(() => {
-        if (channelsTotal !== null) {
-            for (let i = 0; i < channelsTotal.length; i++) {
-                if (channelsTotal[i].channelId === currentChannelId) {
-                    setCurrentChannelPlaylist(channelsTotal[i].playlist);
-                }
-            }
-        }
+        var FilterPlaylist = GetPlayListByChannel_ID(Id, channelsTotal);
+        setCurrentChannelPlaylist(FilterPlaylist);
     }, [channelsTotal]);
     return (
         <div>
@@ -36,7 +32,7 @@ function ChannelPlaylists() {
                         {currentChannelPlaylist.map((currentPlaylist) => (
                             <ChannelPlayListCard
                                 currentPlaylist={currentPlaylist}
-                                channelId={currentChannelId}
+                                channelId={Id}
                             />
                         ))}
                     </PlayListUrlContainer>
