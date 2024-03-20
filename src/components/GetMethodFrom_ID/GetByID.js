@@ -43,3 +43,66 @@ export function GetShortFromShort_ID(short_ID, totalShorts, setCurrentShort) {
         }
     }
 }
+
+export function GetVideoListFromChannel_ID(
+    channel_ID,
+    totalVideos,
+    setCurrentChannelVideo
+) {
+    let filterChannel = [];
+    if (totalVideos !== null) {
+        for (let i = 0; i < totalVideos.length; i++) {
+            if (totalVideos[i].channelId === channel_ID) {
+                filterChannel.push(totalVideos[i]);
+            }
+        }
+    }
+    setCurrentChannelVideo(filterChannel);
+}
+
+export function GetShortsListFromChannel_ID(
+    channel_ID,
+    totalShorts,
+    setCurrentChannelShorts
+) {
+    let filterShorts = [];
+    if (totalShorts !== null) {
+        for (let i = 0; i < totalShorts.length; i++) {
+            if (totalShorts[i].channelId === channel_ID) {
+                filterShorts.push(totalShorts[i]);
+            }
+        }
+    }
+    setCurrentChannelShorts(filterShorts);
+}
+
+export function GetPlayListByChannel_ID(
+    channel_ID,
+    channelsTotal,
+    setCurrentChannelPlaylist
+) {
+    let FilterPlayList = [];
+    if (channelsTotal !== null) {
+        for (let i = 0; i < channelsTotal.length; i++) {
+            if (channelsTotal[i].channelId === channel_ID) {
+                setCurrentChannelPlaylist(channelsTotal[i].playlist);
+            }
+        }
+    }
+    setCurrentChannelPlaylist(FilterPlayList);
+}
+export function GetPostListFrom_Channel_ID(
+    channel_ID,
+    total_Post,
+    setPostList
+) {
+    let filterdPost = [];
+    if (total_Post !== null) {
+        for (let i = 0; i < total_Post.length; i++) {
+            if (total_Post[i].channelId === channel_ID) {
+                filterdPost.push(total_Post[i]);
+            }
+        }
+    }
+    setPostList(filterdPost);
+}

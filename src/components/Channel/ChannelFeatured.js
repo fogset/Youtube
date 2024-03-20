@@ -7,21 +7,14 @@ import { useParams } from "react-router-dom";
 import ChannelSidebar from "./ChannelSidebar";
 import Slide3Video from "./FeatureSlide.js/Slide3Video";
 import Slide5Video from "./FeatureSlide.js/Slide5Video";
+import { GetVideoListFromChannel_ID } from "../GetMethodFrom_ID/GetByID";
 
 function ChannelFeatured() {
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const [currentChannelVideo, setCurrentChannelVideo] = useState(null);
-    const currentChannelId = useParams().channelId;
+    const Id = useParams().channelId;
     useEffect(() => {
-        let filterChannel = [];
-        if (totalVideo !== null) {
-            for (let i = 0; i < totalVideo.length; i++) {
-                if (totalVideo[i].channelId === currentChannelId) {
-                    filterChannel.push(totalVideo[i]);
-                }
-            }
-        }
-        setCurrentChannelVideo(filterChannel);
+        GetVideoListFromChannel_ID(Id, totalVideo, setCurrentChannelVideo);
     }, [totalVideo]);
 
     return (

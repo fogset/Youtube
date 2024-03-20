@@ -6,21 +6,15 @@ import styled from "styled-components";
 import Card from "../Card/Card";
 import ChannelHeader from "./ChannelHeader";
 import ChannelSidebar from "./ChannelSidebar";
+import { GetVideoListFromChannel_ID } from "../GetMethodFrom_ID/GetByID";
 function ChannelVideos() {
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const [currentChannelVideo, setCurrentChannelVideo] = useState(null);
-    const currentChannelId = useParams().channelId;
+    const Id = useParams().channelId;
     useEffect(() => {
-        let filterChannel = [];
-        if (totalVideo !== null) {
-            for (let i = 0; i < totalVideo.length; i++) {
-                if (totalVideo[i].channelId === currentChannelId) {
-                    filterChannel.push(totalVideo[i]);
-                }
-            }
-        }
-        setCurrentChannelVideo(filterChannel);
+        GetVideoListFromChannel_ID(Id, totalVideo, setCurrentChannelVideo);
     }, [totalVideo]);
+
     return (
         <div>
             <ChannelSidebar />

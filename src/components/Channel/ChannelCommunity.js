@@ -6,41 +6,26 @@ import { useParams } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { recoilChannelList, Post_TotalRecoil } from "./../../state";
 import ChannelCommunityPostCard from "./CommunityPost/ChannelCommunityPostCard";
+import {
+    GetChannelFromChannel_ID,
+    GetPostListFrom_Channel_ID,
+} from "../GetMethodFrom_ID/GetByID";
 
 function ChannelCommunity() {
-    const [channelList, setChannelList] = useRecoilState(recoilChannelList);
-    const [currentChannel, setCurrentChannel] = useState(null);
+    const [total_Channel, setChannelList] = useRecoilState(recoilChannelList);
     const [total_Post, setTotal_Post] = useRecoilState(Post_TotalRecoil);
+
+    const [currentChannel, setCurrentChannel] = useState(null);
     const [currentChannelPost, setCurrentChannelPost] = useState(null);
-    const currentChannelId = useParams().channelId;
+
+    const ID = useParams().channelId;
     useEffect(() => {
-        GetChannelDetailFrom_Channel_ID();
-    }, [channelList]);
+        GetChannelFromChannel_ID(ID, total_Channel, setCurrentChannel);
+    }, [total_Channel]);
     useEffect(() => {
-        GetPostListFrom_Channel_ID();
+        GetPostListFrom_Channel_ID(ID, total_Post, setCurrentChannelPost);
     }, [total_Post]);
-    function GetChannelDetailFrom_Channel_ID() {
-        let i = 0;
-        if (channelList !== null) {
-            while (i < channelList.length) {
-                if (channelList[i].channelId === currentChannelId) {
-                    setCurrentChannel(channelList[i]);
-                }
-                i++;
-            }
-        }
-    }
-    function GetPostListFrom_Channel_ID() {
-        let filterdPost = [];
-        if (total_Post !== null) {
-            for (let i = 0; i < total_Post.length; i++) {
-                if (total_Post[i].channelId === currentChannelId) {
-                    filterdPost.push(total_Post[i]);
-                }
-            }
-        }
-        setCurrentChannelPost(filterdPost);
-    }
+
     return (
         <div>
             <ChannelSidebar />
