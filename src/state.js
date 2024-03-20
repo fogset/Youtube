@@ -76,3 +76,8 @@ export const Comments_TotalRecoil = atom({
     key: "Comments_TotalRecoil",
     default: [],
 });
+
+export const Shorts_TotalRecoil = atom({
+    key: "Shorts_TotalRecoil",
+    default: [],
+});
