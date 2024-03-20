@@ -20,6 +20,7 @@ import {
     RecommendVideoRecoilTotal,
     Post_TotalRecoil,
     Comments_TotalRecoil,
+    Shorts_TotalRecoil,
 } from "./state";
 import Main from "./pages/Main";
 import AdminRoute from "./components/Admin/AdminRoute";
@@ -38,6 +39,7 @@ function App() {
     const [post_Total, setPost_Total] = useRecoilState(Post_TotalRecoil);
     const [comments_Total, setComments_Total] =
         useRecoilState(Comments_TotalRecoil);
+    const [shorts_Total, setShorts_Total] = useRecoilState(Shorts_TotalRecoil);
     const getCurrentPage = async (setData, currentPage) => {
         const querySnapshot = await getDocs(collection(db, currentPage));
         const snapshot = querySnapshot.docs.map((doc) => ({
@@ -55,6 +57,7 @@ function App() {
         getCurrentPage(setCurrentRecommendVideo, "recommendVideo");
         getCurrentPage(setPost_Total, "posts");
         getCurrentPage(setComments_Total, "comments");
+        getCurrentPage(setShorts_Total, "shorts");
     }
     function SwitchHomePageVideo() {
         if (localStorage.getItem("currentPage") === null) {

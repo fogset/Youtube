@@ -33,6 +33,7 @@ function About({ about }) {
                 url="https://www.youtube.com/shorts/5YwH-LT0aHc"
                 width="280px"
                 height="510px"
+                loop={true}
             />
         </Container>
     );
@@ -52,4 +53,5 @@ const Container = styled.div`
     top: 200px;
     left: 500px;
     z-index: 20;
+    font-size: larger;
 `;
