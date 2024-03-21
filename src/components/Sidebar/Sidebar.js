@@ -16,6 +16,7 @@ import { CgMediaLive } from "react-icons/cg";
 import { ImFire } from "react-icons/im";
 import { TfiCup } from "react-icons/tfi";
 import Subscriptions from "../SubscribedChannel/Subscriptions";
+import { Link } from "react-router-dom";
 function Sidebar() {
     return (
         <Container>
@@ -39,11 +40,12 @@ function Sidebar() {
                     <IoIosArrowForward />
                 </RightArrowIcon>
             </Item>
-
-            <Item>
-                <FontAwesomeIcon icon={faClockRotateLeft} />
-                <Item_text>History</Item_text>
-            </Item>
+            <LinkHistory to="/feed/history">
+                <Item>
+                    <FontAwesomeIcon icon={faClockRotateLeft} />
+                    <Item_text>History</Item_text>
+                </Item>
+            </LinkHistory>
 
             <Item>
                 <MdOutlineWatchLater />
@@ -165,4 +167,7 @@ const Page = styled.div`
     background-color: pink;
     color: red;
     font-size: larger;
+`;
+const LinkHistory = styled(Link)`
+    text-decoration: none;
 `;
