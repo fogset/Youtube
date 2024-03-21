@@ -3,15 +3,18 @@ import { GoHome } from "react-icons/go";
 import { SiYoutubeshorts } from "react-icons/si";
 import { MdOutlineSubscriptions } from "react-icons/md";
 import { CiYoutube } from "react-icons/ci";
+import { Link } from "react-router-dom";
 function ChannelSidebar() {
     return (
         <Container>
-            <Item>
-                <Icon_container>
-                    <GoHome size={22} />
-                </Icon_container>
-                <Item_text>Home</Item_text>
-            </Item>
+            <LinkUrl to="/">
+                <Item>
+                    <Icon_container>
+                        <GoHome size={22} />
+                    </Icon_container>
+                    <Item_text>Home</Item_text>
+                </Item>
+            </LinkUrl>
             <Item>
                 <Icon_container>
                     <SiYoutubeshorts size={22} />
@@ -55,3 +58,6 @@ const Item_text = styled.div`
     font-size: 13px;
 `;
 const Icon_container = styled.div``;
+const LinkUrl = styled(Link)`
+    text-decoration: none;
+`;

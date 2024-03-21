@@ -22,18 +22,19 @@ function Main() {
     const pathname = window.location.pathname;
     useEffect(() => {
         if (
-            pathname.includes("video") ||
-            pathname.includes("channel") ||
-            pathname.includes("post") ||
-            pathname === "/"
+            pathname === "/upload" ||
+            pathname === "/createchannel" ||
+            pathname === "/admin" ||
+            pathname === "/recommendVideo" ||
+            pathname === "/commentsGenerator"
         ) {
-            setCurrentUrl("home");
+            setCurrentUrl("admin");
         }
     }, [pathname]);
 
     return (
         <div>
-            {currentUrl === "home" && <Header />}
+            {currentUrl !== "admin" && <Header />}
             <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/video/:videoId" element={<VideoDetail />}></Route>

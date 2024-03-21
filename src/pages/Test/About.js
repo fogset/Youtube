@@ -35,6 +35,12 @@ function About({ about }) {
                 height="510px"
                 loop={true}
             />
+            <ReactPlayer
+                url="https://www.youtube.com/watch?v=oFqW2gEFe5k&ab_channel=%EA%BD%83%EB%B9%B5TVGGotBBangTV"
+                width="510px"
+                height="300px"
+                loop={true}
+            />
         </Container>
     );
 }
