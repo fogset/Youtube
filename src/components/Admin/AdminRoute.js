@@ -15,9 +15,11 @@ function AdminRoute({ page1, page2, page3 }) {
     const pathname = window.location.pathname;
     useEffect(() => {
         if (
-            pathname === "/" ||
+            pathname === "/upload" ||
             pathname === "/createchannel" ||
-            pathname === "/admin"
+            pathname === "/admin" ||
+            pathname === "/recommendVideo" ||
+            pathname === "/commentsGenerator"
         ) {
             setCurrentUrl("admin");
         }

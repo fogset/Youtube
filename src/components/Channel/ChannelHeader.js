@@ -4,30 +4,22 @@ import { useRecoilState } from "recoil";
 import { recoilChannelList, totalVideoRecoil } from "../../state";
 import Card from "../Card/Card";
 import { Link, useParams } from "react-router-dom";
-
+import { GetChannelFromChannel_ID } from "../GetMethodFrom_ID/GetByID";
 function ChannelHeader() {
-    const [channelList, setChannelList] = useRecoilState(recoilChannelList);
+    const [total_Channel, setTotalChannel] = useRecoilState(recoilChannelList);
     const [currentChannel, setCurrentChannel] = useState(null);
     const params = useParams();
-    const currentChannelId = params.channelId;
+    const ID = params.channelId;
     useEffect(() => {
-        let i = 0;
-        if (channelList !== null) {
-            while (i < channelList.length) {
-                if (channelList[i].channelId === currentChannelId) {
-                    setCurrentChannel(channelList[i]);
-                }
-                i++;
-            }
-        }
-    }, [channelList]);
+        GetChannelFromChannel_ID(ID, total_Channel, setCurrentChannel);
+    }, [total_Channel]);
 
-    const featureUrl = `/${currentChannelId}/featured`;
-    const videoUrl = `/${currentChannelId}/videos`;
-    const shortsUrl = `/${currentChannelId}/shorts`;
-    const liveUrl = `/${currentChannelId}/playlists`;
-    const playlistUrl = `/${currentChannelId}/playlists`;
-    const communityUrl = `/${currentChannelId}/community`;
+    const featureUrl = `/${ID}/featured`;
+    const videoUrl = `/${ID}/videos`;
+    const shortsUrl = `/${ID}/shorts`;
+    const liveUrl = `/${ID}/playlists`;
+    const playlistUrl = `/${ID}/playlists`;
+    const communityUrl = `/${ID}/community`;
     return (
         <div>
             {currentChannel !== null && (
