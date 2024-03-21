@@ -2,9 +2,10 @@ import React, { Fragment, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { recoilChannelList, totalVideoRecoil } from "../../state";
-import Card from "../Card/Card";
 import { Link, useParams } from "react-router-dom";
 import { GetChannelFromChannel_ID } from "../GetMethodFrom_ID/GetByID";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "./../../firestore";
 function ChannelHeader() {
     const [total_Channel, setTotalChannel] = useRecoilState(recoilChannelList);
     const [currentChannel, setCurrentChannel] = useState(null);
@@ -13,6 +14,19 @@ function ChannelHeader() {
     useEffect(() => {
         GetChannelFromChannel_ID(ID, total_Channel, setCurrentChannel);
     }, [total_Channel]);
+    const subscribeChannel = async (e) => {
+        e.preventDefault();
+        try {
+            const docRef = await addDoc(collection(db, "subscribedChannel"), {
+                channelId: currentChannel.channelId,
+                profileImg: currentChannel.profileImg,
+                title: currentChannel.title,
+            });
+            alert("subscribed");
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const featureUrl = `/${ID}/featured`;
     const videoUrl = `/${ID}/videos`;
@@ -35,7 +49,9 @@ function ChannelHeader() {
                                 subscribers ‧ 363 videos
                             </ProfileVideo>
                             <ProfileAbout>{currentChannel.about}</ProfileAbout>
-                            <ProfileSubscribe>Subscribe</ProfileSubscribe>
+                            <ProfileSubscribe onClick={subscribeChannel}>
+                                Subscribe
+                            </ProfileSubscribe>
                         </ProfileDetail>
                     </Profile>
                 </div>

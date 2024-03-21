@@ -21,6 +21,7 @@ import {
     Post_TotalRecoil,
     Comments_TotalRecoil,
     Shorts_TotalRecoil,
+    Subscribed_ChannelRecoil,
 } from "./state";
 import Main from "./pages/Main";
 import AdminRoute from "./components/Admin/AdminRoute";
@@ -40,7 +41,11 @@ function App() {
     const [comments_Total, setComments_Total] =
         useRecoilState(Comments_TotalRecoil);
     const [shorts_Total, setShorts_Total] = useRecoilState(Shorts_TotalRecoil);
-    const getCurrentPage = async (setData, currentPage) => {
+    const [Sub_Channel, setSub_Channel] = useRecoilState(
+        Subscribed_ChannelRecoil
+    );
+
+    const getFirebaseData = async (setData, currentPage) => {
         const querySnapshot = await getDocs(collection(db, currentPage));
         const snapshot = querySnapshot.docs.map((doc) => ({
             id: doc.id,
@@ -49,15 +54,16 @@ function App() {
         setData(snapshot);
     };
     function getData() {
-        getCurrentPage(setPage1, "page1");
-        getCurrentPage(setPage2, "page2");
-        getCurrentPage(setPage3, "page3");
-        getCurrentPage(setChannels, "channels");
-        getCurrentPage(setTotalVideo, "videos");
-        getCurrentPage(setCurrentRecommendVideo, "recommendVideo");
-        getCurrentPage(setPost_Total, "posts");
-        getCurrentPage(setComments_Total, "comments");
-        getCurrentPage(setShorts_Total, "shorts");
+        getFirebaseData(setPage1, "page1");
+        getFirebaseData(setPage2, "page2");
+        getFirebaseData(setPage3, "page3");
+        getFirebaseData(setChannels, "channels");
+        getFirebaseData(setTotalVideo, "videos");
+        getFirebaseData(setCurrentRecommendVideo, "recommendVideo");
+        getFirebaseData(setPost_Total, "posts");
+        getFirebaseData(setComments_Total, "comments");
+        getFirebaseData(setShorts_Total, "shorts");
+        getFirebaseData(setSub_Channel, "subscribedChannel");
     }
     function SwitchHomePageVideo() {
         if (localStorage.getItem("currentPage") === null) {
@@ -103,17 +109,27 @@ export default App;
 //<Main HomePageVideo={HomePageVideo} />
 
 const Container = styled.div``;
-// useEffect(() => {
-//     console.log("page1");
-//     console.log(page1);
-//     console.log("page2");
-//     console.log(page2);
-//     console.log("page3");
-//     console.log(page3);
-//     console.log("channel");
-//     console.log(channels);
-//     console.log("totalvideo");
-//     console.log(totalVideo);
-//     console.log("currentRecommendVideo");
-//     console.log(currentRecommendVideo);
-// }, [page3, page1, page2, channels, totalVideo, currentRecommendVideo]);
+//  useEffect(() => {
+//      console.log("page1");
+//      console.log(page1);
+//      console.log("page2");
+//      console.log(page2);
+//      console.log("page3");
+//      console.log(page3);
+//      console.log("channel");
+//      console.log(channels);
+//      console.log("totalvideo");
+//      console.log(totalVideo);
+//      console.log("currentRecommendVideo");
+//      console.log(currentRecommendVideo);
+//      console.log("Sub_Channel");
+//      console.log(Sub_Channel);
+//  }, [
+//      page3,
+//      page1,
+//      page2,
+//      channels,
+//      totalVideo,
+//      currentRecommendVideo,
+//      Sub_Channel,
+//  ]);

@@ -81,3 +81,7 @@ export const Shorts_TotalRecoil = atom({
     key: "Shorts_TotalRecoil",
     default: [],
 });
+export const Subscribed_ChannelRecoil = atom({
+    key: "Subscribed_ChannelRecoil",
+    default: [],
+});
