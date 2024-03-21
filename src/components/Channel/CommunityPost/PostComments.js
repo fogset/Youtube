@@ -4,22 +4,16 @@ import SortByButton from "../../Button/SortByButton";
 import { useRecoilState } from "recoil";
 import { Comments_TotalRecoil } from "./../../../state";
 import PostComment from "./PostComment";
+import { GetCommentFromComment_ID } from "../../GetMethodFrom_ID/GetByID";
 function PostComments(comment_ID) {
     const [CommentsTotal, setCommentsTotal] =
         useRecoilState(Comments_TotalRecoil);
     const [currentComment, setCurrentComment] = useState(null);
+    var commentID = comment_ID.comment_ID;
     useEffect(() => {
-        GetCommentFromComment_ID();
+        GetCommentFromComment_ID(commentID, CommentsTotal, setCurrentComment);
     }, [CommentsTotal]);
-    function GetCommentFromComment_ID() {
-        if (CommentsTotal !== null) {
-            for (let i = 0; i < CommentsTotal.length; i++) {
-                if (CommentsTotal[i].comment_ID === comment_ID.comment_ID) {
-                    setCurrentComment(CommentsTotal[i].comments_List);
-                }
-            }
-        }
-    }
+
     return (
         <Container>
             <TopContainer>
