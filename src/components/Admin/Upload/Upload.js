@@ -8,10 +8,10 @@ import {
     addDoc,
 } from "firebase/firestore";
 import styled from "styled-components";
-import commentData from "../Comments/comments.json";
-import { db } from "../../firestore";
+import commentData from "../../Comments/comments.json";
+import { db } from "../../../firestore";
 import { useRecoilState } from "recoil";
-import { recoilChannelList } from "../../state";
+import { recoilChannelList } from "../../../state";
 import { Dropdown } from "primereact/dropdown";
 import { v4 as uuidv4 } from "uuid";
 

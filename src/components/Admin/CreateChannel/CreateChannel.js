@@ -8,7 +8,7 @@ import {
     addDoc,
 } from "firebase/firestore";
 import styled from "styled-components";
-import { db } from "../firestore";
+import { db } from "../../../firestore";
 
 function CreateChannel() {
     const [banner, setBanner] = useState("");

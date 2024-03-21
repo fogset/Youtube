@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import Upload from "../Upload/Upload";
-import CreateChannel from "../../pages/CreateChannel";
+import Upload from "./Upload/Upload";
+import CreateChannel from "./CreateChannel/CreateChannel";
 import Admin from "./Admin";
 import AdminSideBar from "./AdminSideBar";
 import styled from "styled-components";
