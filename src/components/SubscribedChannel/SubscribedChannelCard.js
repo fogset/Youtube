@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 function SubscribedChannelCard({ currentChannel }) {
     const channelUrl = `/${currentChannel.channelId}/featured`;
-    console.log(channelUrl);
     return (
         <LinkChannel to={channelUrl}>
             <Container>

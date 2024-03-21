@@ -12,7 +12,7 @@ import {
     page1Recoil,
 } from "../../state";
 import VideoPlayer from "../../pages/VideoPlayer";
-import Modal from "../Modal/Modal";
+import Modal from "./Modal/Modal";
 function RecommendVideo() {
     const [currentRecommendVideo, setCurrentRecommendVideo] = useRecoilState(
         RecommendVideoRecoilTotal

@@ -8,10 +8,6 @@ function Subscriptions() {
     const [Sub_Channel, setSub_Channel] = useRecoilState(
         Subscribed_ChannelRecoil
     );
-    useEffect(() => {
-        console.log("Sub_Channel");
-        console.log(Sub_Channel);
-    }, [Sub_Channel]);
     return (
         <Subscription>
             <SubscriptionsText>Subscriptions</SubscriptionsText>

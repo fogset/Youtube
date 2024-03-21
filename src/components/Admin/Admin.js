@@ -9,7 +9,7 @@ import {
     HomePageVideoRecoil,
 } from "../../state";
 import Card from "../Card/Card";
-import Modal from "../Modal/Modal";
+import Modal from "./Modal/Modal";
 
 function Admin({ page1, page2, page3 }) {
     const [modalTotalVideo, setModalTotalVideo] = useRecoilState(
