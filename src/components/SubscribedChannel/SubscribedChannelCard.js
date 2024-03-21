@@ -20,6 +20,9 @@ const Container = styled.div`
     position: relative;
     height: 30px;
     width: 100%;
+    &:hover {
+        background-color: #dcdcdc;
+    }
 `;
 const ProfileImg = styled.img`
     width: 22px;
@@ -29,7 +32,7 @@ const ProfileImg = styled.img`
     left: 10px;
 `;
 const Title = styled.h1`
-    font-size: 12px;
+    font-size: 13px;
     align-items: center;
     margin-bottom: 10px;
     position: absolute;

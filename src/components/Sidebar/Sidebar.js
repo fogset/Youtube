@@ -32,7 +32,7 @@ function Sidebar() {
                 <Item_text>Subscriptions</Item_text>
             </Item>
             <hr />
-            <Subscriptions />
+
             <Item>
                 <You_text>You</You_text>
                 <RightArrowIcon>
@@ -54,6 +54,7 @@ function Sidebar() {
                 <Item_text>Liked videos</Item_text>
             </Item>
             <hr />
+            <Subscriptions />
             <Explore_text>Explore</Explore_text>
             <Item>
                 <ImFire />
