@@ -15,6 +15,7 @@ import { IoMusicalNoteOutline, IoGameControllerOutline } from "react-icons/io5";
 import { CgMediaLive } from "react-icons/cg";
 import { ImFire } from "react-icons/im";
 import { TfiCup } from "react-icons/tfi";
+import Subscriptions from "../SubscribedChannel/Subscriptions";
 function Sidebar() {
     return (
         <Container>
@@ -31,6 +32,7 @@ function Sidebar() {
                 <Item_text>Subscriptions</Item_text>
             </Item>
             <hr />
+            <Subscriptions />
             <Item>
                 <You_text>You</You_text>
                 <RightArrowIcon>
