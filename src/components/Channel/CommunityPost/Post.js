@@ -6,6 +6,10 @@ import { Post_TotalRecoil, recoilChannelList } from "./../../../state";
 import ChannelSidebar from "../ChannelSidebar";
 import styled from "styled-components";
 import PostComments from "./PostComments";
+import {
+    GetPostFromPost_ID,
+    GetChannelFromChannel_ID,
+} from "../../GetMethodFrom_ID/GetByID";
 function Post() {
     const [total_Post, setTotal_Post] = useRecoilState(Post_TotalRecoil);
     const [channelList, setChannelList] = useRecoilState(recoilChannelList);
@@ -14,29 +18,15 @@ function Post() {
     const [currentChannel, setCurrentChannel] = useState(null);
     const currentPost_Id = useParams().postId;
     useEffect(() => {
-        GetPostFromPost_ID();
+        GetPostFromPost_ID(currentPost_Id, total_Post, setCurrentPost);
     }, [total_Post]);
     useEffect(() => {
-        GetChannelFromChannel_ID();
+        if (currentPost !== null) {
+            var ID = currentPost.channelId;
+            GetChannelFromChannel_ID(ID, channelList, setCurrentChannel);
+        }
     }, [currentPost]);
-    function GetPostFromPost_ID() {
-        if (total_Post !== null) {
-            for (let i = 0; i < total_Post.length; i++) {
-                if (total_Post[i].post_ID === currentPost_Id) {
-                    setCurrentPost(total_Post[i]);
-                }
-            }
-        }
-    }
-    function GetChannelFromChannel_ID() {
-        if (channelList !== null && currentPost !== null) {
-            for (let i = 0; i < channelList.length; i++) {
-                if (channelList[i].channelId === currentPost.channelId) {
-                    setCurrentChannel(channelList[i]);
-                }
-            }
-        }
-    }
+
     return (
         <div>
             <ChannelSidebar />

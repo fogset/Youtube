@@ -96,3 +96,12 @@ export function GetPostListFrom_Channel_ID(
     }
     setPostList(filterdPost);
 }
+export function GetPostFromPost_ID(post_ID, total_Post, setCurrentPost) {
+    if (total_Post !== null) {
+        for (let i = 0; i < total_Post.length; i++) {
+            if (total_Post[i].post_ID === post_ID) {
+                setCurrentPost(total_Post[i]);
+            }
+        }
+    }
+}
