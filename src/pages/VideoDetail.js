@@ -9,7 +9,8 @@ import { RiShareForwardLine } from "react-icons/ri";
 import { IoEllipsisHorizontal } from "react-icons/io5";
 import LikeDisLike from "../components/Button/LikeDisLike";
 import { Link, useParams } from "react-router-dom";
-
+import { GetVideoFromVideo_ID } from "../components/GetMethodFrom_ID/GetByID";
+import { AddVideoToHistory } from "../components/Firebase/Write";
 function VideoDetail() {
     const [currentVideo, setCurrentVideo] = useState(null);
     const [page1, setPage1] = useRecoilState(page1Recoil);
@@ -21,20 +22,17 @@ function VideoDetail() {
     const params = useParams();
     const videoId = params.videoId;
     useEffect(() => {
-        if (totalVideo !== null) {
-            for (let i = 0; i < totalVideo.length; i++) {
-                if (totalVideo[i].id === videoId) {
-                    setCurrentVideo(totalVideo[i]);
-                }
-            }
-        }
+        GetVideoFromVideo_ID(videoId, totalVideo, setCurrentVideo);
     }, [totalVideo]);
+    useEffect(() => {
+        if (currentVideo !== null) {
+            AddVideoToHistory(currentVideo);
+        }
+    }, [currentVideo]);
     useEffect(() => {
         var RecommendVideoLocal = JSON.parse(
             localStorage.getItem("RecommendVideo")
         );
-        // console.log("localstorage");
-        // console.log(RecommendVideoLocal);
         setcurrentRecommendVideo(RecommendVideoLocal);
     }, [videoId]);
 
@@ -58,7 +56,7 @@ function VideoDetail() {
                                 <Image src={currentVideo.channelImg} />
                                 <ChannelDetail>
                                     <ChannelName>
-                                        {currentVideo.channelId}
+                                        {currentVideo.channel_Title}
                                     </ChannelName>
                                     <ChannelCounter>
                                         {currentVideo.subscribers} subscribers

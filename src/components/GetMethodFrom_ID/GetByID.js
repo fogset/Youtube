@@ -105,3 +105,12 @@ export function GetPostFromPost_ID(post_ID, total_Post, setCurrentPost) {
         }
     }
 }
+export function GetVideoFromVideo_ID(video_ID, total_Video, setCurrentVideo) {
+    if (total_Video !== null) {
+        for (let i = 0; i < total_Video.length; i++) {
+            if (total_Video[i].id === video_ID) {
+                setCurrentVideo(total_Video[i]);
+            }
+        }
+    }
+}
