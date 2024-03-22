@@ -8,6 +8,7 @@ export const AddVideoToHistory = async (currentVideo) => {
             view: currentVideo.view,
             description: currentVideo.description,
             channel_Title: currentVideo.channel_Title,
+            videoUrl: currentVideo.video,
         });
     } catch (error) {
         console.log(error);

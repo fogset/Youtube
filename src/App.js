@@ -97,10 +97,6 @@ function App() {
     useEffect(() => {
         SetHomeVideoToPage();
     });
-    // useEffect(() => {
-    //     console.log("history");
-    //     console.log(history);
-    // }, [history]);
 
     return (
         <Container>

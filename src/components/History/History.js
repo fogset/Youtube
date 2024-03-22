@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { Watch_HistoryRecoil } from "./../../state";
 import HistoryVideoCard from "./HistoryVideoCard";
+import HistoryCard from "./HistoryCard";
+
 function History() {
     const [history, setHistory] = useRecoilState(Watch_HistoryRecoil);
     useEffect(() => {
@@ -16,13 +18,12 @@ function History() {
             <HistoryContainer>
                 <WatchHistory>Watch history</WatchHistory>
                 <Today>Today</Today>
-
-                {history !== null && (
+                {history && (
                     <Container>
-                        {history.map((currentVideo) => (
-                            <HistoryCardContianer>
-                                <Title>{currentVideo.title}</Title>
-                            </HistoryCardContianer>
+                        {history.map((currentVideoDetail) => (
+                            <HistoryCard
+                                currentVideoDetail={currentVideoDetail}
+                            />
                         ))}
                     </Container>
                 )}
@@ -36,6 +37,7 @@ const Today = styled.div`
     margin-top: 3%;
     font-size: 22px;
     font-weight: bold;
+    margin-bottom: 15px;
     &:hover {
         background-color: #dcdcdc;
     }
@@ -46,36 +48,10 @@ const WatchHistory = styled.div`
 `;
 const HistoryContainer = styled.div`
     position: absolute;
-    background-color: lightblue;
+
     top: 10%;
     left: 220px;
     height: 100%;
-    width: 900px;
+    width: 700px;
 `;
-
-const Container = styled.div`
-    /* font-size: larger;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    overflow-x: hidden;
-    overflow-y: auto;
-    height: 100%;
-    width: 100%;
-    margin-bottom: 100px; */
-`;
-const Title = styled.h1`
-    font-size: 13px;
-    align-items: center;
-    margin-bottom: 10px;
-    position: absolute;
-    left: 50px;
-    top: -5px;
-    color: black;
-`;
-const HistoryCardContianer = styled.div`
-    display: flex;
-    position: relative;
-    height: 100px;
-    width: 100%;
-`;
+const Container = styled.div``;
