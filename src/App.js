@@ -22,6 +22,7 @@ import {
     Comments_TotalRecoil,
     Shorts_TotalRecoil,
     Subscribed_ChannelRecoil,
+    Watch_HistoryRecoil,
 } from "./state";
 import Main from "./pages/Main";
 import AdminRoute from "./components/Admin/AdminRoute";
@@ -44,6 +45,7 @@ function App() {
     const [Sub_Channel, setSub_Channel] = useRecoilState(
         Subscribed_ChannelRecoil
     );
+    const [history, setHistory] = useRecoilState(Watch_HistoryRecoil);
 
     const getFirebaseData = async (setData, currentPage) => {
         const querySnapshot = await getDocs(collection(db, currentPage));
@@ -64,6 +66,7 @@ function App() {
         getFirebaseData(setComments_Total, "comments");
         getFirebaseData(setShorts_Total, "shorts");
         getFirebaseData(setSub_Channel, "subscribedChannel");
+        getFirebaseData(setHistory, "watchHistory");
     }
     function SwitchHomePageVideo() {
         if (localStorage.getItem("currentPage") === null) {
@@ -94,6 +97,10 @@ function App() {
     useEffect(() => {
         SetHomeVideoToPage();
     });
+    // useEffect(() => {
+    //     console.log("history");
+    //     console.log(history);
+    // }, [history]);
 
     return (
         <Container>

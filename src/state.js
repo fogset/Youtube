@@ -85,3 +85,7 @@ export const Subscribed_ChannelRecoil = atom({
     key: "Subscribed_ChannelRecoil",
     default: [],
 });
+export const Watch_HistoryRecoil = atom({
+    key: "Watch_HistoryRecoil",
+    default: [],
+});
