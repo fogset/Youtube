@@ -19,16 +19,19 @@ function ChannelCard({ currentVideo }) {
     function AddToCurrentPage() {
         setModalTotalVideo([...modalTotalVideo, currentVideo]);
         setAddedModalVideo([...addedModalVideo, currentVideo]);
-        alert(modalTotalVideo[modalTotalVideo.length - 1].title);
+        //alert(modalTotalVideo[modalTotalVideo.length - 1].title);
+        console.log("modalTotalVideo");
+        console.log(modalTotalVideo);
     }
     const [play, setPlay] = useState(false);
     function Enter() {
-        setPlay(true);
+        //setPlay(true);
         //alert(currentVideo.title);
     }
     function Out() {
-        setPlay(false);
+        //setPlay(false);
     }
+
     return (
         <Container onClick={selectedVideoButton} selected={selected}>
             <VideoContainer onMouseEnter={Enter} onMouseOut={Out}>
@@ -42,7 +45,7 @@ function ChannelCard({ currentVideo }) {
             <Details>
                 <div>
                     <ChannelImage src={currentVideo.channelImg} />
-                    <ChannelId>{currentVideo.channelId}</ChannelId>
+                    <ChannelId>{currentVideo.channel_Title}</ChannelId>
                 </div>
                 <Texts>
                     <Title>{currentVideo.title}</Title>
@@ -90,7 +93,7 @@ const ChannelImage = styled.img`
 `;
 const ChannelId = styled.div`
     margin-top: 10px;
-    font-size: 15px;
+    font-size: 10px;
 `;
 const Texts = styled.div`
     margin-left: 1%;

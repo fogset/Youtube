@@ -53,16 +53,18 @@ function Admin({ page1, page2, page3 }) {
             console.log("addedModalVideo");
             console.log(addedModalVideo[i]);
             const docRef = addDoc(collection(db, currentPage), {
+                channelId: addedModalVideo[i].channelId,
+                channelImg: addedModalVideo[i].channelImg,
+                channel_Title: addedModalVideo[i].channel_Title,
+                comments: addedModalVideo[i].comments,
                 date: addedModalVideo[i].date,
+                description: addedModalVideo[i].description,
                 id: addedModalVideo[i].id,
+                playlist: addedModalVideo[i].playlist,
+                subscribers: addedModalVideo[i].subscribers,
                 title: addedModalVideo[i].title,
                 video: addedModalVideo[i].video,
                 view: addedModalVideo[i].view,
-                channelId: addedModalVideo[i].channelId,
-                comments: addedModalVideo[i].comments,
-                channelImg: addedModalVideo[i].channelImg,
-                subscribers: addedModalVideo[i].subscribers,
-                description: addedModalVideo[i].description,
             });
         }
         alert("added");

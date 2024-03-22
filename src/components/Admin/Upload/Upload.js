@@ -23,12 +23,12 @@ function Upload() {
     const [view, setView] = useState("");
     const [commentRandom, setCommentRandom] = useState(1);
     const [channelId, setChannelId] = useState("");
-    var commentArray = [];
     const [channels, setChannels] = useRecoilState(recoilChannelList);
     const [selectChannel, setSelectChannel] = useState(null);
     const [subscribers, setSubscribers] = useState("");
     const videoId = uuidv4().slice(0, 8);
     const [description, setDescription] = useState(null);
+    var commentArray = [];
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,6 +42,7 @@ function Upload() {
                 view: view + selectViewUnit.unit,
                 channelId: selectChannel.channelId,
                 channelImg: selectChannel.profileImg,
+                channel_Title: selectChannel.title,
                 subscribers: selectChannel.subscribers,
                 comments: commentArray,
                 description: description,

@@ -31,7 +31,7 @@ function Card({ type, currentVideoDetail }) {
                                 {titleStringLength > 32 && "..."}
                             </Title>
                             <ChannelName>
-                                {currentVideoDetail.channelId}
+                                {currentVideoDetail.channel_Title}
                             </ChannelName>
                             <Info>
                                 {currentVideoDetail.view} views .{" "}
