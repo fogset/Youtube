@@ -3,15 +3,10 @@ import Sidebar from "../Sidebar/Sidebar";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { Watch_HistoryRecoil } from "./../../state";
-import HistoryVideoCard from "./HistoryVideoCard";
 import HistoryCard from "./HistoryCard";
 
 function History() {
     const [history, setHistory] = useRecoilState(Watch_HistoryRecoil);
-    useEffect(() => {
-        console.log("history from history page");
-        console.log(history);
-    }, [history]);
     return (
         <div>
             <Sidebar />
