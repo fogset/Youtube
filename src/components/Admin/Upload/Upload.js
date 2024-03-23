@@ -17,7 +17,6 @@ import { v4 as uuidv4 } from "uuid";
 
 function Upload() {
     const [date, setDate] = useState("");
-    const [id, setId] = useState("");
     const [title, setTitle] = useState("");
     const [video, setVideo] = useState("");
     const [view, setView] = useState("");
@@ -36,7 +35,6 @@ function Upload() {
         try {
             const docRef = await addDoc(collection(db, "videos"), {
                 date: date + " " + selectDateUnit.unit,
-                id: videoId,
                 title: title,
                 video: video,
                 view: view + selectViewUnit.unit,
@@ -108,12 +106,7 @@ function Upload() {
                     className="w-full md:w-30px"
                 />
             </DropdownSelect>
-            <StyledLabel>Video Unique Id: </StyledLabel>
-            <StyledInput
-                type="text"
-                value={videoId}
-                onChange={(e) => setId(e.target.value)}
-            />
+
             {selectChannel && <ChannelImage src={selectChannel.profileImg} />}
             {selectDateUnit && (
                 <StyledLabel>
