@@ -97,7 +97,6 @@ function App() {
     useEffect(() => {
         SetHomeVideoToPage();
     });
-
     return (
         <Container>
             {HomePageVideo !== null && <Main />}
