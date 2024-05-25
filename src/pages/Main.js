@@ -17,6 +17,7 @@ import Playlist from "../components/Channel/Playlist/Playlist";
 import Post from "../components/Channel/CommunityPost/Post";
 import ShortDetail from "../components/Channel/Short/ShortDetail";
 import History from "../components/History/History";
+import Search from "../components/Search/Search";
 
 function Main() {
     const [currentUrl, setCurrentUrl] = useRecoilState(currentUrlRecoil);
@@ -39,30 +40,19 @@ function Main() {
             <Routes>
                 <Route path="/" element={<Home />}></Route>
                 <Route path="/video/:videoId" element={<VideoDetail />}></Route>
-                <Route
-                    path="/:channelId/featured"
-                    element={<ChannelFeatured />}
-                />
+                <Route path="/:channelId/featured" element={<ChannelFeatured />} />
                 <Route path="/:channelId/videos" element={<ChannelVideos />} />
                 <Route path="/:channelId/shorts" element={<ChannelShorts />} />
-                <Route
-                    path="/:channelId/playlists"
-                    element={<ChannelPlaylists />}
-                />
-                <Route
-                    path="/:channelId/community"
-                    element={<ChannelCommunity />}
-                />
+                <Route path="/:channelId/playlists" element={<ChannelPlaylists />} />
+                <Route path="/:channelId/community" element={<ChannelCommunity />} />
                 <Route
                     path="/:channelId/playlists/:playlistName/:videoId"
                     element={<Playlist />}
                 ></Route>
                 <Route path="/post/:postId" element={<Post />}></Route>
-                <Route
-                    path="/shorts/:shortId"
-                    element={<ShortDetail />}
-                ></Route>
+                <Route path="/shorts/:shortId" element={<ShortDetail />}></Route>
                 <Route path="/feed/history" element={<History />}></Route>
+                <Route path="/search/:searchResult" element={<Search />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/about2" element={<About2 />}></Route>
                 <Route path="/test" element={<Test />}></Route>

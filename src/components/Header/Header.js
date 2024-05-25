@@ -1,10 +1,6 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faBars,
-    faUser,
-    faMagnifyingGlass,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faUser, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -13,7 +9,8 @@ import SearchLogo from "./Search.png";
 import UploadLogo from "./upload.png";
 import { IoIosNotificationsOutline } from "react-icons/io";
 function Header() {
-    const [name, setName] = useState("");
+    const [searchResult, setSearchResult] = useState("firebase");
+    const searchId = `/search/${searchResult}`;
     return (
         <Container>
             <IconContainer>
@@ -23,10 +20,12 @@ function Header() {
             <SearchContainer>
                 <SearchInput
                     type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={searchResult}
+                    onChange={(e) => setSearchResult(e.target.value)}
                 />
-                <SearchImage src={SearchLogo} />
+                <Link to={searchId} style={{ textDecoration: "none" }}>
+                    <SearchImage src={SearchLogo} />
+                </Link>
             </SearchContainer>
             <UploadImage src={UploadLogo} />
             <NotificationContainer>
@@ -98,10 +97,10 @@ const SearchContainer = styled.div`
 const SearchInput = styled.input`
     position: absolute;
     border: none;
-    background-color: transparent;
-    top: 6px;
+    background-color: white;
+    top: 10px;
     left: 10px;
-    height: 28px;
+    height: 22px;
     width: 390px;
     z-index: 2;
 `;
