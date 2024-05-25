@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import youtubeLogo from "./youtube.png";
@@ -19,7 +18,6 @@ function Header() {
             <Link to="/" style={{ textDecoration: "none" }}>
                 <YoutubeImage src={youtubeLogo} />
             </Link>
-
             <SearchContainer>
                 <SearchInput
                     type="text"

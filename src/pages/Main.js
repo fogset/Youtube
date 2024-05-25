@@ -18,6 +18,7 @@ import Post from "../components/Channel/CommunityPost/Post";
 import ShortDetail from "../components/Channel/Short/ShortDetail";
 import History from "../components/History/History";
 import Search from "../components/Search/Search";
+import SearchVideoDetail from "./../components/Search/SearchVideoDetail";
 
 function Main() {
     const [currentUrl, setCurrentUrl] = useRecoilState(currentUrlRecoil);
@@ -53,6 +54,7 @@ function Main() {
                 <Route path="/shorts/:shortId" element={<ShortDetail />}></Route>
                 <Route path="/feed/history" element={<History />}></Route>
                 <Route path="/search/:searchResult" element={<Search />}></Route>
+                <Route path="/video/search/:searchVideoId" element={<SearchVideoDetail />}></Route>
                 <Route path="/about" element={<About />}></Route>
                 <Route path="/about2" element={<About2 />}></Route>
                 <Route path="/test" element={<Test />}></Route>

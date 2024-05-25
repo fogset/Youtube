@@ -8,7 +8,8 @@ function SearchCard({ currentSearchRes }) {
     const searchId = currentSearchRes.id;
 
     if (searchId.kind === "youtube#video") {
-        videoUrl = `https://www.youtube.com/watch?v=${searchId.videoId}`;
+        //videoUrl = `https://www.youtube.com/watch?v=${searchId.videoId}`;
+        videoUrl = `/video/search/${searchId.videoId}`;
     } else if (searchId.kind === "youtube#playlist") {
         videoUrl = `https://www.youtube.com/watch?list=${searchId.playlistId}`;
     }
