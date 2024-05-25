@@ -16,11 +16,11 @@ function VideoDetail() {
     const [page1, setPage1] = useRecoilState(page1Recoil);
     const [totalVideo, setTotalVideo] = useRecoilState(totalVideoRecoil);
     const [shaowMoreDecription, setShowMoreDecription] = useState(false);
-    const [currentRecommendVideo, setcurrentRecommendVideo] = useRecoilState(
-        RecommendVideoRecoil1
-    );
+    const [currentRecommendVideo, setcurrentRecommendVideo] = useRecoilState(RecommendVideoRecoil1);
     const params = useParams();
     const videoId = params.videoId;
+    console.log("videoId");
+    console.log(videoId);
     useEffect(() => {
         GetVideoFromVideo_ID(videoId, totalVideo, setCurrentVideo);
     }, [totalVideo]);
@@ -30,9 +30,7 @@ function VideoDetail() {
         }
     }, [currentVideo]);
     useEffect(() => {
-        var RecommendVideoLocal = JSON.parse(
-            localStorage.getItem("RecommendVideo")
-        );
+        var RecommendVideoLocal = JSON.parse(localStorage.getItem("RecommendVideo"));
         setcurrentRecommendVideo(RecommendVideoLocal);
     }, [videoId]);
 
@@ -55,9 +53,7 @@ function VideoDetail() {
                             <ChannelInfo>
                                 <Image src={currentVideo.channelImg} />
                                 <ChannelDetail>
-                                    <ChannelName>
-                                        {currentVideo.channel_Title}
-                                    </ChannelName>
+                                    <ChannelName>{currentVideo.channel_Title}</ChannelName>
                                     <ChannelCounter>
                                         {currentVideo.subscribers} subscribers
                                     </ChannelCounter>
@@ -93,9 +89,7 @@ function VideoDetail() {
                         ) : (
                             <div>
                                 {currentVideo.description}
-                                <Button onClick={LessDecription}>
-                                    show less
-                                </Button>
+                                <Button onClick={LessDecription}>show less</Button>
                             </div>
                         )}
                     </Description>
@@ -105,9 +99,7 @@ function VideoDetail() {
             {currentRecommendVideo !== null && (
                 <Recommendation>
                     {currentRecommendVideo.map((currentVideoDetail) => (
-                        <RecommendCard
-                            currentVideoDetail={currentVideoDetail}
-                        />
+                        <RecommendCard currentVideoDetail={currentVideoDetail} />
                     ))}
                 </Recommendation>
             )}

@@ -26,7 +26,7 @@ function About2() {
     return (
         <Container>
             <ReactPlayer
-                url="https://www.youtube.com/watch?v=2NWETogPvNc&ab_channel=%E6%84%9B%E7%8A%AC%E3%82%BB%E3%83%AD%E5%90%9B"
+                url="https://www.youtube.com/watch?v=rMJMGWb1zBk&list=PLSVW22jAG8pC-4yRGXgbuSIhvaohXSDPw"
                 width="710px"
                 height="400px"
                 loop={true}

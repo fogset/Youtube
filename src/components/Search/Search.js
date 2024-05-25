@@ -10,7 +10,7 @@ function Search() {
     const params = useParams();
     const searchResult = params.searchResult;
     const fetchOtherData = async () => {
-        const channelData_url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${searchResult}&key=${API_KEY}`;
+        const channelData_url = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=30&q=${searchResult}&key=${API_KEY}`;
         await fetch(channelData_url)
             .then((res) => res.json())
             .then((data) => setSearchResultData(data.items));
@@ -18,21 +18,17 @@ function Search() {
     useEffect(() => {
         if (searchResultData === null) {
             fetchOtherData();
-            console.log("searchResultData-------------------------------");
-            console.log(searchResultData);
         }
-        console.log("searchResultData-------------------------------");
-        console.log(searchResultData);
     }, [searchResultData]);
     return (
         <div>
             <Sidebar />
             <HistoryContainer>
-                <WatchHistory>Watch history</WatchHistory>
-                <Today>Today</Today>
                 {searchResultData && (
                     <Container>
-                        <SearchCard searchResult={searchResultData[0].snippet} />
+                        {searchResultData.map((currentSearchRes) => (
+                            <SearchCard currentSearchRes={currentSearchRes} />
+                        ))}
                     </Container>
                 )}
             </HistoryContainer>
@@ -41,25 +37,12 @@ function Search() {
 }
 
 export default Search;
-const Today = styled.div`
-    margin-top: 3%;
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    &:hover {
-        background-color: #dcdcdc;
-    }
-`;
-const WatchHistory = styled.div`
-    font-size: 35px;
-    font-weight: bold;
-`;
+
 const HistoryContainer = styled.div`
     position: absolute;
-
-    top: 10%;
+    top: 12%;
     left: 220px;
     height: 100%;
-    width: 700px;
+    width: 100%;
 `;
 const Container = styled.div``;

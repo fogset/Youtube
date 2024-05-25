@@ -9,14 +9,17 @@ import SearchLogo from "./Search.png";
 import UploadLogo from "./upload.png";
 import { IoIosNotificationsOutline } from "react-icons/io";
 function Header() {
-    const [searchResult, setSearchResult] = useState("firebase");
+    const [searchResult, setSearchResult] = useState("");
     const searchId = `/search/${searchResult}`;
     return (
         <Container>
             <IconContainer>
                 <FontAwesomeIcon icon={faBars} size="1x" />
             </IconContainer>
-            <YoutubeImage src={youtubeLogo} />
+            <Link to="/" style={{ textDecoration: "none" }}>
+                <YoutubeImage src={youtubeLogo} />
+            </Link>
+
             <SearchContainer>
                 <SearchInput
                     type="text"
