@@ -3,26 +3,17 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "../../firestore";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
-import {
-    addedModalVideoRecoil,
-    modalTotalVideoRecoil,
-    HomePageVideoRecoil,
-} from "../../state";
+import { addedModalVideoRecoil, modalTotalVideoRecoil, HomePageVideoRecoil } from "../../state";
 import Card from "../Card/Card";
 import Modal from "./Modal/Modal";
 import PageCard from "./PageCard";
 
 function Admin({ page1, page2, page3 }) {
-    const [modalTotalVideo, setModalTotalVideo] = useRecoilState(
-        modalTotalVideoRecoil
-    );
-    const [addedModalVideo, setAddedModalVideo] = useRecoilState(
-        addedModalVideoRecoil
-    );
+    const [modalTotalVideo, setModalTotalVideo] = useRecoilState(modalTotalVideoRecoil);
+    const [addedModalVideo, setAddedModalVideo] = useRecoilState(addedModalVideoRecoil);
     const [openModal, setOpenModal] = useState(false);
     const [currentPage, setCurrentPage] = useState("page1");
-    const [HomePageVideo, setHomePageVideo] =
-        useRecoilState(HomePageVideoRecoil);
+    const [HomePageVideo, setHomePageVideo] = useRecoilState(HomePageVideoRecoil);
 
     function button1Clicked() {
         setModalTotalVideo(page1);
@@ -61,7 +52,7 @@ function Admin({ page1, page2, page3 }) {
                 date: addedModalVideo[i].date,
                 description: addedModalVideo[i].description,
                 id: addedModalVideo[i].id,
-                playlist: addedModalVideo[i].playlist,
+                // playlist: addedModalVideo[i].playlist,
                 subscribers: addedModalVideo[i].subscribers,
                 title: addedModalVideo[i].title,
                 video: addedModalVideo[i].video,
@@ -93,9 +84,7 @@ function Admin({ page1, page2, page3 }) {
                     ))}
                 </Container>
             )}
-            <SetPageButton onClick={SetCurrentPage}>
-                Add to DataBase
-            </SetPageButton>
+            <SetPageButton onClick={SetCurrentPage}>Add to DataBase</SetPageButton>
             <SetButton onClick={openModalButton}>openModal</SetButton>
             {openModal === true && <Modal setOpenModal={setOpenModal} />}
         </MainPage>

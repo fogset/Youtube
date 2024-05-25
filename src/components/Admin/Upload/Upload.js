@@ -237,13 +237,14 @@ const StyledInput = styled.input`
     border-radius: 5px;
 `;
 const DateInput = styled.input`
-    width: 30%;
+    width: 40%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
 `;
 
 const DateContainer = styled.div`
+    margin-top: 30px;
     display: flex;
 `;
 const ViewInput = styled.input`
