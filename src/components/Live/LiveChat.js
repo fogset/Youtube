@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import SingleLiveChat from "./SingleLiveChat";
-import SortByButton from "../Button/SortByButton";
+import { RiMoneyDollarBoxLine } from "react-icons/ri";
 import { GrClose } from "react-icons/gr";
 import { FaChevronDown } from "react-icons/fa";
 import React, { useState, useEffect, useRef } from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { BsThreeDotsVertical, BsEmojiSunglasses } from "react-icons/bs";
 function LiveChat() {
     const [messageList, setMessageList] = useState([]);
     const [message, setMessage] = useState();
@@ -36,25 +36,28 @@ function LiveChat() {
                     </Close>
                 </CloseSort>
             </TopContainer>
-
             <CommentListContainer>
                 {messageList.map((chat) => (
                     <SingleLiveChat chat={chat} />
                 ))}
-                <p ref={bottomRef}></p>
+                <ScrollBottom ref={bottomRef}></ScrollBottom>
             </CommentListContainer>
-
             <HorizontalLine />
             <NewComment>
                 <HorizontalLine />
-                <Avatar src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg" />
-                <Input
-                    type="text"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    onKeyDown={enterChat}
-                    placeholder="Add a comment..."
-                />
+                <InputContainer>
+                    <Input
+                        type="text"
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        onKeyDown={enterChat}
+                        placeholder="Chat..."
+                    />
+                    <BsEmojiSunglasses size={30} />
+                </InputContainer>
+                <DollarContainer>
+                    <RiMoneyDollarBoxLine size={30} />
+                </DollarContainer>
             </NewComment>
         </Container>
     );
@@ -69,9 +72,8 @@ const Container = styled.div`
     border-width: 2px;
     border-color: gray;
     width: 400px;
-    height: 500px;
+    height: 600px;
     border-radius: 10px;
-    padding: 16px;
 `;
 
 const CommentTitle = styled.div`
@@ -83,11 +85,22 @@ const CommentTitle = styled.div`
 const TopContainer = styled.div`
     position: absolute;
     top: 20px;
-    width: 400px;
+    width: 360px;
     display: flex;
+    height: 40px;
+    border-bottom: solid;
+    border-bottom-color: gray;
+    border-bottom-width: 2px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background-color: white;
+    z-index: 100;
 `;
 
 const Close = styled.div``;
+const ScrollBottom = styled.div`
+    height: 35px;
+`;
 const CloseSort = styled.div`
     position: absolute;
     right: 20px;
@@ -102,14 +115,14 @@ const NewComment = styled.div`
     position: absolute;
     display: flex;
     align-items: center;
-    width: 397px;
+    width: 400px;
     background-color: white;
     margin-top: 2px;
     z-index: 10;
     border-style: solid;
     border-width: 1px;
-    bottom: -60px;
-    right: 10px;
+    bottom: 0px;
+    right: 0px;
 `;
 
 const Avatar = styled.img`
@@ -121,7 +134,7 @@ const Avatar = styled.img`
 
 const Input = styled.input`
     border: none;
-    border-bottom: 1px solid ${({ theme }) => theme.soft};
+    font-size: large;
     background-color: transparent;
     outline: none;
     padding: 5px;
@@ -130,15 +143,31 @@ const Input = styled.input`
 
 const HorizontalLine = styled.div`
     position: absolute;
-    height: 2px;
+    height: 10px;
     width: 100px;
     color: red;
     z-index: 100;
 `;
 const CommentListContainer = styled.div`
-    margin-top: 10px;
+    margin-top: 50px;
     overflow-x: hidden;
     overflow-y: auto;
     margin-left: 10px;
     height: 500px;
+`;
+const InputContainer = styled.div`
+    background-color: #f2f2f2;
+    height: 35px;
+    width: 300px;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: row;
+    padding: 7px;
+    align-items: center;
+`;
+const DollarContainer = styled.div`
+    background-color: #f2f2f2;
+    border-radius: 50px;
+    padding: 7px;
+    align-items: center;
 `;
