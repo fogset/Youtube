@@ -19,6 +19,8 @@ function Search() {
         if (searchResultData === null) {
             fetchOtherData();
         }
+        console.log(searchResultData);
+        console.log("searchResultData");
     }, [searchResultData]);
     return (
         <div>

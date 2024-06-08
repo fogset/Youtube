@@ -4,17 +4,20 @@ import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
 function SearchCard({ currentSearchRes }) {
     const videoDetail = currentSearchRes.snippet;
-    var videoUrl = null;
+    var youtubeVideoUrl = null;
     const searchId = currentSearchRes.id;
 
     if (searchId.kind === "youtube#video") {
-        //videoUrl = `https://www.youtube.com/watch?v=${searchId.videoId}`;
-        videoUrl = `/video/search/${searchId.videoId}`;
+        youtubeVideoUrl = `https://www.youtube.com/watch?v=${searchId.videoId}`;
+        //CloneYoutubeUrl = `/video/search/${searchId.videoId}`;
     } else if (searchId.kind === "youtube#playlist") {
-        videoUrl = `https://www.youtube.com/watch?list=${searchId.playlistId}`;
+        youtubeVideoUrl = `https://www.youtube.com/watch?list=${searchId.playlistId}`;
+    } else if (searchId.kind === "youtube#channel") {
+        youtubeVideoUrl = `https://www.youtube.com/@GreatStackDev`;
+        alert(searchId.channelId);
     }
     return (
-        <LinkVideo to={videoUrl}>
+        <LinkVideo to={youtubeVideoUrl}>
             <Container>
                 <VideoImg src={videoDetail.thumbnails.high.url} />
                 <VideoDetail>
