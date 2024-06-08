@@ -4,6 +4,7 @@ import { useRecoilState } from "recoil";
 import { testRecoil } from "../../state";
 import ReactPlayer from "react-player";
 import { API_KEY } from "../../data";
+import LiveChat from "../../components/Live/LiveChat";
 
 function About2() {
     const [test, setTest] = useRecoilState(testRecoil);
@@ -26,13 +27,14 @@ function About2() {
     return (
         <Container>
             <ReactPlayer
-                url="https://www.youtube.com/watch?v=rMJMGWb1zBk&list=PLSVW22jAG8pC-4yRGXgbuSIhvaohXSDPw"
+                url="https://www.youtube.com/live/pZzia5NrMuU"
                 width="710px"
                 height="400px"
                 loop={true}
                 controls={true}
             />
-            <div onClick={getData}>Click </div>
+
+            <LiveChat />
         </Container>
     );
 }
@@ -44,9 +46,11 @@ const Text = styled.div`
 const Container = styled.div`
     position: absolute;
     top: 100px;
-    left: 500px;
+    left: 100px;
     z-index: 20;
+    display: flex;
 `;
 // useEffect(() => {
 //     alert("test");
 // }, [test]);
+// <div onClick={getData}>Click </div>;
