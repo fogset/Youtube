@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faUser, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
@@ -9,7 +9,14 @@ import UploadLogo from "./upload.png";
 import { IoIosNotificationsOutline } from "react-icons/io";
 function Header() {
     const [searchResult, setSearchResult] = useState("");
+    const [logInUser, setLoginUser] = useState(null);
     const searchId = `/search/${searchResult}`;
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem("LoginUser"));
+        setLoginUser(data);
+        console.log("logInUser in header");
+        console.log(logInUser);
+    }, []);
     return (
         <Container>
             <IconContainer>
@@ -33,7 +40,7 @@ function Header() {
                 <IoIosNotificationsOutline size="30px" />
             </NotificationContainer>
             <Link to="/login" style={{ textDecoration: "none" }}>
-                <ProfileImg src="https://plus.unsplash.com/premium_photo-1676637000058-96549206fe71?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
+                {logInUser && <ProfileImg src={logInUser.profileImg} />}
             </Link>
         </Container>
     );

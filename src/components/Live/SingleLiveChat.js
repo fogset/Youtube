@@ -4,12 +4,12 @@ import SortByButton from "../Button/SortByButton";
 import { GrClose } from "react-icons/gr";
 import PostComment from "../Channel/CommunityPost/PostComment";
 
-function SingleLiveChat({ chat }) {
+function SingleLiveChat({ chat, logInUser }) {
     return (
         <Container>
-            <Avatar src={chat.profileImg} />
+            <Avatar src={logInUser.profileImg} />
             <Details>
-                <Name>{chat.name}</Name>
+                <Name>{logInUser.username}</Name>
                 <Text>{chat.message}</Text>
             </Details>
         </Container>

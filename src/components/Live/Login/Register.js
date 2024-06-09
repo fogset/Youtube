@@ -19,7 +19,11 @@ function Register({ setIfLogin }) {
         setError(null);
         createUserWithEmailAndPassword(auth, userCredentials.email, userCredentials.password)
             .then((userCredential) => {
-                AddUserToFirebase(userCredentials.email, userCredentials.username);
+                AddUserToFirebase(
+                    userCredentials.email,
+                    userCredentials.username,
+                    userCredentials.profileImg
+                );
             })
             .catch((error) => {
                 setError(error.message);
@@ -28,14 +32,12 @@ function Register({ setIfLogin }) {
     function Login() {
         setIfLogin(true);
     }
-    const AddUserToFirebase = async (email, username) => {
+    const AddUserToFirebase = async (email, username, profileImg) => {
         try {
-            await setDoc(doc(db, "users", email), {
-                contact: [],
+            await setDoc(doc(db, "ghostGamers", email), {
                 username: username,
                 email: email,
-                description: "Write a description😀",
-                profile: "",
+                profileImg: profileImg,
                 createdAt: serverTimestamp(),
             });
             alert(email + " --  " + "added");
@@ -54,6 +56,14 @@ function Register({ setIfLogin }) {
                             handleCredentials(e);
                         }}
                         type="text"
+                        name="profileImg"
+                        placeholder="profile image url"
+                    />
+                    <Input
+                        onChange={(e) => {
+                            handleCredentials(e);
+                        }}
+                        type="username"
                         name="username"
                         placeholder="username"
                     />

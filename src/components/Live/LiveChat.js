@@ -12,6 +12,7 @@ function LiveChat() {
     const [messageList, setMessageList] = useState([]);
     const [message, setMessage] = useState();
     const bottomRef = useRef(null);
+    const [logInUser, setLoginUser] = useState(null);
     function enterChat(event) {
         if (event.key === "Enter") {
             messageList.push(message);
@@ -22,6 +23,12 @@ function LiveChat() {
             });
         }
     }
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem("LoginUser"));
+        setLoginUser(data);
+        console.log("logInUser in singlelive chat");
+        console.log(logInUser);
+    }, []);
 
     useEffect(() => {
         const GetUpdate = onSnapshot(doc(db, "liveChat", "nDKDQxiq5GEnkWST9cL0"), (doc) => {
@@ -48,7 +55,7 @@ function LiveChat() {
             </TopContainer>
             <CommentListContainer>
                 {messageList.map((chat) => (
-                    <SingleLiveChat chat={chat} />
+                    <SingleLiveChat chat={chat} logInUser={logInUser} />
                 ))}
                 <ScrollBottom ref={bottomRef} />
             </CommentListContainer>

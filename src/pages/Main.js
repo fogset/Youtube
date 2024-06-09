@@ -20,6 +20,9 @@ import History from "../components/History/History";
 import Search from "../components/Search/Search";
 import SearchVideoDetail from "./../components/Search/SearchVideoDetail";
 import LoginOrSignUp from "../components/Live/Login/LoginOrSignUp";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useState } from "react";
+import { GetUserByEmail } from "../components/Firebase/Get";
 
 function Main() {
     const [currentUrl, setCurrentUrl] = useRecoilState(currentUrlRecoil);
@@ -35,6 +38,12 @@ function Main() {
             setCurrentUrl("admin");
         }
     }, [pathname]);
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            GetUserByEmail(user.email);
+        }
+    });
 
     return (
         <div>
