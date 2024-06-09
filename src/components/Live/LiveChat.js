@@ -7,6 +7,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { BsThreeDotsVertical, BsEmojiSunglasses } from "react-icons/bs";
 import { doc, onSnapshot } from "firebase/firestore";
 import { db } from "./../../firestore";
+import { updateMessagebyId } from "../Firebase/Update";
 
 function LiveChat() {
     const [messageList, setMessageList] = useState([]);
@@ -15,7 +16,7 @@ function LiveChat() {
     const [logInUser, setLoginUser] = useState(null);
     function enterChat(event) {
         if (event.key === "Enter") {
-            messageList.push(message);
+            sendMessage();
             setMessage("");
             bottomRef.current.scrollIntoView({
                 behavior: "smooth",
@@ -34,9 +35,17 @@ function LiveChat() {
         const GetUpdate = onSnapshot(doc(db, "liveChat", "nDKDQxiq5GEnkWST9cL0"), (doc) => {
             setMessageList(doc.data().chat);
         });
-        console.log("messageList");
-        console.log(messageList);
+        // console.log("messageList");
+        // console.log(messageList);
     });
+    function sendMessage() {
+        const newMessage = {
+            message: message,
+            profileImg: logInUser.profileImg,
+            username: logInUser.username,
+        };
+        updateMessagebyId(newMessage);
+    }
     return (
         <Container>
             <TopContainer>

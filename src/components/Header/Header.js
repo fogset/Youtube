@@ -35,6 +35,7 @@ function Header() {
                     <SearchImage src={SearchLogo} />
                 </Link>
             </SearchContainer>
+
             <UploadImage src={UploadLogo} />
             <NotificationContainer>
                 <IoIosNotificationsOutline size="30px" />
