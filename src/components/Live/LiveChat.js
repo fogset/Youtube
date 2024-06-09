@@ -12,7 +12,6 @@ function LiveChat() {
     function enterChat(event) {
         if (event.key === "Enter") {
             messageList.push(message);
-            console.log(messageList);
             setMessage("");
             bottomRef.current.scrollIntoView({
                 behavior: "smooth",
@@ -40,7 +39,7 @@ function LiveChat() {
                 {messageList.map((chat) => (
                     <SingleLiveChat chat={chat} />
                 ))}
-                <ScrollBottom ref={bottomRef}></ScrollBottom>
+                <ScrollBottom ref={bottomRef} />
             </CommentListContainer>
             <HorizontalLine />
             <NewComment>
@@ -99,7 +98,7 @@ const TopContainer = styled.div`
 
 const Close = styled.div``;
 const ScrollBottom = styled.div`
-    height: 35px;
+    height: 65px;
 `;
 const CloseSort = styled.div`
     position: absolute;
@@ -123,6 +122,9 @@ const NewComment = styled.div`
     border-width: 1px;
     bottom: 0px;
     right: 0px;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 0px;
 `;
 
 const Avatar = styled.img`
@@ -149,11 +151,12 @@ const HorizontalLine = styled.div`
     z-index: 100;
 `;
 const CommentListContainer = styled.div`
-    margin-top: 50px;
+    margin-top: 60px;
     overflow-x: hidden;
     overflow-y: auto;
     margin-left: 10px;
     height: 500px;
+    gap: 10px;
 `;
 const InputContainer = styled.div`
     background-color: #f2f2f2;

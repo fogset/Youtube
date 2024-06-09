@@ -21,7 +21,7 @@ export default SingleLiveChat;
 const Container = styled.div`
     display: flex;
     gap: 10px;
-    margin: 30px 0px;
+    margin: 10px 0px;
 `;
 const Avatar = styled.img`
     width: 30px;
@@ -37,13 +37,9 @@ const Details = styled.div`
 const Name = styled.span`
     font-size: 15px;
     font-weight: 500;
+    color: gray;
 `;
-const Date = styled.span`
-    font-size: 14px;
-    font-weight: 400;
-    color: grey;
-    margin-left: 5px;
-`;
+
 const Text = styled.span`
     font-size: 15px;
 `;
