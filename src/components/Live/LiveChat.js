@@ -5,6 +5,9 @@ import { GrClose } from "react-icons/gr";
 import { FaChevronDown } from "react-icons/fa";
 import React, { useState, useEffect, useRef } from "react";
 import { BsThreeDotsVertical, BsEmojiSunglasses } from "react-icons/bs";
+import { doc, onSnapshot } from "firebase/firestore";
+import { db } from "./../../firestore";
+
 function LiveChat() {
     const [messageList, setMessageList] = useState([]);
     const [message, setMessage] = useState();
@@ -19,6 +22,14 @@ function LiveChat() {
             });
         }
     }
+
+    useEffect(() => {
+        const GetUpdate = onSnapshot(doc(db, "liveChat", "nDKDQxiq5GEnkWST9cL0"), (doc) => {
+            setMessageList(doc.data().chat);
+        });
+        console.log("messageList");
+        console.log(messageList);
+    });
     return (
         <Container>
             <TopContainer>
@@ -63,6 +74,7 @@ function LiveChat() {
 }
 
 export default LiveChat;
+
 const Container = styled.div`
     position: fixed;
     top: 10%;

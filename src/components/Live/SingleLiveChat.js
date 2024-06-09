@@ -7,10 +7,10 @@ import PostComment from "../Channel/CommunityPost/PostComment";
 function SingleLiveChat({ chat }) {
     return (
         <Container>
-            <Avatar src="https://h5p.org/sites/default/files/h5p/content/1209180/images/file-6113d5f8845dc.jpeg" />
+            <Avatar src={chat.profileImg} />
             <Details>
-                <Name>hello123</Name>
-                <Text>{chat}</Text>
+                <Name>{chat.name}</Name>
+                <Text>{chat.message}</Text>
             </Details>
         </Container>
     );
